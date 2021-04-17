@@ -1,0 +1,25 @@
+{% extends 'forum/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.delete_forum'|trans({'%forum%': '/f/%s'|format(forum.name)}) %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {{- 'title.delete_forum'|trans({'%forum%': '<a href="%s">/f/%s</a>'|format(
+      path('forum', {forum_name: forum.name})|escape,
+      forum.name|escape
+      )})|raw
+    -}}
+  </h1>
+
+  {{ alert('help.delete_forum_warning'|trans, 'warn') }}
+
+  {{ form_start(form) }}
+    {{ form_row(form.name, { label: 'label.confirm_forum_name'|trans }) }}
+
+    {{ form_row(form.confirm, { label: 'label.delete_forum_confirmation'|trans }) }}
+
+    {{ button_row('forum.delete'|trans) }}
+  {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,150 @@
+{% macro subscribe_button(forum, subscribed) %}
+  {%- set subscriber_count = forum.subscriptionCount -%}
+  <button class="subscribe-button subscribe-button--{{ subscribed ? 'un' }}subscribe"
+          data-controller="subscribe-button"
+          data-action="subscribe-button#subscribe"
+          data-subscribe-button-forum-value="{{ forum.name }}"
+          data-subscribe-button-subscribers-value="{{ subscriber_count }}"
+          data-subscribe-button-subscribe-class="subscribe-button--subscribe"
+          data-subscribe-button-unsubscribe-class="subscribe-button--unsubscribe"
+          {{ subscribed ? 'data-subscribe-button-subscribed-value' }}>
+    <span class="subscribe-button__label">
+      <span class="subscribe-button__label-text" data-subscribe-button-target="label">
+        {{- subscribed ? 'action.unsubscribe'|trans : 'action.subscribe'|trans -}}
+      </span>
+
+      {# dummy labels to keep width of button consistent regardless of state #}
+      <span aria-hidden="true" class="subscribe-button__dummy-label">
+        {{ 'action.subscribe'|trans }}
+      </span>
+
+      <span aria-hidden="true" class="subscribe-button__dummy-label">
+        {{ 'action.unsubscribe'|trans }}
+      </span>
+    </span>
+
+    <b class="subscribe-button__subscriber-count"
+       aria-label="{{ 'forum.subscriber_count'|trans({
+         '%count%': subscriber_count,
+         '%formatted_count%': subscriber_count|format_number,
+       }) }}"
+       data-subscribe-button-target="subscribers">
+      {{- subscriber_count|format_number -}}
+    </b>
+  </button>
+{%- endmacro %}
+
+{% macro forum_return_nav(forum) %}
+  {%- from '_macros/return_nav.html.twig' import return_nav -%}
+  {{- return_nav(
+    '/f/<strong>%s</strong>'|format(forum.name|e),
+    path('forum', { forum_name: forum.name }),
+    {
+      attr: {
+        title: 'comments.return_to_forum'|trans({ '%forum%': '/f/'~forum.name }),
+      },
+      raw_label: true,
+    }
+  ) -}}
+{% endmacro forum_return_nav %}
+
+{%- macro log_line(entry) -%}
+  {%- if entry.action == 'comment_deletion' -%}
+    {{- _self._log_comment_deletion(entry) -}}
+  {%- elseif entry.action == 'comment_restored' -%}
+    {{- _self._log_comment_restored(entry) -}}
+  {%- elseif entry.action == 'submission_deletion' -%}
+    {{- _self._log_submission_deletion(entry) -}}
+  {%- elseif entry.action == 'submission_restored' %}
+    {{- _self._log_submission_restored(entry) }}
+  {%- elseif entry.action == 'submission_lock' -%}
+    {{- _self._log_submission_lock(entry) -}}
+  {%- elseif entry.action == 'ban' -%}
+    {{- _self._log_ban(entry) -}}
+  {%- endif -%}
+{%- endmacro -%}
+
+{% macro _log_comment_deletion(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {{ (entry.reason is null ? 'log.comment_deletion' : 'log.comment_deletion_with_reason')|trans({
+    '%user%': user_link(entry.user, {flag: entry.wasAdmin ? 'admin' : 'moderator'}),
+    '%author%': user_link(entry.author),
+    '%submission%': _self._format_submission_title(entry),
+    '%reason%': entry.reason,
+  })|raw }}
+{% endmacro %}
+
+{% macro _log_comment_restored(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {{ 'log.comment_restored'|trans({
+    '%submission%': _self._format_submission_title(entry),
+    '%user%': user_link(entry.user, { flag: entry.wasAdmin ? 'admin' : 'moderator' }),
+    '%author%': user_link(entry.author),
+    '%title%': '<del>%s</del>'|format(entry.title|e),
+  })|raw }}
+{% endmacro _log_comment_restored %}
+
+{% macro _log_submission_deletion(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {{ (entry.reason is null ? 'log.submission_deletion' : 'log.submission_deletion_with_reason')|trans({
+    '%user%': user_link(entry.user, {flag: entry.wasAdmin ? 'admin' : 'moderator'}),
+    '%author%': user_link(entry.author),
+    '%title%': _self._format_submission_title(entry),
+    '%reason%': entry.reason,
+  })|raw }}
+{% endmacro %}
+
+{% macro _log_submission_lock(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {{ (entry.locked ? 'log.submission_lock' : 'log.submission_unlock')|trans({
+    '%user%': user_link(entry.user, {flag: entry.wasAdmin ? 'admin' : 'moderator'}),
+    '%author%': user_link(entry.author),
+    '%title%': _self._format_submission_title(entry),
+  })|raw }}
+{% endmacro %}
+
+{% macro _log_submission_restored(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {{ 'log.submission_restored'|trans({
+    '%user%': user_link(entry.user, { flag: entry.wasAdmin ? 'admin' : 'moderator' }),
+    '%author%': user_link(entry.author),
+    '%title%': _self._format_submission_title(entry),
+  })|raw }}
+{% endmacro _log_submission_restored %}
+
+{% macro _log_ban(entry) %}
+  {% from 'user/_macros.html.twig' import user_link %}
+  {% from '_macros/time.html.twig' import relative_time_diff %}
+  {% if entry.ban.ban %}
+    {% if entry.ban.expired %}<del>{% endif %}
+    {{ 'log.ban'|trans({
+      '%user%': user_link(entry.user, {flag: entry.wasAdmin ? 'admin' : 'moderator'}),
+      '%banned%': user_link(entry.ban.user),
+      '%expires%': entry.ban.expires ? relative_time_diff(entry.ban.expires, entry.ban.timestamp) : 'label.never'|trans,
+      '%reason%': entry.ban.reason|e,
+    })|raw }}
+    {% if entry.ban.expired %}</del>{% endif %}
+  {% else %}
+    {{ 'log.unban'|trans({
+      '%user%': user_link(entry.user, {flag: entry.wasAdmin ? 'admin' : 'moderator'}),
+      '%banned%': user_link(entry.ban.user),
+      '%reason%': entry.ban.reason|e,
+    })|raw }}
+  {% endif %}
+{% endmacro %}
+
+{% macro _format_submission_title(entry) %}
+  {{- not entry.submission
+    ? '<del>%s</del>'|format(entry.title|e)|raw
+    : '<a href="%s">%s</a>'|format(
+      path('submission', {
+        forum_name: entry.submission.forum.name,
+        submission_id: entry.submission.id,
+        slug: entry.submission.title|slugify,
+      })|e,
+      entry.submission.visible
+        ? entry.submission.title|e
+        : '<del>%s</del>'|format(entry.title|e)
+    )|raw
+  -}}
+{% endmacro _format_submission_title %}

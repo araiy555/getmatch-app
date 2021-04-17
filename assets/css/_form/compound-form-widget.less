@@ -1,0 +1,20 @@
+.compound-form-widget {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 1px;
+  padding-top: 1px;
+  width: 100%;
+
+  > * {
+    display: inline-block !important;
+    margin-left: -1px;
+    margin-top: -1px;
+    position: relative;
+    z-index: 0;
+
+    &:focus,
+    &:focus-within {
+      z-index: 1;
+    }
+  }
+}

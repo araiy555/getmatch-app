@@ -1,0 +1,11 @@
+{% extends 'submission/base.html.twig' %}
+
+{% block title 'comment_form.create_title'|trans %}
+
+{% block body %}
+  {{ parent() }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('comment/_form.html.twig', { editing: false, form: form }, with_context=false) }}
+{% endblock body %}

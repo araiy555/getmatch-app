@@ -1,0 +1,23 @@
+/*! https://postmill.xyz/ */
+@import '_light';
+@import '_dark';
+
+:root[data-night-mode="light"] {
+  .light();
+}
+
+:root[data-night-mode="dark"] {
+  .dark();
+}
+
+:root[data-night-mode="auto"] {
+  .light();
+
+  @media screen and (prefers-color-scheme: dark) {
+    .dark();
+  }
+}
+
+.site-content > .body {
+  margin-top: 0 !important;
+}

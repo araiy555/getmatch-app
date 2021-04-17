@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% from 'submission/_macros.html.twig' import submission %}
+{% from '_macros/post_nav.html.twig' import front_post_types,
+                                            submission_filter,
+                                            submission_sort,
+                                            submission_time %}
+
+{% block site_nav_active 'front' %}
+
+{% block head %}
+  <link rel="canonical" href="{{ url('front') }}">
+
+  <meta property="og:title" content="{{ site_name() }}">
+  <meta property="og:site_name" content="{{ site_name() }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url('front') }}">
+  <meta property="og:image" content="{{ absolute_url(asset('apple-touch-icon-precomposed.png')) }}">
+
+  {{ include('_includes/meta_pagination.html.twig', { pager: submissions }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  {{ include('_layouts/news_trend.html.twig', with_context=false) }}
+
+  <nav class="flex flex--guttered">
+    {% block front_post_nav %}
+      {{ front_post_types('submissions') }}
+
+      <ul class="unlistify flex">
+        {{ submission_filter(block('listing'), sort_by) }}
+        {{ submission_sort(sort_by) }}
+        {{ submission_time(sort_by) }}
+      </ul>
+    {% endblock front_post_nav %}
+  </nav>
+
+  {% block front_alerts '' %}
+
+  {% for submission in submissions %}
+    {{ submission(submission) }}
+  {% endfor %}
+
+  {{ include('_includes/pagination.html.twig', { pager: submissions }, with_context=false) }}
+{% endblock body %}

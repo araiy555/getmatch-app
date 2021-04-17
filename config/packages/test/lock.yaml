@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    postmill.lock_store:
+        class: Symfony\Component\Lock\Store\InMemoryStore

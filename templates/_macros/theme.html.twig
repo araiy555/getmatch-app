@@ -1,0 +1,8 @@
+{% macro theme_css(theme=null) %}
+  {% set theme = ((app.user.showCustomStylesheets ?? true) ? theme : null) ?: (app.user.preferredTheme ?? site_theme()) %}
+  {% if theme and theme.type == 'css' %}
+    <link rel="stylesheet" href="{{ path('theme_css', { themeId: theme.id, revisionId: theme.latestRevision.id }) }}">
+  {% elseif theme and theme.type == 'bundled' or not theme %}
+    {{ encore_entry_link_tags(theme_entrypoint(theme.configKey ?? '_default')) }}
+  {% endif %}
+{% endmacro theme_css %}

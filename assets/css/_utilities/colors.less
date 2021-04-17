@@ -1,0 +1,13 @@
+@import '../_variables';
+
+each(@background-colors, .(@color, @name) {
+  .bg-@{name} {
+    background-color: @color;
+  }
+});
+
+each(@foreground-colors, .(@color, @name) {
+  .fg-@{name} {
+    color: @color;
+  }
+});

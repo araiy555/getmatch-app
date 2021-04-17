@@ -1,0 +1,9 @@
+fos_http_cache:
+    cache_control:
+        rules:
+            -
+                match:
+                    path: ^
+                headers:
+                    vary: [Accept-Encoding, Accept-Language, Cookie]
+

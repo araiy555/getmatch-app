@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.site_settings'|trans %}
+{% block sidebar ' ' %}
+{% block site_nav_active 'admin' %}
+{% block site_nav_main_menu_active 'site_settings' %}
+
+{% form_theme form '_forms/aligned_form_theme.html.twig' %}
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ form_start(form) }}
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.general'|trans }}</legend>
+
+      {{ form_row(form.siteName) }}
+
+      {{ form_row(form.registrationOpen) }}
+
+      {{ form_row(form.registrationCaptchaEnabled) }}
+
+      {{ form_row(form.trashEnabled) }}
+
+      {{ form_row(form.urlImagesEnabled) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.appearance_and_behavior'|trans }}</legend>
+
+      {{ form_row(form.submissionLinkDestination) }}
+
+      {{ form_row(form.defaultSortMode) }}
+
+      {{ form_row(form.defaultTheme) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.permissions'|trans }}</legend>
+
+      {{ form_row(form.forumCreateRole) }}
+
+      {{ form_row(form.imageUploadRole) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'nav.wiki'|trans }}</legend>
+
+      {{ form_row(form.wikiEnabled) }}
+
+      {{ form_row(form.wikiEditRole) }}
+    </fieldset>
+
+    {{ form_rest(form) }}
+
+    {{ button_row('action.save'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}

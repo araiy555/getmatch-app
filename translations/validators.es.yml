@@ -1,0 +1,17 @@
+bad_phrase.match: El campo contiene una palabra o frase vetada.
+bad_phrase.invalid_regex: El campo debe contener una expresión regular válida, sin delimitadores.
+bad_phrase.must_not_match_empty: La expresión regular no puede coincidir con una cadena vacía.
+comment.empty: El comentario no debe estar vacío.
+forum.banned: Has sido vetada de este foro.
+forum.duplicate_name: Un foro con ese nombre ya existe.
+forum.name_characters: El nombre solo puede contener letras, números y barras bajas.
+ip.cidr_missing: Falta la máscara CIDR.
+ip.invalid: La dirección IP no es válida.
+ip.invalid_cidr_mask: La máscara CIDR no es válida.
+ratelimit.error: No puedes publicar más. Espera un poco antes de intentarlo de nuevo.
+tag.invalid_characters: Las etiquetas solo pueden contener letras, números y barras bajas.
+tag.too_short: La etiqueta {{ value }} es demasiado corta. Debería tener al menos {{ limit }} carácter.|La etiqueta {{ value }} es demasiado corta. Debería tener al menos {{ limit }} caracteres.
+tag.too_long: La etiqueta {{ value }} es demasiado larga. Debería contener como máximo {{ limit }} carácter.|La etiqueta {{ value }} es demasiado larga. Debería contener como máximo {{ limit }} caracteres.
+user.already_moderator: Esa usuaria ya es moderadora.
+user.none_by_username: No hay tal usuaria
+user.rate_limit: No puedes crear nuevas cuentas en este momento. Inténtalo de nuevo más tarde.

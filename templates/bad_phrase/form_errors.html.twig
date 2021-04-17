@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'bad_phrase.title'|trans %}
+
+{% block body %}
+  <h1>{{ block('title') }}</h1>
+
+  {{ include('bad_phrase/_form.html.twig', { form: form }, with_context=false) }}
+{% endblock %}
+

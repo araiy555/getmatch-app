@@ -1,0 +1,110 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'user_settings.title'|trans({'%username%': user.username}) %}
+{% block site_nav_user_menu_active 'preferences' %}
+
+{% form_theme form '_forms/aligned_form_theme.html.twig' %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ form_start(form) }}
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.general'|trans }}</legend>
+
+      {{ form_row(form.locale) }}
+
+      {{ form_row(form.timezone) }}
+
+      <div>
+        {{ form_errors(form.frontPage) }}
+
+        <div class="form-flex form-flex--single-line">
+          {{ form_label(form.frontPage, null, {
+            show_required_indicator: false,
+            label_attr: { for: form.frontPage.filterBy.vars.id },
+          }) }}
+
+          <span class="compound-form-widget">
+            {{ form_widget(form.frontPage.filterBy, { attr: { 'aria-label': 'label.filter_by'|trans } }) }}
+            {{ form_widget(form.frontPage.sortBy, { attr: { 'aria-label': 'label.sort_by'|trans } }) }}
+          </span>
+        </div>
+      </div>
+
+      {{ form_row(form.submissionLinkDestination) }}
+
+      {{ form_row(form.openExternalLinksInNewTab) }}
+
+      {{ form_row(form.showThumbnails) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.posting'|trans }}</legend>
+
+      {{ form_row(form.autoFetchSubmissionTitles) }}
+
+      {{ form_row(form.enablePostPreviews) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'heading.notifications'|trans }}</legend>
+
+        {{ form_row(form.notifyOnReply) }}
+
+        {{ form_row(form.notifyOnMentions) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'heading.privacy'|trans }}</legend>
+
+      {{ form_row(form.allowPrivateMessages) }}
+    </fieldset>
+
+    <fieldset class="fieldset flow">
+      <legend>{{ 'label.appearance'|trans }}</legend>
+
+      {{ form_row(form.nightMode) }}
+
+      {{ form_row(form.preferredTheme) }}
+
+      {{ form_row(form.showCustomStylesheets) }}
+
+      {{ form_row(form.preferredFonts, {
+        attr: {
+          placeholder: font_names('default')|join(', '),
+          'aria-describedby': 'user_settings_preferred_fonts',
+        },
+        help: block('_preferred_fonts_help'),
+        label: 'label.preferred_fonts'|trans,
+        translation_domain: false,
+        raw_help: true,
+      }) }}
+
+      {{ form_row(form.fullWidthDisplayEnabled) }}
+
+      {{ form_row(form.poppersEnabled) }}
+    </fieldset>
+
+    {{ button_row('action.save_changes'|trans) }}
+  {{ form_end(form) }}
+{% endblock %}
+
+{% block _preferred_fonts_help %}
+  <p class="fg-muted text-sm">{{ 'help.preferred_fonts'|trans }}</p>
+  <p class="fg-muted text-sm">
+    {{ 'help.preferred_fonts_served'|trans }}
+    {%- for font in font_list()|filter(font => font_names(font) == [font]) %}
+      {{- loop.index != 1 ? ', ' -}}
+      <strong>{{ font|capitalize }}</strong>
+    {%- endfor %}
+  </p>
+  <p class="fg-muted text-sm">
+    {{ 'help.preferred_fonts_aliases'|trans }}
+    {%- for font in font_list()|filter(font => font_names(font) != [font]) %}
+      {{- loop.index != 1 ? ', ' -}}
+      <strong><abbr title="{{ font_names(font)|join(', ') }}">{{ font|capitalize }}</abbr></strong>
+    {%- endfor %}
+  </p>
+{% endblock %}

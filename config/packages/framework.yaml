@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+
+framework:
+    secret: '%env(APP_SECRET)%'
+    default_locale: '%env(APP_LOCALE)%'
+    csrf_protection: ~
+    http_method_override: false
+    session:
+        # With this config, PHP's native session handling is used
+        handler_id: session.handler.native_file
+        save_path: "%kernel.project_dir%/var/sessions"
+        cookie_secure: auto
+        cookie_samesite: lax
+    fragments: ~
+    php_errors:
+        log: true

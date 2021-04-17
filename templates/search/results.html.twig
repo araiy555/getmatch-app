@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% from 'submission/_macros.html.twig' import submission %}
+{% from 'comment/_macros.html.twig' import comment %}
+
+{% block site_nav_active 'search' %}
+{% block title 'heading.search'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  <form action="{{ path('search') }}" method="GET" class="form flow">
+    <div class="form-flex form-flex--single-line form__row">
+      <label for="query" class="form-flex__align text-align-right">{{ 'label.search_query'|trans }}</label>
+      <input name="q" type="search" value="{{ query }}" id="query" class="form-control">
+    </div>
+
+    <div class="form-flex form-flex--single-line form__row form__button-row">
+      <span class="form-flex__align" role="presentation"></span>
+      <button class="button">{{ 'action.search'|trans }}</button>
+    </div>
+  </form>
+
+  {% if query is not empty %}
+  <h2>{{ 'heading.search_results'|trans({
+      '%query%': '<em>%s</em>'|format(query|e),
+      '%count%': results|length
+    })|raw }}</h2>
+  {% endif %}
+
+  {% for result in results %}
+    {% if result.entity == 'comment' %}
+      {{ comment(result[0], {
+        show_context: true,
+        raw_body: '<p>%s</p>'|format(result.body_excerpt|search_highlight)
+      }) }}
+    {% elseif result.entity == 'submission' %}
+      {{ submission(result[0], {
+        show_content: true,
+        raw_title: result.title_highlighted|search_highlight,
+        raw_body: result.body_excerpt is not empty ? '<p>%s</p>'|format(result.body_excerpt|search_highlight) : null
+      }) }}
+    {% endif %}
+  {% else %}
+    {% if query is not empty %}
+      <p><small class="fg-muted text-md">{{ 'flash.no_entries_to_display'|trans }}</small></p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

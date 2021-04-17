@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import checkbox %}
+
+{% block site_nav_active 'login' %}
+{% block title 'action.log_in'|trans %}
+{% block description 'action.log_in_description'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% if app.request.headers.has('Referer') and
+    is_granted('IS_AUTHENTICATED_REMEMBERED') and
+    not is_granted('IS_AUTHENTICATED_FULLY')
+  %}
+    {{ alert('flash.you_must_reauthenticate'|trans, 'notice', true) }}
+  {% endif %}
+
+  <form action="{{ path('login_check') }}" method="POST" class="form flow">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    {% if error %}
+      <ul class="form-error-list">
+        <li>{{ error.messageKey|trans(error.messageData, 'security') }}</li>
+      </ul>
+    {% endif %}
+
+    <div class="form-flex form-flex--single-line form__row">
+      <label class="form-flex__align text-align-right form__label" for="login-username">{{ 'label.username'|trans }}</label>
+      <input class="form-control"
+             {{ last_username|trim|length == 0 ? 'autofocus' }}
+             type="text"
+             name="_username"
+             value="{{ last_username }}"
+             id="login-username"
+             required>
+    </div>
+
+    <div class="form-flex form-flex--single-line form__row">
+      <label class="form-flex__align text-align-right form__label" for="login-password">{{ 'label.password'|trans }}</label>
+      <input class="form-control"
+             {{ last_username|trim|length > 0 ? 'autofocus' }}
+             type="password"
+             name="_password"
+             id="login-password"
+             required>
+    </div>
+
+    <div class="form-flex form-flex--single-line form-flex--no-collapse">
+      <div class="form-flex__align" aria-hidden="true"></div>
+      {{ checkbox({ name: '_remember_me', id: 'login-remember-me', checked: remember_me ?? true }) }}
+      <label for="login-remember-me">{{ 'login.remember_me'|trans }}</label>
+    </div>
+
+    <div class="form-flex form-flex--single-line form__row form__button-row">
+      <span class="form-flex__align" role="presentation"></span>
+
+      <button type="submit" class="button">{{ 'action.log_in'|trans }}</button>
+
+      {% if can_reset_password %}
+        <a href="{{ path('request_password_reset') }}" class="button button--secondary">
+          {{- 'login.reset_password'|trans -}}
+        </a>
+      {% endif %}
+    </div>
+  </form>
+
+  <h2>{{ 'login.no_account'|trans }}</h2>
+
+  <p>
+    {% if registration_open() %}
+      <a href="{{ path('registration') }}" class="button button--secondary">
+        {{- 'action.sign_up'|trans -}}
+      </a>
+    {% else %}
+      {{ 'flash.registration_closed'|trans }}
+    {% endif %}
+  </p>
+{% endblock body %}

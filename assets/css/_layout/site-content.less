@@ -1,0 +1,28 @@
+@import '../_variables';
+
+.site-content {
+  align-items: flex-start;
+  display: flex;
+
+  @media not screen and (min-width: @desktop-min-width) {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  &__body {
+    background: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 1rem;
+
+    @media screen and (min-width: @desktop-min-width) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__sidebar {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+}

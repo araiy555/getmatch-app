@@ -1,0 +1,38 @@
+{%- macro checkbox(attributes) -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  <span class="unstylable-widget">
+    <input type="checkbox"
+           class="{{ ('form-control '~(attributes.class ?? ''))|trim }}"
+           value="{{ attributes.value ?? 'on' }}"
+           {{ attributes
+             |filter((v, k) => k not in ['class', 'type', 'value'])
+             |map((v, k) => v is same as(true) ? k : v is same as(false) or v is null ? '' : '%s="%s"'|format(k, v|e('html_attr')))
+             |join(' ')|raw }}>
+    {{- icon('ok', 'X', 'icon--no-align unstylable-widget__check') -}}
+  </span>
+{%- endmacro checkbox -%}
+
+{%- macro radio(attributes) -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  <span class="unstylable-widget">
+    <input type="radio"
+           class="{{ ('form-control '~(attributes.class ?? ''))|trim }}"
+           {{ attributes
+             |filter((v, k) => k not in ['class', 'type'])
+             |map((v, k) => v is same as(true) ? k : v is same as(false) or v is null ? '' : '%s="%s"'|format(k, v|e('html_attr')))
+             |join(' ')|raw }}>
+    <span class="unstylable-widget__circle" aria-hidden="true"></span>
+  </span>
+{%- endmacro radio -%}
+
+{% macro button_row(label, attr={}) %}
+  <div class="form__row form__button-row">
+    <button class="{{ ('button '~(attr.class ?? ''))|trim }}"
+      {{~ attr
+        |filter((v, k) => k not in ['class'])
+        |map((v, k) => v is same as(true) ? k : v is same as(false) or v is null ? '' : '%s="%s"'|format(k, v|e('html_attr')))
+        |join(' ')|raw }}>
+      {{- label -}}
+    </button>
+  </div>
+{% endmacro button_row %}

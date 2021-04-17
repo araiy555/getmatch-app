@@ -1,0 +1,40 @@
+{% extends 'forum/base.html.twig' %}
+
+{% block title 'title.showing_ban_history_for_user_in_forum'|trans({
+  '%user%': '/u/'~user.username,
+  '%forum%': '/f/'~forum.name,
+}) %}
+
+{% block head %}
+  {{ parent() }}
+  {{ include('_includes/meta_pagination.html.twig', {pager: bans}, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% embed '_layouts/table.html.twig' with { items: bans } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'label.action'|trans }}</th>
+      <th>{{ 'label.reason'|trans }}</th>
+      <th class="table__shrink">{{ 'label.banned'|trans }}</th>
+      <th class="table__shrink">{{ 'label.expires'|trans }}</th>
+    {% endblock header %}
+
+    {% block row %}
+      {% from '_macros/time.html.twig' import relative_time %}
+      <td class="table__shrink">{{ (item.ban ? 'label.ban' : 'label.unban')|trans }}</td>
+      <td>{{ item.reason }}</td>
+      <td class="table__shrink">
+        {{ relative_time(item.timestamp, { date_format: 'short', time_format: 'none' }) }}
+      </td>
+      <td class="table__shrink">
+        {% if item.expires %}
+          {{ relative_time(item.expires, { date_format: 'short' }) }}
+        {% else %}
+          <small class="fg-muted text-sm">{{ 'label.never'|trans }}</small>
+        {% endif %}
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

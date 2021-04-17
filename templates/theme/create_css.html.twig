@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/return_nav.html.twig' import return_nav %}
+
+{% block title 'action.create_theme'|trans %}
+
+{% block body %}
+  {{ return_nav('nav.themes'|trans, path('themes')) }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('theme/_css_form.html.twig', { form: form }, with_context=false) }}
+{% endblock body %}

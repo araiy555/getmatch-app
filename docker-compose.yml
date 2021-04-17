@@ -1,0 +1,59 @@
+# This configuration sets up a development environment for Postmill.
+# It should never be used in production.
+
+version: '3.4'
+
+networks:
+    web: {}
+    app: {}
+
+volumes:
+    postgres_data:
+
+services:
+    db:
+        environment:
+            POSTGRES_USER: postmill
+            POSTGRES_PASSWORD: secret
+            PGUSER: postmill
+        image: postgres:11-alpine
+        networks:
+            - app
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+    web:
+        build:
+            context: .
+            target: postmill_web_debug
+        depends_on:
+            - php
+        networks:
+            - web
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./keys:/etc/ssl/private
+            - ./public:/app/public:ro
+    php:
+        build:
+            context: .
+            target: postmill_php_debug
+        depends_on:
+            - db
+        networks:
+            - web
+            - app
+        volumes:
+            - ./.git:/app/.git:ro
+            - ./:/app
+    assets:
+        build:
+            context: .
+            target: postmill_assets
+        command: ["sh", "-c", "yarn && yarn run watch"]
+        volumes:
+            - ./.git:/app/.git:ro
+            - ./:/app

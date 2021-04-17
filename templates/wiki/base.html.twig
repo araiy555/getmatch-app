@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block wiki_nav_toolbox_active app.request.attributes.get('_route') %}
+
+{% block sidebar %}
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ 'wiki.navigation'|trans }}</h1>
+
+    <ul class="unlistify sidebar__no-padding">
+      <li>
+        <a href="{{ path('wiki_all') }}"
+           class="menu-item {{ block('wiki_nav_toolbox_active') == 'wiki_all' ? 'menu-item--active' }}">
+          {{- 'wiki.all_pages'|trans -}}
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('wiki_recent_changes') }}"
+           class="menu-item {{ block('wiki_nav_toolbox_active') == 'wiki_recent_changes' ? 'menu-item--active' }}">
+          {{- 'label.recent_changes'|trans -}}
+        </a>
+      </li>
+    </ul>
+  </section>
+{% endblock %}

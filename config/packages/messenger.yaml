@@ -1,0 +1,16 @@
+framework:
+    messenger:
+        buses:
+            messenger.bus.default:
+                middleware:
+                    - App\Message\Middleware\RequestContextMiddleware
+                    - App\Message\Middleware\TranslatorLocaleMiddleware
+
+        transports:
+            default: "%env(MESSENGER_TRANSPORT_DSN)%"
+
+        routing:
+            App\Message\DeleteUser: default
+            App\Message\NewSubmission: default
+            App\Message\DeleteImage: default
+            App\Message\SendPasswordResetEmail: default

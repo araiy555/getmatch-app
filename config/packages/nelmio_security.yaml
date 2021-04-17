@@ -1,0 +1,29 @@
+nelmio_security:
+    # prevents framing of the entire site
+    clickjacking:
+        paths:
+            '^/.*': DENY
+
+    # disables content type sniffing for script resources
+    content_type:
+        nosniff: true
+
+    # Send a full URL in the `Referer` header when performing a same-origin
+    # request, and send no header to other destinations.
+    referrer_policy:
+        enabled: true
+        policies:
+            - 'same-origin'
+
+#    csp:
+#        enabled: true
+#        enforce:
+#            default-src:
+#                - self
+#            img-src:
+#                - self
+#                - 'data:'
+#                - "%env(resolve:UPLOAD_HOST)%"
+
+    external_redirects:
+        abort: true

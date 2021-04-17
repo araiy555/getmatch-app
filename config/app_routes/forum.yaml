@@ -1,0 +1,130 @@
+multi:
+    controller: App\Controller\ForumController::multi
+    defaults: { sortBy: ~ }
+    path: /f/{names}/{sortBy}
+    requirements:
+        names: '(?:\w{3,25}\+){1,70}\w{3,25}'
+        sortBy: "%submission_sort_modes%"
+
+forum:
+    controller: App\Controller\ForumController::front
+    defaults: { sortBy: ~, _format: html }
+    path: /f/{forum_name}/{sortBy}.{_format}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%", _format: html|atom }
+
+edit_forum:
+    controller: App\Controller\ForumController::editForum
+    path: /f/{forum_name}/edit
+    methods: [GET, POST]
+
+delete_forum:
+    controller: App\Controller\ForumController::delete
+    path: /f/{forum_name}/delete
+    methods: [GET, POST]
+
+forum_comments:
+    controller: App\Controller\ForumController::comments
+    path: /f/{forum_name}/comments
+    methods: [GET]
+
+forum_appearance:
+    controller: App\Controller\ForumController::appearance
+    path: /f/{forum_name}/appearance
+    methods: [GET, POST]
+
+forum_bans:
+    controller: App\Controller\ForumController::bans
+    defaults: { page: 1 }
+    path: /f/{forum_name}/bans/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+forum_ban_history:
+    controller: App\Controller\ForumController::banHistory
+    defaults: { page: 1 }
+    path: /f/{forum_name}/bans/history/{username}/{page}
+    methods: [GET]
+    requirements: { page: \d+, username: "%username_regex%" }
+
+forum_ban:
+    controller: App\Controller\ForumController::ban
+    path: /f/{forum_name}/ban/{username}
+    methods: [GET, POST]
+    requirements: { username: "%username_regex%" }
+
+forum_unban:
+    controller: App\Controller\ForumController::unban
+    path: /f/{forum_name}/unban/{username}
+    methods: [GET, POST]
+    requirements: { username: "%username_regex%" }
+
+forum_moderators:
+    controller: App\Controller\ForumController::moderators
+    defaults: { page: 1 }
+    path: /f/{forum_name}/moderators/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+add_moderator:
+    controller: App\Controller\ForumController::addModerator
+    path: /f/{forum_name}/add_moderator
+    methods: [GET, POST]
+
+remove_moderator:
+    controller: App\Controller\ForumController::removeModerator
+    path: /f/{forum_name}/remove_moderator/{moderator_id}
+    methods: [POST]
+    requirements: { moderator_id: "%uuid_regex%" }
+
+forum_trash:
+    controller: App\Controller\ForumController::trash
+    path: /f/{forum_name}/trash
+    methods: [GET]
+
+moderation_log:
+    controller: App\Controller\ForumController::moderationLog
+    defaults: { page: 1 }
+    path: /f/{forum_name}/moderation_log/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+global_moderation_log:
+    controller: App\Controller\ForumController::globalModerationLog
+    defaults: { page: 1 }
+    path: /moderation_log/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+subscribe:
+    controller: App\Controller\ForumController::subscribe
+    defaults: { subscribe: true, _format: html }
+    path: /f/{forum_name}/subscribe.{_format}
+    methods: [POST]
+    requirements: { _format: html|json }
+    options: { expose: true }
+
+unsubscribe:
+    controller: App\Controller\ForumController::subscribe
+    defaults: { subscribe: false, _format: html }
+    path: /f/{forum_name}/unsubscribe.{_format}
+    methods: [POST]
+    requirements: { _format: html|json }
+    options: { expose: true }
+
+create_forum:
+    controller: App\Controller\ForumController::createForum
+    path: /create_forum
+    methods: [GET, POST]
+
+forum_list:
+    controller: App\Controller\ForumController::list
+    defaults: { page: 1, sortBy: by_submissions }
+    path: /forums/{sortBy}/{page}
+    methods: [GET]
+    requirements: { forums: \d+, sortBy: by_(name|title|subscribers|submissions|creation_date) }
+
+forum_list_all:
+    controller: App\Controller\ForumController::listAll
+    path: /forums/all
+    methods: [GET]

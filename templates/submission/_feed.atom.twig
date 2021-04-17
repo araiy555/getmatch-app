@@ -1,0 +1,12 @@
+{% extends 'feed_base.atom.twig' %}
+
+{% from '_macros/feed_macros.atom.twig' import pagination %}
+{% from 'submission/_feed_macros.atom.twig' import submission %}
+
+{% block body %}
+  {{ pagination(submissions) }}
+
+  {% for submission in submissions %}
+    {{ submission(submission) }}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'wiki/page.html.twig' %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'wiki' %}
+{% block wiki_page_toolbox_active 'wiki_history' %}
+
+{% block title 'title.wiki_diff'|trans({
+  'from': from.id[0:8],
+  'to': to.id[0:8],
+}) %}
+
+{% block body %}
+  {% from '_macros/time.html.twig' import relative_time, relative_time_diff %}
+  <h1 class="page-heading">
+    {{ 'title.wiki_diff'|trans({
+      '%from%': '<a href="%s">%s</a>'|format(
+        path('wiki_revision', {id: from.id})|e,
+        from.id[0:8]
+      ),
+      '%to%': '<a href="%s">%s</a>'|format(
+        path('wiki_revision', {id: to.id})|e,
+        to.id[0:8]
+      )
+    })|raw }}
+  </h1>
+
+  {% apply spaceless %}
+    <pre>
+      <code data-controller="syntax-highlight" data-syntax-highlight-language-value="diff">
+        {{- from.body|diff(to.body) -}}
+      </code>
+    </pre>
+  {% endapply %}
+{% endblock body %}

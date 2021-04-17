@@ -1,0 +1,30 @@
+{% extends 'forum/base.html.twig' %}
+
+{% from '_macros/post_nav.html.twig' import forum_post_types %}
+{% from 'comment/_macros.html.twig' import comment %}
+
+{% block title 'title.recent_comments_forum'|trans({'%forum%': '/f/'~forum.name}) %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: comments}, with_context=false) }}
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-heading">{{ 'title.recent_comments_forum'|trans({
+    '%forum%': '<a href="%s">/f/%s</a>'|format(path('forum', {forum_name: forum.name})|e, forum.name|e)
+  })|raw }}</h1>
+
+  <nav class="flex flex--guttered">
+    {{ forum_post_types(forum.name, 'comments') }}
+  </nav>
+
+  {% if comments|length > 0 %}
+    {% for comment in comments %}
+      {{ comment(comment, {show_context: true}) }}
+    {% endfor %}
+  {% else %}
+    <p><small class="fg-muted text-md">{{ 'flash.no_entries_to_display'|trans }}</small></p>
+  {% endif %}
+
+  {{ include('_includes/pagination.html.twig', {pager: comments}, with_context=false) }}
+{% endblock %}

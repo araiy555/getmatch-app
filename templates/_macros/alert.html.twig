@@ -1,0 +1,13 @@
+{% use '_layouts/alert.html.twig' %}
+
+{% macro alert(text, type='notice', loud=false) %}
+  {{- block('alert') -}}
+{% endmacro alert %}
+
+{% macro alert_classes(type='notice') %}
+  {{- block('alert_classes') -}}
+{% endmacro alert_classes %}
+
+{% macro alert_icon(type='notice') %}
+  {{- block('alert_icon') -}}
+{% endmacro alert_icon %}

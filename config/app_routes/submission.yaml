@@ -1,0 +1,107 @@
+submission:
+    controller: App\Controller\SubmissionController::submission
+    defaults: { slug: ~, commentView: nested }
+    path: /f/{forum_name}/{submission_id}/{slug}/{commentView}
+    methods: [GET]
+    requirements: { submission_id: "%number_regex%", commentView: nested|linear }
+
+submission_json:
+    controller: App\Controller\SubmissionController::submissionJson
+    path: /f/{forum_name}/{submission_id}.{_format}
+    methods: [GET]
+    requirements: { _format: json, submission_id: "%number_regex%" }
+
+submission_shortcut:
+    controller: App\Controller\SubmissionController::shortcut
+    path: /{id}
+    requirements: { id: "%number_regex%" }
+
+comment:
+    controller: App\Controller\SubmissionController::commentPermalink
+    defaults: { slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/comment/{comment_id}
+    requirements: { submission_id: "%number_regex%", comment_id: "%number_regex%" }
+
+comment_legacy_redirect:
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults: { route: comment, permanent: true }
+    path: /f/{forum_name}/{submission_id}/comment/{comment_id}
+    methods: [GET]
+    requirements: { submission_id: "%number_regex%", comment_id: "%number_regex%" }
+
+edit_submission:
+    controller: App\Controller\SubmissionController::editSubmission
+    defaults: { slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/edit
+    methods: [GET, POST]
+    requirements: { submission_id: "%number_regex%" }
+
+submission_delete_own:
+    controller: App\Controller\SubmissionController::deleteOwn
+    defaults: { slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/delete
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+submission_mod_delete:
+    controller: App\Controller\SubmissionController::modDelete
+    defaults: { slug: '-' }
+    path: /f/{forum_name}/{submission_id}/{slug}/mod_delete
+    methods: [GET, POST]
+    requirements: { submission_id: "%number_regex%" }
+
+submission_purge:
+    controller: App\Controller\SubmissionController::purge
+    defaults: { slug: '-' }
+    path: /f/{forum_name}/{submission_id}/{slug}/purge
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+submission_restore:
+    controller: App\Controller\SubmissionController::restore
+    defaults: { slug: '-' }
+    path: /f/{forum_name}/{submission_id}/{slug}/restore
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+lock:
+    controller: App\Controller\SubmissionController::lock
+    defaults: { lock: true, slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/lock
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+unlock:
+    controller: App\Controller\SubmissionController::lock
+    defaults: { lock: false, slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/unlock
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+pin:
+    controller: App\Controller\SubmissionController::pin
+    defaults: { pin: true, slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/pin
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+unpin:
+    controller: App\Controller\SubmissionController::pin
+    defaults: { pin: false, slug: - }
+    path: /f/{forum_name}/{submission_id}/{slug}/unpin
+    methods: [POST]
+    requirements: { submission_id: "%number_regex%" }
+
+submit:
+    controller: App\Controller\SubmissionController::submit
+    defaults: { forum_name: null }
+    path: /submit/{forum_name}
+    methods: [GET, POST]
+
+submission_vote:
+    controller: App\Controller\VoteController
+    defaults: { _format: html, entityClass: App\Entity\Submission }
+    path: /sv/{id}.{_format}
+    methods: [POST]
+    requirements: { _format: html|json }
+    options: { expose: true }

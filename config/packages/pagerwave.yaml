@@ -1,0 +1,28 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    pagerwave.view_entry_reader:
+        stack:
+            - PagerWave\Extension\DateTime\DateTimeEntryReaderDecorator: ~
+            - PagerWave\EntryReader\SimpleEntryReader: ~
+
+    pagerwave.model_entry_reader:
+        class: PagerWave\EntryReader\SimpleEntryReader
+
+    pagerwave.query_reader:
+        stack:
+            - PagerWave\Extension\Validator\ValidatingQueryReaderDecorator: ~
+            - PagerWave\Integration\Symfony\RequestStackQueryReader: ~
+
+    pagerwave.url_generator:
+        class: PagerWave\Integration\Symfony\RequestStackUrlGenerator
+
+    PagerWave\PaginatorInterface:
+        class: PagerWave\Paginator
+        arguments:
+            - '@pagerwave.view_entry_reader'
+            - '@pagerwave.query_reader'
+            - '@pagerwave.url_generator'
+            - '@pagerwave.model_entry_reader'

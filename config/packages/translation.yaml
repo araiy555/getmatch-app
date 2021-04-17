@@ -1,0 +1,8 @@
+framework:
+    default_locale: '%env(APP_LOCALE)%'
+    translator:
+        paths:
+            - '%kernel.project_dir%/translations/overrides'
+            - '%kernel.project_dir%/translations'
+        fallbacks:
+            - 'en'

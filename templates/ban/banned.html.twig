@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'banned.title'|trans %}
+{% block sidebar ' ' %}
+
+{% block body %}
+  <h1>{{ 'banned.title'|trans }}</h1>
+
+  {% if user_ban %}
+    <p>{{ 'banned.banned_account'|trans }}</p>
+
+    {{ _self.ban_expires(user_ban) }}
+  {% endif %}
+
+  {% if ip_bans|length > 0 %}
+    {% if user_ban %}
+      <hr>
+    {% endif %}
+
+    <p>
+      {{- 'banned.banned_ip'|trans({
+        '%count%': ip_bans|length,
+        '%formatted_count%': '<strong>%d</strong>'|format(ip_bans|length|format_number|e),
+        '%ip%': '<strong>%s</strong>'|format(app.request.clientIp|e),
+      })|raw -}}
+    </p>
+
+    <ul class="{{ ip_bans|length == 1 ? 'unlistify' }}">
+      {% for ban in ip_bans %}
+        <li>
+          {% if not ban.rangeBan %}
+            <p>{{ 'banned.set_on_date'|trans({ '%date%': ban.timestamp|format_date }) }}</p>
+          {% else %}
+            <p>{{ 'banned.set_on_date_for_range'|trans({ '%date%': ban.timestamp|format_date }) }}</p>
+          {% endif %}
+
+          {{ _self.ban_expires(ban) }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if not user_ban and (app.user.whitelistedOrAdmin ?? false) %}
+      <p><strong>{{ 'banned.whitelisted'|trans }}</strong></p>
+    {% endif %}
+  {% endif %}
+{% endblock body %}
+
+{% macro ban_expires(ban) %}
+  {% if ban.expires %}
+    <p>
+      {{- 'banned.will_expire'|trans({
+        '%date%': ban.expires|format_datetime|e,
+      }) -}}
+    </p>
+  {% else %}
+    <p>{{ 'banned.will_not_expire'|trans }}</p>
+  {% endif %}
+{% endmacro ban_expires %}

@@ -1,0 +1,23 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.editing_biography_for_user'|trans({'%user%': user.username}) %}
+
+{% block body %}
+  <h1>
+    {{ 'title.editing_biography_for_user'|trans({
+      '%user%': '<a href="%s">/u/%s</a>'|format(path('user', {username: user.username})|e, user.username|e)
+    })|raw }}
+  </h1>
+
+  {% if user is not same as(app.user) %}
+    {{ alert('flash.editing_biography_of_other_user'|trans) }}
+  {% endif %}
+
+  {{ form_start(form) }}
+    {{ form_row(form.biography, { attr: { rows: 5 } }) }}
+
+    {{ button_row('action.save'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}

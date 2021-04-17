@@ -1,0 +1,28 @@
+{% macro icon(name, alt_text = '', extra_classes='', alt_text_extra_classes='') %}
+  {#- prevent preloading sprite sheet more than once -#}
+  {%- set icon_asset = asset('build/images/icons.svg') -%}
+  {%- if not app.request.attributes.get('icons_are_linked') -%}
+    {%- set icon_asset = preload(icon_asset) -%}
+  {%- endif -%}
+  {%- do app.request.attributes.set('icons_are_linked', true) -%}
+
+  {%- apply spaceless -%}
+    <span class="icon {{ alt_text ? 'icon--with-alt-text' }} {{ extra_classes }}">
+      {%- if alt_text is not empty -%}
+        {#- Attempt to display an empty SVG. If this fails, the alt text will
+            display. We assume that no support for SVG via <img> = no inline SVG
+            support, although this assumption doesn't always hold true for older
+            browsers (which we don't care about anyway). This hack is necessary to
+            provide alternative text for Tor browser in high security mode, where
+            SVG icons are disabled. -#}
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2F%3E"
+                 alt="{{ alt_text }}"
+                 class="icon__alt {{ alt_text_extra_classes }}"
+                 aria-hidden="true"
+                 width="0"
+                 height="0">
+      {%- endif -%}
+      <svg width="16" height="16"><use xlink:href="{{ icon_asset }}#{{ name }}"/></svg>
+    </span>
+  {%- endapply -%}
+{% endmacro icon %}

@@ -1,0 +1,62 @@
+{% with {
+  attr: app.request.attributes,
+  get: app.request.query.all,
+  hasPrev: pager.hasPreviousPage,
+  hasNext: pager.hasNextPage,
+  definite: pager.currentPage is defined,
+} %}
+  {% if hasPrev or hasNext %}
+    <nav class="pagination" role="navigation">
+      <ul class="flex flex--guttered unlistify">
+        <span class="flex__grow" aria-hidden="true"></span>
+
+        {% if hasPrev or definite %}
+          <li class="previous">
+            {% if hasPrev %}
+              <a href="{{ path(attr.get('_route'), (attr.get('_route_params') ?? {})|merge(get)|merge({ page: pager.previousPage })) }}"
+                 class="button button--secondary"
+                 rel="prev">
+                {{ 'nav.previous'|trans }}
+              </a>
+            {% else %}
+              <button type="button" class="button button--secondary" disabled>
+                {{ 'nav.previous'|trans }}
+              </button>
+            {% endif %}
+          </li>
+        {% endif %}
+
+        {% if definite %}
+          {% for i in max(1, min(pager.currentPage - 3, pager.nbPages - 6))..min(pager.currentPage + max(3, 7 - pager.currentPage), pager.nbPages) %}
+            <li class="no-mobile">
+              <a href="{{ path(attr.get('_route'), (attr.get('_route_params') ?? {})|merge(get)|merge({ page: i })) }}"
+                 class="button {{ i == pager.currentPage ? 'button--transparent' : 'button--secondary' }}"
+                 aria-label="{{ 'nav.page_number'|trans({ '%number%': i|format_number }) }}"
+                 {{ pager.currentPage ? 'aria-current="true"' }}>
+                {{- i|format_number -}}
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+
+        {% if hasNext or definite %}
+          <li class="next">
+            {% if hasNext %}
+              <a href="{{ pager.nextPageUrl ?? path(attr.get('_route'), (attr.get('_route_params') ?? {})|merge(get)|merge({ page: pager.nextPage })) }}"
+                 class="button button--secondary"
+                 rel="next">
+                {{ definite ? 'nav.next'|trans : 'nav.more'|trans }}
+              </a>
+            {% else %}
+              <button class="button button--secondary" disabled>
+                {{ definite ? 'nav.next'|trans : 'nav.more'|trans }}
+              </button>
+            {% endif %}
+          </li>
+        {% endif %}
+
+        <span class="flex__grow" aria-hidden="true"></span>
+      </ul>
+    </nav>
+  {% endif %}
+{% endwith %}

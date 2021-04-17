@@ -1,0 +1,21 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        Doctrine\Common\DataFixtures\FixtureInterface:
+            tags: ['doctrine.fixture.orm']
+
+    App\Form\Extension\CaptchaBypassExtension:
+        $bypass: true
+
+    App\Tests\Fixtures\Database\:
+        resource: '../tests/Fixtures/Database'
+
+    App\Utils\LanguageDetectorInterface:
+        class: App\Tests\Fixtures\Utils\MockLanguageDetector
+
+    App\Utils\UrlMetadataFetcherInterface:
+        class: App\Tests\Fixtures\Utils\MockUrlMetadataFetcher

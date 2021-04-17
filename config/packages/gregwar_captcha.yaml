@@ -1,0 +1,10 @@
+# Workaround for broken captcha
+# See https://github.com/Gregwar/CaptchaBundle/pull/213
+services:
+    gregwar_captcha.controller:
+        class: "%gregwar_captcha.controller.class%"
+        arguments:
+            - "@gregwar_captcha.generator"
+            - "%gregwar_captcha.config%"
+        calls:
+            - [setContainer, ["@service_container"]]

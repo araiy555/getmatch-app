@@ -1,0 +1,4 @@
+{% extends 'submission/_feed.atom.twig' %}
+
+{% block title '%s — /f/%s'|format(site_name(), forum.name) %}
+{% block subtitle forum.title %}

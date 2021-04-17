@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autowire: true
+        public: false
+
+    SebastianBergmann\Diff\Output\DiffOutputBuilderInterface:
+        class: SebastianBergmann\Diff\Output\UnifiedDiffOutputBuilder

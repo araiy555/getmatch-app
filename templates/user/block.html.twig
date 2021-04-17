@@ -1,0 +1,22 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import button_row %}
+{% from 'user/_macros.html.twig' import user_link %}
+
+{% block title 'title.blocking_user'|trans({'%user%': '/u/'~user.username}) %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {{ 'title.blocking_user'|trans({
+      '%user%': user_link(user, {prefix: true}),
+    })|raw }}
+  </h1>
+
+  {{ alert('help.blocking_users'|trans, 'info') }}
+
+  {{ form_start(form) }}
+    {{ form_row(form.comment) }}
+
+    {{ button_row('action.block'|trans) }}
+  {{ form_end(form) }}
+{% endblock %}

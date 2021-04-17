@@ -1,0 +1,14 @@
+<nav class="flex flex--guttered">
+  <ul class="unlistify flex">
+    <li>
+      <a href="{{ path('user_bans') }}" class="tab {{ page == 'user_bans' ? 'tab--active' }}">
+        {{- 'nav.user_bans'|trans -}}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('ip_bans') }}" class="tab {{ page == 'ip_bans' ? 'tab--active' }}">
+        {{- 'nav.ip_bans'|trans -}}
+      </a>
+    </li>
+  </ul>
+</nav>

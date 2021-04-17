@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block site_nav_active 'admin' %}
+{% block site_nav_main_menu_active 'users' %}
+{% block title 'title.list_of_users'|trans({'%page%': page|format_number}) %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: users}, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  <details>
+    <summary>{{ 'nav.filter_results'|trans }}</summary>
+
+    {{ form_start(form) }}
+      {{ form_rest(form) }}
+
+      <div class="form__row">
+        <button class="button">{{ 'action.filter'|trans }}</button>
+      </div>
+    {{ form_end(form) }}
+  </details>
+
+  {% embed '_layouts/table.html.twig' with { items: users } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'label.id'|trans }}</th>
+      <th>{{ 'label.username'|trans }}</th>
+      <th>{{ 'label.registration_date'|trans }}</th>
+      <th>{{ 'label.role'|trans }}</th>
+      <th>{{ 'label.moderates'|trans }}</th>
+      <th class="table__shrink"><abbr title="{{ 'label.submissions'|trans }}">{{ 'label.submissions_short'|trans }}</abbr></th>
+      <th class="table__shrink"><abbr title="{{ 'label.comments'|trans }}">{{ 'label.comments_short'|trans }}</abbr></th>
+      <th class="table__shrink"><abbr title="{{ 'label.submission_votes'|trans }}">{{ 'label.submission_votes_short'|trans }}</abbr></th>
+      <th class="table__shrink"><abbr title="{{ 'label.comment_votes'|trans }}">{{ 'label.comment_votes_short'|trans }}</abbr></th>
+    {% endblock header %}
+
+    {% block row %}
+      {% from '_macros/time.html.twig' import relative_time %}
+      {% from 'user/_macros.html.twig' import user_link %}
+      <td class="table__shrink">{{ item.id }}</td>
+      <td>{{ user_link(item) }}</td>
+      <td>
+        {{ relative_time(item.created, { date_format: 'short', time_format: 'none' }) }}
+      </td>
+      <td>{{ item.admin ? ('label.admin'|trans) : item.whitelisted ? ('label.whitelisted'|trans) : '-' }}</td>
+      <td>
+        {% with { count: item.moderatorTokens|length } %}
+          {{ count > 0 ? 'label.forums_count'|trans({'%count%': count}) : '-' }}
+        {% endwith %}
+      </td>
+      <td class="table__shrink">
+        {% with { count: item.submissionCount } %}
+          {{ count > 0 ? count|format_number : '-' }}
+        {% endwith %}
+      </td>
+      <td class="table__shrink">
+        {% with { count: item.commentCount } %}
+          {{ count > 0 ? count|format_number : '-' }}
+        {% endwith %}
+      </td>
+      <td class="table__shrink">
+        {% with { count: item.submissionVoteCount } %}
+          {{ count > 0 ? count|format_number : '-' }}
+        {% endwith %}
+      </td>
+      <td class="table__shrink">
+        {% with { count: item.commentVoteCount } %}
+          {{ count > 0 ? count|format_number : '-' }}
+        {% endwith %}
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

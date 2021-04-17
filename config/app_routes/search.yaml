@@ -1,0 +1,9 @@
+search:
+    controller: App\Controller\SearchController::search
+    path: /search
+    methods: [GET]
+
+opensearch_description:
+    controller: App\Controller\SearchController::openSearchDescription
+    defaults: { _format: xml }
+    path: /opensearch.xml

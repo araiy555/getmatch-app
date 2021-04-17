@@ -1,0 +1,21 @@
+bad_phrase_list:
+    path: /site/bad_phrases/{page}
+    defaults: { page: 1 }
+    controller: App\Controller\BadPhraseController::list
+    methods: [GET]
+    requirements: { page: "%number_regex%" }
+
+bad_phrase_search:
+    path: /site/bad_phrases/search
+    controller: App\Controller\BadPhraseController::search
+    methods: [GET]
+
+bad_phrase_add:
+    path: /site/bad_phrases/add
+    controller: App\Controller\BadPhraseController::add
+    methods: [POST]
+
+bad_phrase_remove:
+    path: /site/bad_phrases/remove
+    controller: App\Controller\BadPhraseController::remove
+    methods: [POST]

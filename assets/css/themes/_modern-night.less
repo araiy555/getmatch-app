@@ -1,0 +1,44 @@
+.modern-dark() {
+  @import (less) '~highlight.js/styles/darcula.css';
+
+  --primary-fg: #fff;
+  --accent: #424242;
+  --accent-alt: #525252;
+  --accent-fg: #fff;
+
+  --link: var(--primary);
+  --submission-link: #fff;
+  --submission-link-visited: #ffccff;
+  --submission-link-sticky: var(--fg-green);
+
+  --bg-page: #000;
+  --bg-content: #161616;
+  --bg-red: #660000;
+  --bg-orange: #663500;
+  --bg-yellow: #505000;
+  --bg-green: #004200;
+  --bg-blue: #003666;
+  --bg-grey: #424242;
+
+  --text: #ccc;
+  --text-muted: #a1a1a1;
+  --text-invert: #1a1a1a;
+  --fg-broken: #cfcfcf;
+  --fg-red: #f00;
+  --fg-orange: #fa4;
+  --fg-yellow: #ffff80;
+  --fg-green: #8f8;
+  --fg-blue: #4af;
+  --fg-grey: #777;
+  --border: #666;
+  --border-light: rgb(51, 51, 51);
+
+  --card-bg: var(--bg-content);
+  // The RTL value must be specified here due to specificity issues
+  --card-shadow: 0 0 0 1px var(--border-light)/*!rtl:0 0 0 1px var(--border)*/;
+  --dropdown-card-bg: #000;
+  --dropdown-card-shadow: 0 0 2px 1px var(--border-light);
+  --form-bg: #000;
+  --notification: var(--primary-alt);
+  --site-nav-bg: linear-gradient(to right, var(--primary-bright), var(--primary));
+}

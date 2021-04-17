@@ -1,0 +1,28 @@
+{% extends 'submission/base.html.twig' %}
+
+{% from '_macros/alert.html.twig' import alert_classes, alert_icon %}
+{% from 'comment/_macros.html.twig' import comment, comment_form %}
+{% from 'submission/_macros.html.twig' import submission %}
+
+{% block body %}
+  {{ parent() }}
+
+  {{ submission(submission) }}
+
+  <div class="{{ alert_classes() }} single-comment-alert">
+    {{ alert_icon() }}
+    <div class="alert__text">
+      <p>{{ 'comments.viewing_thread'|trans ~}}
+        <a href="{{ path('submission', {forum_name: forum.name, submission_id: submission.id, slug: submission.title|slugify}) }}">
+          {{- 'comments.thread_return'|trans -}}
+        </a>
+      </p>
+    </div>
+  </div>
+
+  {{ comment(comment, {
+    recurse: true,
+    show_context: comment.parent is not empty,
+    show_form: true,
+  }) }}
+{% endblock body %}

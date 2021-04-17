@@ -1,0 +1,18 @@
+.tab {
+  background-color: var(--accent);
+  border-bottom: solid 3px var(--accent-alt);
+  color: var(--text);
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.5rem 0.75rem calc(0.5rem - 3px);
+
+  &--active,
+  .no-js:root .dropdown:hover > &,
+  .js:root .dropdown--expanded > & {
+    .tab-active();
+  }
+}
+
+.tab-active() {
+  border-bottom-color: var(--primary);
+}

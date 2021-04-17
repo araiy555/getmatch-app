@@ -1,0 +1,60 @@
+@import '../_variables';
+
+#flex() {
+  display: flex;
+  flex-wrap: wrap;
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &--guttered {
+    margin-left: -1rem;
+    margin-bottom: -1rem;
+
+    > * {
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &--slim-gutters {
+    margin-left: -0.5rem;
+    margin-bottom: -0.5rem;
+
+    > * {
+      margin-left: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__grow {
+    flex-grow: 1;
+  }
+
+  &__shrink {
+    flex-shrink: 1;
+  }
+}
+
+.flex {
+  #flex;
+}
+
+.flex-desktop {
+  @media screen and (min-width: @desktop-min-width) {
+    #flex;
+  }
+}

@@ -1,0 +1,27 @@
+{% extends 'forum/base.html.twig' %}
+
+{% block title 'title.forum_appearance'|trans({'%forum%': '/f/%s'|format(forum.name)}) %}
+
+{% form_theme form '_forms/aligned_form_theme.html.twig' %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {{ 'title.forum_appearance'|trans({'%forum%': '<a href="%s">/f/%s</a>'|format(
+      path('forum', {forum_name: forum.name})|escape,
+      forum.name|escape
+    )})|raw }}
+  </h1>
+
+  {{ form_start(form) }}
+    {{ form_row(form.suggestedTheme) }}
+
+    {% if form.backgroundImage is defined %}
+      {{ form_widget(form.backgroundImage) }}
+    {% endif %}
+
+    <div class="form-flex form-flex--single-line">
+      <div class="form-flex__align" aria-hidden="true"></div>
+      <button class="button">{{ 'action.save'|trans }}</button>
+    </div>
+  {{ form_end(form) }}
+{% endblock body %}

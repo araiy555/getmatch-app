@@ -1,0 +1,95 @@
+@import (reference) '../_variables';
+
+.submission {
+  &__row {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &__inner {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 1.33rem;
+    font-weight: normal;
+
+    // don't make giant new lines if only the tiny host text wraps.
+    // also aligns icons correctly.
+    line-height: 0;
+
+    > * {
+      // restore line-height for children
+      line-height: var(--line-height);
+    }
+  }
+
+  &__link {
+    color: var(--submission-link);
+
+    &:visited {
+      color: var(--submission-link-visited);
+    }
+  }
+
+  &--sticky &__link {
+    color: var(--submission-link-sticky);
+  }
+
+  &__host {
+    color: var(--submission-link);
+  }
+
+  &__content {
+    margin: 0.5rem 0;
+  }
+
+  &__image-link {
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    display: table;
+    padding: 0.5rem;
+    transition: box-shadow .25s, border .25s;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 2px 2px var(--primary-alpha);
+      border-color: var(--primary);
+      outline: none;
+    }
+  }
+
+  &__image {
+    display: table;
+    height: auto;
+    max-width: 100%;
+    max-height: @submission-image-max-height;
+  }
+
+  &__image:not([width]) {
+    object-fit: cover;
+    height: @submission-image-height;
+    width: @submission-image-width;
+    max-height: @submission-image-height;
+  }
+
+  @media screen and (max-width: 480px) {
+    &__thumb {
+      display: none;
+    }
+  }
+
+  @media not screen and (max-width: 480px) {
+    &--has-thumbnail &__inner {
+      padding-left: calc(1rem + 70px);
+      position: relative;
+    }
+
+    &__thumb {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

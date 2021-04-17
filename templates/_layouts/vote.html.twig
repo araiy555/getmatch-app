@@ -1,0 +1,68 @@
+{%- block vote -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- set VOTE_UP = constant('App\\Entity\\Contracts\\Votable::VOTE_UP') -%}
+  {%- set VOTE_DOWN = constant('App\\Entity\\Contracts\\Votable::VOTE_DOWN') -%}
+  {%- set VOTE_NONE = constant('App\\Entity\\Contracts\\Votable::VOTE_NONE') -%}
+  {%- set user_choice = is_granted('ROLE_USER') ? entity.userChoice(app.user) : null -%}
+
+  <form action="{{ path(route, { id: entity.id }) }}"
+        method="post"
+        class="vote
+              {{- user_choice == VOTE_UP ? ' vote--user-upvoted' }}
+              {{- user_choice == VOTE_DOWN ? ' vote--user-downvoted' }}"
+        {% if is_granted('ROLE_USER') %}
+          data-controller="vote"
+          data-vote-choice-value="{{ user_choice }}"
+          data-vote-id-value="{{ entity.id }}"
+          data-vote-route-value="{{ route }}"
+          data-vote-score-value="{{ entity.netScore }}"
+          data-vote-error-class="vote--failed"
+          data-vote-loading-class="vote--loading"
+          data-vote-upvoted-class="vote--user-upvoted"
+          data-vote-downvoted-class="vote--user-downvoted"
+        {% endif %}>
+
+    {# csrf_token starts a session #}
+    {% if is_granted('ROLE_USER') %}
+      <input type="hidden" name="token" value="{{ csrf_token('vote') }}">
+    {% endif %}
+
+    {% with { up: true, user_choice, VOTE_UP, VOTE_DOWN, VOTE_NONE } only %}
+      {{ block('vote_button') }}
+    {% endwith %}
+
+    <span class="vote__net-score" data-vote-target="score">
+      {%- if entity.netScore >= 0 -%}
+        {{- entity.netScore|format_number -}}
+      {%- else -%}
+        &minus;
+        {{- entity.netScore|abs|format_number -}}
+        <span class="no-visibility" aria-hidden="true">&minus;</span>
+      {%- endif -%}
+    </span>
+
+    <span class="vote__spinner">
+      {{- icon('spinner', 'loading', 'icon--pulse') -}}
+    </span>
+
+    {% with { up: false, user_choice, VOTE_UP, VOTE_DOWN, VOTE_NONE } only %}
+      {{ block('vote_button') }}
+    {% endwith %}
+  </form>
+{%- endblock vote -%}
+
+{%- block vote_button -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  <button type="submit"
+          name="choice"
+          value="{{ user_choice == (up ? VOTE_UP : VOTE_DOWN) ? VOTE_NONE : (up ? VOTE_UP : VOTE_DOWN) }}"
+          class="unbuttonize vote__button vote__{{ up ? 'up' : 'down' }}"
+          title="{{ (user_choice == (up ? VOTE_UP : VOTE_DOWN)
+            ? (up ? 'action.retract_upvote' : 'action.retract_downvote')
+            : (up ? 'action.upvote' : 'action.downvote')
+          )|trans }}"
+          data-action="vote#{{ up ? 'up' : 'down' }}"
+          data-vote-target="{{ up ? 'up' : 'down' }}">
+    <span aria-hidden="true">{{ icon(up ? 'up' : 'down', up ? 'up' : 'down', 'icon--no-align') }}</span>
+  </button>
+{%- endblock vote_button -%}

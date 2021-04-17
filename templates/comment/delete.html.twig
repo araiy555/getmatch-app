@@ -1,0 +1,18 @@
+{% extends 'submission/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import button_row %}
+{% from 'comment/_macros.html.twig' import comment %}
+
+{% block title recursive ? 'title.delete_comment_thread'|trans : 'title.delete_comment'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ comment(comment) }}
+
+  {{ form_start(form) }}
+    {{ form_row(form.reason) }}
+
+    {{ button_row(recursive ? 'action.delete_thread'|trans : 'action.delete'|trans) }}
+  {{ form_end(form) }}
+{% endblock %}

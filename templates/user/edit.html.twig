@@ -1,0 +1,32 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/icon.html.twig' import icon %}
+
+{% block title 'edit_user.title'|trans({'%username%': user.username}) %}
+
+{% block site_nav_user_menu_active 'account' %}
+
+{% block body %}
+  <h1 class="page-heading break-text">{{ block('title') }}</h1>
+
+  {% if app.user != user %}
+    {{ alert('flash.editing_credentials_of_other_user'|trans, 'warn') }}
+  {% endif %}
+
+  <fieldset class="fieldset">
+    <legend>{{ 'heading.credentials'|trans }}</legend>
+
+    {{ include('user/_form.html.twig', { editing: true, form: form }, with_context=false) }}
+  </fieldset>
+
+  <fieldset class="fieldset">
+    <legend>{{ 'heading.delete_account'|trans }}</legend>
+
+    <p>
+      <a href="{{ path('delete_account', { username: user.username }) }}"
+         class="button button--secondary">
+        {{- 'nav.delete_this_account'|trans -}}
+      </a>
+    </p>
+  </fieldset>
+{% endblock %}

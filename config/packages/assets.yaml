@@ -1,0 +1,7 @@
+framework:
+    assets:
+        packages:
+            # package for assets that don't go through webpack's cache-busting
+            static_asset:
+                version_strategy: App\Asset\HashingVersionStrategy
+        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'

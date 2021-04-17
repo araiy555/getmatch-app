@@ -1,0 +1,625 @@
+top.title: 겟 매치 | 인터넷 첫 페이지
+top.description: 겟 매치 에 오신 것을 환영합니다. 사람들의 관심에 따라 지역 사회의 네트워크입니다. 관심있는 커뮤니티를 찾아 온라인 커뮤니티의 일원이 됩시다!
+wiki.page_description: 겟 매치 에 오신 것을 환영합니다. "wiki"를 체크하여 정보를 수집 한 것을 보자.
+action.log_in_description: 겟 매치 에 오신 것을 환영합니다. 로그인하면 GetMatch 콘텐츠를 제공합니다.
+action.sign_up_description: 겟 매치 에 오신 것을 환영합니다. 계정 등록함으로써 GetMatch 콘텐츠를 제공합니다.
+forum_list.page_description: 겟 매치 에 오신 것을 환영합니다. "포럼 목록"정보를 확인하고 커뮤니티에 참여하자.
+nav.shop: 쇼핑
+markdown.image: 图片
+markdown.movie: 视频
+markdown.movie_thumbnail: 视频缩略图
+footer.terms_of_service: 服务条款。
+footer.privacy: 隐私
+footer.faq: FAQ
+footer.contact: 联系我们
+
+action.add: 추가
+action.ban: 차단
+action.block: 블락
+action.clear: 지우기
+action.clear_all: 모두 지우기
+action.compare: 비교
+action.create: 만들기
+action.create_theme: 테마 만들기
+action.delete: 삭제
+action.delete_account: 계정 삭제
+action.delete_thread: 스레드 삭제
+action.dismiss: 닫기
+action.downvote: 반대
+action.edit: 편집
+action.edit_theme: 테마 편집
+action.filter: 필터
+action.global_ban: 전역 차단
+action.go_to_home_page: 홈페이지로 이동
+action.hide: 숨기기
+action.lock: 잠금
+action.log_in: 로그인
+action.log_out: 로그아웃
+action.pin: 고정
+action.post: 게시
+action.purge: 제거
+action.remove: 제거
+action.restore: 복원
+action.retract_downvote: 반대 취소
+action.retract_upvote: 찬성 취소
+action.save: 저장
+action.save_changes: 변경 사항 저장
+action.search: 검색
+action.see_full_list: 전체 목록보기
+action.see_full_list_of_tags: 전체 태그 목록 보기
+action.send: 보내기
+action.sign_up: 가입
+action.subscribe: 구독
+action.subscribe_via_rss: RSS를 통해 구독
+action.sync_themes: 테마 동기화
+action.unban: 차단 해제
+action.unblock: 블락 해제
+action.unhide: 숨기기 해제
+action.unlock: 잠금 해제
+action.unpin: 고정 해제
+action.unsubscribe: 구독 취소
+action.upvote: 찬성
+action.whitelist: 화이트리스트
+action.whitelist_remove: 화이트리스트 해제
+
+add_moderator.title: '%forum%에 중재자 추가'
+
+background.light_background_image: 밝은 배경 이미지
+background.dark_background_image: 어두운 배경 이미지
+background.mode: 디스플레이 모드
+background.center: 중앙
+background.fit_to_page: 페이지에 맞추기
+background.tile: 타일
+
+bad_phrase.help: 이 도구를 사용하면 특정 텍스트 문구가 게시되는 것을 금지할 수 있습니다. 스팸을 방지하거나 반대 의견을 억제하는 데 사용할 수 있습니다.
+bad_phrase.phrase: 문구
+bad_phrase.phrase_to_ban: 차단할 문구
+bad_phrase.search_title: 금지 문구 검색
+bad_phrase.title: 금지 문구
+bad_phrase.type_text: 텍스트
+
+ban_add.title: IP 주소 차단
+
+ban_list.banned_by: 차단자
+ban_list.expires: 만료
+ban_list.expires_never: 영구
+ban_list.reason: 이유
+ban_list.remove: 차단 삭제
+ban_list.timestamp: 시간
+ban_list.user: 사용자
+ban_list.user_none: 없음
+
+banned.banned_account: 귀하의 계정이 차단되었습니다.
+banned.banned_ip: '{1} 귀하의 IP 주소 %ip%가 차단되었습니다.|]1,Inf[ 귀하의 IP 주소, %ip%에 %formatted_count%개의 차단이 기록되어 있습니다:'
+banned.set_on_date: '%date%에 차단이 설정되었습니다.'
+banned.set_on_date_for_range: '%date%에 IP 범위 차단이 설정되었습니다.'
+banned.title: 차단
+banned.whitelisted: 이 차단은 귀하가 화이트리스트에 있으므로 적용되지 않습니다.
+banned.will_expire: 이 차단은 %date%에 만료됩니다.
+banned.will_not_expire: 이 차단은 만료되지 않습니다.
+
+comments.comments: 댓글
+comments.context.comment_reply: '%submission_author%의 %submission_title%에서 %comment_author%의 댓글에 응답'
+comments.context.top_level_reply: '%submission_author%의 %submission_title%에 대한 답장'
+comments.edit_info: (%edited_at% 수정 됨)
+comments.form_load_error: 양식 로드 오류. 다시 시도하십시오.
+comments.info: '%user%가 %timestamp%에 작성했습니다'
+comments.linear: 선형
+comments.moderator_info: (조정자 %edited_at%에 의해 편집됨)
+comments.nested: 중첩
+comments.not_logged_in: 댓글을 달려면 %login_link% 또는 %register_link%해야 합니다.
+comments.not_logged_in_login_link_label: 로그인
+comments.not_logged_in_register_link_label: 등록
+comments.parent: 부모
+comments.reply: 답장
+comments.replying_to_comment: '%user% (%id%)에게 답장'
+comments.return_to_forum: '%forum%로 돌아가기'
+comments.thread_return: 모든 댓글보기
+comments.viewing_thread: 단일 댓글 스레드 보기.
+
+comment_form.create_title: 댓글 게시
+comment_form.edit_title: 댓글 수정
+
+compose_message.title: '%username%에게 보내는 메시지 작성'
+
+content.empty: 여기에 아무것도 없습니다…
+
+create_forum.create_new_forum: 새 포럼 만들기
+
+delete_account.comments: 댓글을 제거합니다.
+delete_account.lead: '계정을 삭제하면 다음이 수행됩니다: '
+delete_account.messages: 보낸 메시지를 제거합니다.
+delete_account.metadata: 로그인 할 수 없게 만들고, 사용자 이름을 스크램블하고, 기본 설정을 재설정하고, 계정과 관련된 다른 데이터를 제거합니다.
+delete_account.submissions: 게시물을 제거합니다.
+delete_account.votes: 게시물 및 댓글에 대한 모든 투표를 철회합니다.
+
+edit_forum.title: '%forum% 편집'
+
+edit_user.title: '%username% 사용자 편집'
+
+flash.account_deletion_in_progress: 계정이 삭제되고 있습니다.
+flash.ban_added: IP 주소가 차단되었습니다.
+flash.comment_purged: 댓글이 삭제되었습니다.
+flash.comment_restored: 댓글이 복원되었습니다.
+flash.delete_account_warning: 계정을 삭제하면 절대로 다시 되돌릴 수 없습니다!
+flash.delete_someone_elses_account_warning: 다른 사람의 계정을 삭제하고 있습니다! 이렇게 하면 절대로 계정을 되찾을 수 없습니다.
+flash.editing_biography_of_other_user: 다른 사용자의 소개를 편집하고 있습니다.
+flash.editing_credentials_of_other_user: 다른 사용자의 자격 증명을 편집하고 있습니다. 이로 인해 로그인하지 못할 수 있습니다.
+flash.forum_deleted: 포럼과 모든 내용이 삭제되었습니다.
+flash.forum_moderator_added: 사용자가 운영자로 승격되었습니다.
+flash.forum_updated: 변경 사항이 저장되었습니다.
+flash.no_cookies_verification: 이미지가 올바르게 로드되지 않습니까? 쿠키를 차단하고 있지 않은지 확인하고 다시 시도하십시오.
+flash.no_entries_to_display: 표시 할 항목이 없습니다.
+flash.no_messages: 표시 할 메시지가 없습니다.
+flash.no_moderated_forums: 어떤 포럼도 중재하지 않습니다.
+flash.no_moderators: 이 포럼에는 중재자가 없습니다.
+flash.no_password_resets: 관리자가 비밀번호 재설정을 비활성화했습니다.
+flash.notification_cleared: 알림이 성공적으로 지워졌습니다.
+flash.notifications_cleared: 알림이 삭제되었습니다.
+flash.page_locked: 페이지가 잠겼습니다.
+flash.page_unlocked: 페이지가 잠금 해제되었습니다.
+flash.registration_closed: 관리자가 가입을 비활성화했습니다.
+flash.reset_password_email_sent: 지정한 주소로 재설정 이메일이 전송되었습니다.
+flash.site_settings_saved: 설정이 저장되었습니다.
+flash.submission_deleted: 게시물이 삭제되었습니다.
+flash.submission_edited: 게시물이 편집되었습니다.
+flash.submission_is_locked: 게시물이 잠겨 있습니다. 새 댓글을 게시할 수 없습니다.
+flash.submission_locked: 게시물이 잠겼습니다.
+flash.submission_pinned: 게시물이 고정되었습니다.
+flash.submission_purged: 게시물이 제거되었습니다.
+flash.submission_restored: 게시물이 복원되었습니다.
+flash.submission_unlocked: 게시물이 잠금 해제되었습니다.
+flash.submission_unpinned: 게시물이 고정 해제되었습니다.
+flash.too_many_characters: 너무 많은 문자를 입력했습니다 (최대 %max%, %count% 입력).
+flash.user_account_registered: 귀하의 계정이 등록되었습니다.
+flash.user_biography_updated: 소개가 업데이트되었습니다.
+flash.user_blocked: 사용자가 블락되었습니다.
+flash.user_password_updated: 비밀번호가 업데이트되었습니다.
+flash.user_settings_updated: 사용자 설정이 업데이트되었습니다.
+flash.user_unblocked: 사용자가 블락 해제되었습니다.
+flash.user_unmodded: 사용자가 수정되지 않았습니다.
+flash.user_was_banned: 사용자가 차단되었습니다.
+flash.user_was_unbanned: 사용자가 차단 해제되었습니다.
+flash.user_whitelisted: 사용자가 허용 목록에 포함되었습니다.
+flash.user_whitelist_removed: 사용자가 허용 목록에서 제외되었습니다.
+flash.wiki_page_deleted: 위키 페이지가 삭제되었습니다.
+flash.you_must_reauthenticate: 이 페이지에 액세스하려면 재 인증해야합니다.
+
+forum.add_as_moderator: 운영자로 추가
+forum.add_moderator: 중재자 추가
+forum.create: 포럼 만들기
+forum.created_on: '%timestamp% 생성됨'
+forum.delete: 포럼 삭제
+forum.edit: 포럼 편집
+forum.moderators: 중재자
+forum.submission_count: '{0} 게시물 없음|{1} %formatted_count% 게시물|[1,Inf[ %formatted_count% 게시물'
+forum.subscriber_count: '{0} 구독자 없음|{1} %formatted_count% 구독자|[1,Inf[ %formatted_count% 구독자'
+
+forum_form.featured: 첫 페이지에 표시
+
+forum_list.page_title: 포럼 목록
+forum_list.submission_count: 게시물
+forum_list.subscribers: 구독자
+
+forum_moderators.last_seen: 마지막 확인
+forum_moderators.since: 이후
+forum_moderators.title: '%forum_name%의 중재자'
+
+front.all: 모두
+front.all_forums: 모든 포럼
+front.featured: 추천
+front.featured_forums: 추천 포럼
+front.moderated_forums: 중재 포럼
+front.no_forums: 표시 할 추천 포럼이 없습니다.
+front.no_subscriptions: 구독중인 포럼이 없습니다. 대신 추천 포럼을 표시합니다.
+front.subscribed: 구독
+front.subscribed_forums: 구독 한 포럼
+
+heading.credentials: 자격 증명
+heading.delete_account: 계정 삭제
+heading.forums_you_moderate: 내가 검토하는 포럼
+heading.hide_this_forum: 이 포럼 숨기기
+heading.message_reply: "%sender%가 %timestamp%에 응답했습니다."
+heading.message_thread: "%sender%가 %receiver%에게 %timestamp%에 썼습니다."
+heading.multi_forum_view: 다중 포럼 보기
+heading.notifications: 알림
+heading.privacy: 개인 정보 보호
+heading.search: 검색
+heading.search_results: '{0} %query%에 대한 결과 없음|{1} %query%에 대한 1개의 결과:|]1,Inf[ %query%에 대한 %count%개의 결과:'
+heading.this_user_is_banned: 이 사용자는 차단되었습니다!
+heading.you_were_mentioned: '%user% 님이 멘션했습니다.'
+heading.whitelisting: 화이트리스트
+
+help.allow_private_messages: 비활성화하면 최근에 참여한 포럼의 관리자, 공동 중재자 및 중재자만 비공개 메시지를 보낼 수 있습니다.
+help.ban_reason: 차단된 사용자에게 표시되지 않습니다.
+help.ban_reason_logged: 차단된 사용자에게는 표시되지 않지만 공개 중재 로그에는 표시됩니다.
+help.blocking_users: 사용자를 블락하면 게시물을 숨기고 비공개 메시지를 보내지 못하며 답장 할 때 알림을 받지 못합니다. 블락된 사용자는 여전히 공개 게시물을 볼 수 있습니다.
+help.delete_forum_warning: 이 포럼의 모든 콘텐츠가 되돌릴 수 없게 삭제됩니다!
+help.forum_description: 포럼에 대한 간단한 설명입니다. 검색 엔진은 결과에 이 설명을 표시합니다.
+help.forum_is_featured: 이 포럼은 특집 포럼입니다.
+help.forum_is_hidden: 이 포럼을 숨기도록 선택했습니다.
+help.front_trash: 이 페이지는 사용자가 운영하는 포럼에서 운영자가 삭제 한 게시물을 표시합니다.
+help.hidden_forums: 포럼을 숨김으로 표시하면 "추천" 및 "모든" 게시물 목록을 찾아 볼 때 해당 포럼의 게시물을 볼 수 없습니다. 숨기려고 선택한 포럼을 계속 구독하고 중재할 수 있습니다.
+help.hidden_forums_no_comment_hiding: 숨겨진 포럼에 게시 된 댓글은 "최근 댓글" 목록에 계속 표시됩니다.
+help.notify_on_mentions: 누군가가 내 사용자 프로필에 연결되면 알림을 받습니다.
+help.notify_on_reply: 누군가가 게시물에 답글을 올리면 알림을 받습니다.
+help.poppers_enabled: 'Poppers는 특정 항목 (예: 사용자 이름) 위로 마우스를 가져 가면 정보와 버튼을 표시하는 작은 패널입니다. 마우스를 사용할 때만 사용할 수 있습니다.'
+help.preferred_fonts: '선호하는 글꼴의 쉼표로 구분 된 목록입니다. 이는 시스템의 글꼴이거나 아래 서버에서 제공하는 글꼴 목록에서 가져온 것일 수 있습니다.'
+help.preferred_fonts_aliases: '별칭 글꼴 이름:'
+help.preferred_fonts_served: '서버 제공 글꼴 (모든 곳에서 사용 가능): '
+help.required_field: 이 필드는 필수입니다.
+help.the_following_changes_will_be_made: '다음 변경 사항이 적용됩니다.'
+help.theme_selector: 별표는 기본값과 동일 함을 나타냅니다.
+help.whitelisting: 화이트 리스트를 통해 이 사용자는 IP 차단 및 일부 Flood 방지를 우회 할 수 있습니다. 또한 해당 IP 주소는 더 이상 저장되지 않습니다.
+help.will_appear_in_the_url: URL에 표시됩니다.
+
+inbox.message_reply_head: '답장: %title%'
+
+item.op: 원본 포스터
+item.op_abbr: OP
+item.short_url: '짧은 URL: '
+
+label.action: 액션
+label.admin: 관리자
+label.all: 모두
+label.allow_private_messages: 비공개 메시지 허용
+label.any: 모두
+label.appearance: 외관
+label.appearance_and_behavior: 외관 및 행동
+label.author: 작성자
+label.auto_fetch_submission_titles: 게시물 제목 자동 가져 오기
+label.background_image: 배경 이미지
+label.ban: 차단
+label.ban_ip_addresses: IP 주소를 차단하시겠습니까?
+label.banned: 차단됨
+label.banned_by: 차단자
+label.bans: 차단
+label.biography: 소개
+label.blocked: 블락됨
+label.body: 본문
+label.bundled: 번들
+label.comment: 댓글
+label.comment_votes: 댓글 투표
+label.comment_votes_short: CV
+label.comments: 댓글
+label.comments_short: C
+label.compare: 비교
+label.confirm_forum_name: 포럼 이름 확인
+label.confirm_username: 사용자 이름 확인
+label.creation_date: 생성일
+label.css: CSS
+label.dark: 어두움
+label.date: 날짜
+label.default: 기본값
+label.delete_account_confirmation: 이 계정이 사라지면 찾을 방법이 없다는 것을 알고 있습니다.
+label.delete_forum_confirmation: 일단 삭제되면 이 포럼의 데이터를 되살릴 방법이 없다는 것을 이해합니다.
+label.description: 설명
+label.email_address: 이메일 주소
+label.expires: 만료
+label.featured: 추천
+label.filter_by: 필터링 기준
+label.filter_on_mode: '필터 켜기: %mode%'
+label.forum: 포럼
+label.forums_count: '{0} 포럼 없음|{1} %count%개의 포럼|]1,Inf[ %count%개의 포럼'
+label.forums_with_this_tag: 이 태그가 있는 포럼
+label.from: From
+label.from_time: 'From: %time%'
+label.front_page: 첫 페이지
+label.full_width_display: 전체 너비 표시
+label.general: 일반
+label.id: ID
+label.image: 이미지
+label.ip_address: IP 주소
+label.ip_addresses: IP 주소
+label.language: 언어
+label.last_message: 마지막 메시지
+label.last_revised: 마지막 수정
+label.let_forums_override_preferred_theme: 포럼이 선호하는 테마를 재정의하도록 합니다.
+label.light: 밝음
+label.media_type: 미디어 유형
+label.message: 메시지
+label.moderated: 중재됨
+label.moderates: 중재자
+label.name: 이름
+label.never: 없음
+label.new_password: 새 비밀번호
+label.night_mode: 야간 모드
+label.none: 없음
+label.not_whitelisted: 허용되지 않음
+label.notify_on_mentions: 멘션에 대한 알림
+label.notify_on_reply: 회신시 알림
+label.open_external_links_in_new_tab: 새 탭에서 외부 링크 열기
+label.order_by: 정렬 기준
+label.overview: 개요
+label.participants: 참가자
+label.password: 비밀번호
+label.permissions: 권한
+label.poppers_enabled: poppers 활성화
+label.posting: 게시
+label.preferred_fonts: 기본 글꼴
+label.preferred_theme: 선호하는 테마
+label.reason: 사유
+label.reason_for_banning: 차단 사유
+label.recent_changes: 최근 변경
+label.regex: 정규식
+label.registration_date: 등록일
+label.repeat_new_password: 새 비밀번호 (반복)
+label.repeat_password: 비밀번호 (반복)
+label.replies: 답글
+label.role: 역할
+label.search_query: 검색어
+label.sent: 전송 됨
+label.show_post_previews: 게시물 미리보기 표시
+label.show_thumbnails: 썸네일 표시
+label.sidebar: 사이드 바
+label.sort_by: 정렬 기준
+label.sort_by_mode: '정렬 기준: %mode%'
+label.source_code: 소스 코드
+label.submission_votes: 게시물 투표
+label.submission_votes_short: SV
+label.submissions: 게시물
+label.submissions_short: S
+label.subscribed: 구독
+label.suggested_theme: 추천 테마
+label.system_preference: 시스템 환경 설정
+label.tags: 태그
+label.timezone: 시간대
+label.title: 제목
+label.to: 받는 사람
+label.toolbox: 도구 상자
+label.type: 유형
+label.unban: 차단 해제
+label.unban_related_ips: 관련 IP 차단 해제
+label.upload_image: 이미지 업로드
+label.url: URL
+label.user_related_with_ip: IP와 관련된 사용자
+label.username: 사용자 이름
+label.verification: 확인
+label.verification_image: 확인 이미지
+label.whitelisted: 화이트리스트
+
+log.ban: '%user%가 차단됨 %banned% (만료: %expires%). 사유: "%reason%"'
+log.comment_deletion: '%user%가 "%submission%"에서 %author%의 댓글을 삭제했습니다.'
+log.comment_deletion_with_reason: '%user%가 "%submission%"에서 %author%의 댓글을 삭제했습니다. 사유: "%reason%"'
+log.comment_restored: '%user%가 "%submission%"에서 %author%의 댓글을 복원했습니다.'
+log.submission_deletion: '%user%가 %author%의 게시물 "%title%"을(를) 삭제했습니다.'
+log.submission_deletion_with_reason: '%user%가 %author%의 게시물 "%title%"을(를) 삭제했습니다. 사유: "%reason%"'
+log.submission_lock: '%user%가 %author%의 "%title%" 게시물을 잠갔습니다.'
+log.submission_restored: '%user%가 %author%의 게시물 "%title%"을(를) 복원했습니다.'
+log.submission_unlock: '%user%가 %author%의 게시물 "%title%"을(를) 잠금 해제했습니다.'
+log.unban: '%user%가 차단 해제됨 %banned%. 이유: "%reason%"'
+
+login.no_account: 계정이 없으십니까?
+login.remember_me: 로그인 유지
+login.reset_password: 비밀번호를 재설정 하시겠습니까?
+
+markdown.allowed: Markdown이 허용됩니다.
+markdown.another_paragraph: 다른 단락
+markdown.blockquote: 인용구
+markdown.break: break
+markdown.code_block: 코드블록
+markdown.emphasis: 강조
+markdown.forum: 포럼
+markdown.heading: '제목 %count%'
+markdown.help: 서식 도움말
+markdown.horizontal_rule: 수평 규칙
+markdown.inline_code: 인라인 코드
+markdown.line: 라인
+markdown.link: 링크
+markdown.list_item: 목록 항목
+markdown.paragraph: 단락
+markdown.preview: 미리보기
+markdown.strikethrough: 취소선
+markdown.strong_emphasis: 강한 강조
+markdown.user: 사용자
+markdown.wiki_page: wiki_page
+
+nav.share: 공유
+nav.actions: 작업
+nav.add_ban: 차단 추가
+nav.alphabetical: 알파벳순
+nav.appearance: 모양
+nav.ban_history: 차단 내역
+nav.bans: 차단
+nav.block_list: 블락 목록
+nav.block_user: 사용자 블락
+nav.censorship: 검열
+nav.comments: 댓글
+nav.current_page: 현재 페이지
+nav.dark_mode: 다크 모드
+nav.delete_forum: 포럼 삭제
+nav.delete_this_account: 이 계정 삭제
+nav.edit_biography: 소개 편집
+nav.filter_results: 결과 필터링
+nav.forum_bans: 포럼 차단
+nav.forums: 포럼
+nav.global_moderation_log: 전역 중재 로그
+nav.hidden_forums: 숨겨진 포럼
+nav.home: 홈
+nav.ip_bans: IP 차단
+nav.jump_to_main_content: 기본 콘텐츠로 이동
+nav.jump_to_sidebar: 사이드바로 이동
+nav.light_mode: 라이트 모드
+nav.logged_in_as_user: '%user%로 로그인했습니다.'
+nav.messages: 메시지
+nav.moderated: 중재됨
+nav.moderation_log: 중재 로그
+nav.more: 더보기
+nav.my_account: 내 계정
+nav.next: 다음
+nav.notifications: 알림
+nav.notifications_count: '알림 (%count%)'
+nav.page_number: '페이지 %number%'
+nav.permalink: 영구 링크
+nav.places: 장소
+nav.previous: 이전
+nav.profile: 프로필
+nav.search: 검색
+nav.site_settings: 사이트 설정
+nav.submissions: 게시물
+nav.submit: 작성하기
+nav.themes: 테마
+nav.trash: 휴지통
+nav.user: 사용자
+nav.user_bans: 사용자 차단
+nav.user_settings: 사용자 설정
+nav.users: 사용자
+nav.wiki: 위키
+
+number.id: '%number%번'
+
+placeholder.choose_one: 선택…
+placeholder.default: (기본값)
+placeholder.deleted: '[삭제됨]'
+placeholder.repeat: (반복)
+
+prompt.confirm_comment_delete: 이 댓글을 삭제하시겠습니까?
+prompt.confirm_message_delete: 이 메시지를 삭제하시겠습니까?
+prompt.confirm_submission_delete: 이 게시물을 삭제하시겠습니까?
+prompt.confirm_theme_delete: 이 테마를 삭제 하시겠습니까? 그것을 선택한 회원은 초기 설정으로 되돌립니다.
+prompt.confirm_wiki_delete: 이 위키 페이지를 삭제 하시겠습니까? 영구히 삭제될 것입니다.
+
+request_password_reset.multiple_accounts_notice: 하나의 이메일 주소에 여러 계정이 등록되어 있는 경우 계정당 하나의 이메일을 받게됩니다.
+request_password_reset.no_confirmation_notice: 이메일을 받지 못했다면 지정한 주소가 올바르지 않을 수 있습니다. 개인 정보 보호를 위해 지정된 이메일 주소를 가진 사용자가 실제로 존재하는지 확인하지 않습니다.
+request_password_reset.title: 비밀번호 재설정 링크 요청
+
+request_password_reset_form.submit: 제출
+
+reset_password.title: 비밀번호 재설정
+
+reset_password_email.entry: '%username%의 비밀번호 재설정: '
+reset_password_email.footer: '비밀번호 재설정을 요청하지 않은 경우 이 이메일을 무시해도 됩니다. 링크는 24 시간 후에 만료됩니다. '
+reset_password_email.header: '누군가 귀하의 %site_name% 계정에 대한 비밀번호 재설정을 요청했습니다.'
+reset_password_email.subject: '%site_name% - 비밀번호 재설정'
+
+role.admins: 관리자
+role.everyone: 모두
+role.whitelisted: 화이트리스트
+
+site_footer.app: '%app% %version% 실행 중'
+site_footer.version: '%version% (%branch%)'
+
+site_settings.default_sort_mode: 기본 정렬 모드
+site_settings.forum_create_role: 누가 새 포럼을 만들 수 있습니까?
+site_settings.image_upload_role: 누가 이미지를 업로드 할 수 있습니까?
+site_settings.trash_enabled: 휴지통 사용
+site_settings.trash_enabled_help: 운영자가 삭제한 게시물을 휴지통으로 이동하고, 언제든지 휴지통에 있는 게시물을 복구할 수 있습니다.
+site_settings.registration_captcha_enabled: 가입시 CAPTCHA 활성화
+site_settings.registration_captcha_enabled_help: 이 기능을 활성화하면 일부 스팸 봇이 차단될 수 있지만 시각 장애가 있는 사용자가 사이트에 액세스할 수 없습니다. 많은 "봇"은 실제로 스팸 팜에 고용된 사람이며 이 옵션을 활성화해도 차단되지 않을 수 있습니다.
+site_settings.registration_open: 가입 활성화
+site_settings.site_name: 사이트 이름
+site_settings.site_theme: 사이트 테마
+site_settings.site_theme_help: 포럼 설정이나 사용자의 선택에 의해 재정의되지 않는 한 사이트 전체에서 사용되는 테마입니다.
+site_settings.url_images_enabled: 제출된 링크의 미리보기 이미지 가져 오기
+site_settings.wiki_edit_role: 누가 위키를 편집 할 수 있습니까?
+site_settings.wiki_enabled: 위키 활성화
+
+submission_form.create: 게시물 생성
+submission_form.edit: 게시물 편집
+
+submission.comments: '{0} 댓글 없음|{1} %count%개의 댓글|[1,Inf[ %count%개의 댓글'
+submission.deleted_by_moderator: 중재자에 의해 삭제됨
+submission.edit_info: (%edited_at% 편집 됨)
+submission.info_with_forum_name: '%forum%에서 %timestamp%에 %submitter%에 의해 제출됨'
+submission.info_without_forum_name: '제출자: %submitter% %timestamp%'
+submission.locked: 이 게시물은 잠겨 있습니다.
+submission.moderator_info: (중재자 %edited_at%에 의해 편집됨)
+submission.new_comments: '(신규 %count%개)'
+submission.pinned: 이 게시물은 고정되었습니다.
+submission.sort_by_active: 활성
+submission.sort_by_controversial: 추천순
+submission.sort_by_hot: 인기순
+submission.sort_by_most_commented: 댓글순
+submission.sort_by_new: 최신순
+submission.sort_by_top: 상단
+submission.time_all: 모든 시간
+submission.time_day: 지난 24시간
+submission.time_month: 지난달
+submission.time_week: 지난주
+submission.time_year: 작년
+submission.total_votes: '{1} %count% 포인트|[0,Inf[ %count% 포인트'
+submission.vote_stats: (+%up%, −%down%)
+
+submission_link_destination.label: 게시물 링크를 클릭할 때…
+submission_link_destination.submission: 게시물 열기
+submission_link_destination.url: 링크된 콘텐츠 열기
+
+theme.to_be_created: 생성 예정
+theme.to_be_deleted: 삭제 예정
+
+time.at_relative_time: '%relative_time%'
+time.earlier_format: '%relative_time% 이전'
+time.later_format: '%relative_time% 이후'
+time.on_timestamp: '%timestamp% 이내'
+
+title.active_global_user_bans: 활성, 전역 사용자 차단
+title.all_forums: 모든 포럼
+title.ban_user: '%user% 차단'
+title.banning_user_from_forum: '%forum%에서 %user% 차단'
+title.bans_in_forum: '%forum%에서 차단'
+title.block_list: 블락 목록
+title.blocking_user: '%user% 블락'
+title.create_submission: 게시물 생성
+title.delete_account: 계정 삭제
+title.delete_comment: 댓글 삭제
+title.delete_comment_thread: 댓글 스레드 삭제
+title.delete_forum: 포럼 %forum% 삭제
+title.delete_submission: 게시물 삭제
+title.editing_biography_for_user: '%user%의 소개 편집'
+title.editing_forum: '%forum% 포럼 편집'
+title.editing_forum_tag: 포럼 태그 %tag% 편집
+title.editing_submission: 게시물 %title% 편집
+title.forum_appearance: '%forum%의 외관'
+title.global_moderation_log: 전역 중재 로그
+title.hidden_forums: 숨겨진 포럼
+title.ip_bans: 차단된 IP 주소
+title.list_of_users: '사용자 목록, %page% 페이지'
+title.messages: 메시지
+title.notifications: 알림
+title.recent_comments: 최근 댓글
+title.recent_comments_forum: '%forum%의 최근 댓글'
+title.showing_ban_history_for_user_in_forum: '%forum%에서 %user%의 차단 내역 표시'
+title.showing_moderation_log_for_forum: '%forum%에 대한 중재 로그 표시'
+title.showing_revision: '%path% 페이지의 수정 내역 %revision%개 표시'
+title.site_settings: 사이트 설정
+title.site_wide_trash: 사이트 전체 휴지통
+title.unban_user: '%user% 차단 해제'
+title.unbanning_user_from_forum: '%forum%에서 %user% 차단 해제'
+title.user_forum_bans: "%user%의 포럼 차단"
+title.wiki_diff: 버전 %from%와 %to% 간의 차이 표시
+
+user.comments: 댓글
+user.email_optional: 이메일 주소는 선택 사항입니다. 비밀번호 재설정에만 사용합니다.
+user.message: 메시지 보내기
+user.moderates: '%username%은(는) 다음에 대한 중재자입니다.'
+user.password_rules: 최소 8자리.
+user.registered: '%timestamp%에 등록'
+user.submissions: 게시물
+user.username_rules: 허용되는 문자는 A-Z, a-z, 0-9 및 밑줄입니다.
+
+user_flag.admin: 관리자
+user_flag.admin_label: 관리자
+user_flag.moderator: 중재자
+user_flag.moderator_label: 중재자
+user_flag.none_label: (없음)
+user_flag.post_as_label: 다음으로 게시
+
+user_settings.title: '%username%에 대한 사용자 설정 편집'
+
+wiki.all_pages: 모든 페이지
+wiki.create_this_page: 이 페이지 만들기
+wiki.create_title: '"%path%"생성'
+wiki.edit_page: 페이지 편집
+wiki.editing_title: '"%path%"편집'
+wiki.history_title: '"%path%"에 대한 기록 표시'
+wiki.id_label: ID
+wiki.last_edited: '%username%이 (가) %timestamp%에 마지막으로 편집했습니다.'
+wiki.locked_notice: 페이지가 잠겨 있습니다. 관리자만 편집할 수 있습니다.
+wiki.navigation: 탐색
+wiki.not_found_message: 요청한 페이지를 찾을 수 없습니다.
+wiki.not_found_title: 페이지를 찾을 수 없음
+wiki.page_history: 페이지 기록
+wiki.page_title: 페이지 제목
+wiki.path: 경로
+wiki.revision_time: 수정 내역
+wiki.user: 사용자

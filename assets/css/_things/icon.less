@@ -1,0 +1,44 @@
+.icon {
+  svg {
+    fill: currentColor;
+    height: 1em;
+    width: 1em;
+  }
+
+  &:not(&--no-align):not(&--circled) {
+    svg {
+      top: .125em;
+      position: relative;
+    }
+  }
+
+  &--spin {
+    svg {
+      animation: icon-spin 2s linear infinite;
+    }
+  }
+
+  &--pulse {
+    svg {
+      animation: icon-spin 1s steps(8) infinite;
+    }
+  }
+
+  &--circled {
+    border: solid 1px;
+    border-radius: 99999px;
+    display: inline-block;
+    line-height: 0;
+    padding: 0.25em;
+  }
+}
+
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,17 @@
+<ul class="unlistify flex">
+  <li>
+    <a href="{{ path('forum_list') }}" class="tab {{ active == 'forums' ? 'tab--active' }}">
+      {{- 'nav.forums'|trans -}}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('forum_tags') }}" class="tab {{ active == 'tags' ? 'tab--active' }}">
+      {{ 'label.tags'|trans }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('forum_list_all') }}" class="tab {{ active == 'all' ? 'tab--active' }}">
+      {{ 'nav.alphabetical'|trans }}
+    </a>
+  </li>
+</ul>

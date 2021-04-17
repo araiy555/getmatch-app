@@ -1,0 +1,54 @@
+@import (reference) '../_variables';
+
+// No real need to use BEM for the table structure since HTML places strict
+// restrictions on how tables are structured. Just make sure nested tables don't
+// inherit any of these styles.
+.table {
+  border-collapse: collapse;
+  width: 100%;
+
+  &__shrink {
+    white-space: nowrap;
+    width: 0.1px;
+  }
+
+  > thead {
+    > tr:last-child {
+      > th,
+      > td {
+        border-bottom: solid 1px var(--accent-alt);
+      }
+    }
+  }
+
+  > tbody,
+  > tfoot {
+    > tr:not(:last-child) {
+      > td,
+      > th {
+        border-bottom: solid 1px var(--border-light);
+      }
+    }
+  }
+
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th {
+        background-color: var(--accent);
+        color: var(--accent-fg);
+        text-align: left;
+      }
+
+      > th,
+      > td {
+        padding: 0.5rem;
+
+        @media screen and (min-width: @desktop-min-width) {
+          padding: 0.5rem 1rem;
+        }
+      }
+    }
+  }
+}

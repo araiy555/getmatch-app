@@ -1,0 +1,174 @@
+@import (reference) '../_variables';
+
+.site-nav {
+  background: var(--site-nav-bg, var(--primary));
+
+  // overlap box-shadows from main content/sidebar
+  z-index: 5;
+
+  &__container {
+    display: flex;
+    width: 100%;
+  }
+
+  &__link {
+    color: var(--primary-fg);
+    cursor: pointer;
+    display: inline-block;
+    font-size: @nav-font-size;
+    padding: 0.875em 1em;
+    position: relative;
+
+    &:focus {
+      background-color: var(--primary-alt);
+      outline: none;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:hover::after,
+    &--active::after {
+      background-color: var(--primary-fg);
+      bottom: 1px;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  &__has-notifications {
+    background-color: var(--notification);
+  }
+
+  &__search-input {
+    border-color: transparent !important;
+    border-radius: 8rem !important;
+    padding-left: 2.5rem !important;
+    width: 100% !important;
+
+    &:not(:focus) {
+      background-color: transparent !important;
+      border-color: var(--primary-fg) !important;
+      color: var(--primary-fg) !important;
+    }
+  }
+
+  &__search-label {
+    cursor: text;
+    padding: calc(0.5rem + 1px) calc(0.75rem + 1px);
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__search-row:not(:focus-within) &__search-label {
+    color: var(--primary-fg);
+  }
+
+  .no-js:root &__mobile-toggle:hover,
+  .js:root &__mobile-hidden.dropdown--extended > &__mobile-toggle {
+    background-color: var(--primary-alt);
+  }
+
+  // desktop styles
+  @media screen and (min-width: @desktop-min-width) {
+    &__container {
+      padding: 0 1rem;
+    }
+
+    &__menu {
+      display: flex;
+    }
+
+    &__search {
+      align-items: center;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 0.5rem;
+    }
+  }
+
+  // mobile styles
+  @media not screen and (min-width: @desktop-min-width) {
+    &__container > * {
+      flex: 1 0 auto;
+    }
+
+    &__link {
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .no-js:root &__mobile-hidden:hover,
+    .js:root &__mobile-hidden.dropdown--extended {
+      background-color: var(--primary-alt);
+    }
+
+    &__mobile-toggle + * {
+      background-color: var(--primary-alt);
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+
+    &__header {
+      order: 1;
+    }
+
+    &__search {
+      display: block;
+      order: 2;
+    }
+
+    &__user-menu {
+      display: flex;
+      flex: 3 0 auto;
+      order: 3;
+
+      > * {
+        flex: 1 0 auto;
+      }
+    }
+
+    &__main-menu-container {
+      order: 4;
+    }
+
+    &__main-menu {
+      flex-direction: column;
+    }
+
+    &__main-menu &__link {
+      padding: 0.5rem 1rem;
+      text-align: left;
+
+      &:hover::after,
+      &--active::after {
+        top: 0;
+        left: 2px;
+        bottom: unset;
+        width: 2px;
+        height: 100%;
+      }
+    }
+
+    &__link {
+      display: block;
+    }
+
+    &__search-row {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  .no-js:root :hover > &__link.dropdown__toggle,
+  .js:root .dropdown--expanded > &__link.dropdown__toggle {
+    background-color: var(--primary-alt);
+  }
+}

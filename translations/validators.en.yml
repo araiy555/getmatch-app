@@ -1,0 +1,17 @@
+bad_phrase.match: The field contains a banned word or phrase.
+comment.empty: The comment must not be empty.
+forum.banned: You have been banned from this forum.
+forum.duplicate_name: A forum by that name already exists.
+forum.name_characters: The name must contain only letters, numbers, and underscores.
+ip.cidr_missing: Missing CIDR mask.
+ip.invalid: The IP address is not valid.
+ip.invalid_cidr_mask: The CIDR mask is not valid.
+ratelimit.error: You cannot post more. Wait a while before trying again.
+regex.invalid: The field must contain a valid regular expression, without delimiters.
+regex.must_not_match_empty: The regex must not match an empty string.
+tag.invalid_characters: Tags can only contain letters, numbers, and underscores.
+tag.too_short: The tag {{ value }} is too short. It should have at least {{ limit }} character.|The tag {{ value }} is too short. It should have at least {{ limit }} characters.
+tag.too_long: The tag {{ value }} is too long. It should have at most {{ limit }} character.|The tag {{ value }} is too long. It should have at most {{ limit }} characters.
+user.already_moderator: That user is already a moderator.
+user.none_by_username: No such user
+user.rate_limit: You cannot create new accounts at this time. Please try again later.

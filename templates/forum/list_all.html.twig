@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% set active = 'all' %}
+
+{% block title 'title.all_forums'|trans %}
+
+{% block body %}
+  {{ include('forum/_list_nav.html.twig') }}
+
+  <h1 class="page-heading">{{ 'title.all_forums'|trans }}</h1>
+
+  <div class="columns flow">
+    {% for symbol in (0..9)|map(n => ''~n)|merge('A'..'Z')|merge(['_']) %}
+      {% set group = forums|filter(forum => forum|upper starts with symbol) %}
+      {% if group is not empty %}
+        <div class="text-flow">
+          <h2>{{ symbol|upper }}</h2>
+
+          <ul class="unlistify">
+            {% for forum in group %}
+              <li><a href="{{ path('forum', { forum_name: forum }) }}">{{ forum }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock body %}
+

@@ -1,0 +1,40 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+
+{% block site_nav_user_menu_active 'block_list' %}
+{% block title 'title.block_list'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ alert('help.blocking_users'|trans, 'info') }}
+
+  {% embed '_layouts/table.html.twig' with { items: blocks } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'label.username'|trans }}</th>
+      <th class="table__shrink">{{ 'label.blocked'|trans }}</th>
+      <th>{{ 'label.comment'|trans }}</th>
+      <th class="table__shrink"></th>
+    {% endblock header %}
+
+    {% block row %}
+      {% from '_macros/time.html.twig' import relative_time %}
+      {% from 'user/_macros.html.twig' import user_link %}
+
+      <td class="table__shrink">{{ user_link(item.blocked) }}</td>
+
+      <td class="table__shrink">
+        {{ relative_time(item.timestamp, { date_format: 'short', time_format: 'none' }) }}
+      </td>
+
+      <td>{{ item.comment }}</td>
+
+      <td class="table__shrink">
+        <form action="{{ path('unblock_user', { username : item.blocked.username }) }}" method="post">
+          <input type="hidden" name="token" value="{{ csrf_token('unblock') }}">
+          <button class="button button--small inline">{{ 'action.unblock'|trans }}</button>
+        </form>
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

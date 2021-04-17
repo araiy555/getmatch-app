@@ -1,0 +1,48 @@
+{% extends 'wiki/page.html.twig' %}
+
+{% block title 'wiki.history_title'|trans({'%path%': page.path}) %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: revisions}, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ 'wiki.history_title'|trans({
+    '%path%': '<a href="%s">%s</a>'|format(path('wiki', {path: page.path})|escape, page.path|escape)
+  })|raw }}</h1>
+
+  <form action="{{ path('wiki_diff') }}" class="flow">
+    {% embed '_layouts/table.html.twig' with { items: revisions } %}
+      {% block header %}
+        <th class="table__shrink" colspan="2">{{ 'label.compare'|trans }}</th>
+        <th class="table__shrink">{{ 'wiki.id_label'|trans }}</th>
+        <th class="table__shrink">{{ 'wiki.revision_time'|trans }}</th>
+        <th>{{ 'wiki.user'|trans }}</th>
+      {% endblock header %}
+
+      {% block row %}
+        {% from '_macros/form.html.twig' import radio %}
+        {% from '_macros/time.html.twig' import relative_time %}
+
+        <td class="table__shrink">
+          {{ radio({ name: 'from', value: item.id, checked: loop.index == 2 }) }}
+        </td>
+        <td class="table__shrink">
+          {{ radio({ name: 'to', value: item.id, checked: loop.index == 1 }) }}
+        </td>
+        <td class="table__shrink">
+          <a href="{{ path('wiki_revision', {id: item.id}) }}">{{ item.id.hex|slice(0, 8) }}</a>
+        </td>
+        <td class="table__shrink">
+          {{ relative_time(item.timestamp, { date_format: 'short' }) }}
+        </td>
+        <td><a href="{{ path('user', {username: item.user.username}) }}">{{ item.user.username }}</a></td>
+      {% endblock row %}
+
+      {% block footer %}
+        {% from '_macros/form.html.twig' import button_row %}
+        {{ button_row('action.compare'|trans) }}
+      {% endblock footer %}
+    {% endembed %}
+  </form>
+{% endblock body %}

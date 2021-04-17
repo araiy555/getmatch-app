@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% from 'message/_macros.html.twig' import message %}
+
+{% block site_nav_active 'notifications' %}
+{% block title thread.title %}
+
+{% block body %}
+  <h1 class="page-heading">{{ thread.title }}</h1>
+
+  {% for message in thread.messages %}
+    {{ message(message) }}
+  {% endfor %}
+
+  {% if is_granted('reply', thread) %}
+    {{ render(controller('App\\Controller\\MessageController::replyForm', {threadId: thread.id})) }}
+  {% endif %}
+{% endblock %}

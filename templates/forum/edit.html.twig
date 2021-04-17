@@ -1,0 +1,13 @@
+{% extends 'forum/base.html.twig' %}
+
+{% block title 'edit_forum.title'|trans({'%forum%': '/f/'~forum.name}) %}
+
+{% block body %}
+  <h1 class="page-heading break-text">
+    {{ 'title.editing_forum'|trans({
+      '%forum%': '<a href="%s">/f/%s</a>'|format(path('forum', {forum_name: forum.name})|e, forum.name|e)
+    })|raw }}
+  </h1>
+
+  {{ include('forum/_form.html.twig', { editing: true, form: form }, with_context=false) }}
+{% endblock body %}

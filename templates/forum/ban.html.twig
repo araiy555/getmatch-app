@@ -1,0 +1,20 @@
+{% extends 'forum/base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.banning_user_from_forum'|trans({
+  '%forum%': forum.name,
+  '%user%': user.username,
+}) %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ form_start(form) }}
+    {{ form_row(form.reason) }}
+
+    {{ form_row(form.expires) }}
+
+    {{ button_row('action.ban'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}
+

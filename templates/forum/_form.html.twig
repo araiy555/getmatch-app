@@ -1,0 +1,15 @@
+{% from '_macros/form.html.twig' import button_row %}
+
+{{ form_start(form) }}
+  {{ form_row(form.name, { prefix: '/f/' }) }}
+  {{ form_row(form.title) }}
+  {{ form_row(form.description) }}
+  {{ form_row(form.sidebar, { attr: { rows: 8 } }) }}
+  {{ form_row(form.tags, { attr: { rows: 2 } }) }}
+
+  {% if form.featured is defined %}
+    {{ form_row(form.featured) }}
+  {% endif %}
+
+  {{ button_row(editing ? 'action.save_changes'|trans : 'forum.create'|trans) }}
+{{ form_end(form) }}

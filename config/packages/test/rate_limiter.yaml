@@ -1,0 +1,6 @@
+framework:
+    rate_limiter:
+        login_local:
+            limit: 999999
+        login_global:
+            limit: 999999

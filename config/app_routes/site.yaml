@@ -1,0 +1,14 @@
+health_check:
+    controller: App\Controller\SiteController::healthCheck
+    methods: [GET]
+    path: /site/health_check
+
+site_settings:
+    controller: App\Controller\SiteController::settings
+    methods: [GET, POST]
+    path: /site/settings
+
+site_wide_trash:
+    controller: App\Controller\SiteController::trash
+    methods: [GET]
+    path: /site/trash

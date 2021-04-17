@@ -1,0 +1,60 @@
+@import '../_variables';
+
+.dropdown {
+  &__arrow::after {
+    border-left: 0.5ch solid transparent;
+    border-right: 0.5ch solid transparent;
+    border-top: 0.5ch solid;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  // flip the arrow upon expanding the menu
+  &--expanded > &__toggle > &__arrow::after,
+  .no-js:root &:hover > &__toggle > &__arrow::after {
+    border-bottom: 0.5ch solid;
+    border-top: none;
+  }
+
+  .dropdown-menu() {
+    position: absolute;
+    left: 0;
+    right: auto;
+    z-index: 100;
+  }
+
+  // desktop menus
+  @media screen and (min-width: @desktop-min-width) {
+    &:not(&--mobile-only) {
+      position: relative;
+    }
+
+    .js:root &:not(&--mobile-only):not(&--expanded) > &__menu,
+    .no-js:root &:not(&--mobile-only):not(:hover) > &__menu {
+      display: none;
+    }
+
+    &:not(&--mobile-only) > &__menu {
+      .dropdown-menu();
+    }
+
+    &--right:not(&--mobile-only) > &__menu {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  // mobile menus
+  @media not screen and (min-width: @desktop-min-width) {
+    &__menu {
+      .dropdown-menu();
+      width: 100%;
+    }
+
+    .js:root &:not(&--expanded) > &__menu,
+    .no-js:root &:not(:hover) > &__menu {
+      display: none;
+    }
+  }
+}

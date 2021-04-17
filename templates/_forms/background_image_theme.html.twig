@@ -1,0 +1,37 @@
+{% block background_image_widget %}
+  <div class="flow-slim">
+    {{ form_errors(form.lightBackgroundImage) }}
+    <div class="form-flex form-flex--single-line">
+      {{ form_label(form.lightBackgroundImage) }}
+      {% if not light_background_image %}
+        {{ form_widget(form.lightBackgroundImage) }}
+      {% else %}
+        <img src="{{ light_background_image|imagine_filter('submission_thumbnail_1x') }}"
+             srcset="{{ light_background_image|imagine_filter('submission_thumbnail_2x') }} 2x"
+             alt=""
+             width="70"
+             height="70">
+        {{ form_widget(form.removeLightBackgroundImage) }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="flow-slim">
+    {{ form_errors(form.darkBackgroundImage) }}
+    <div class="form-flex form-flex--single-line">
+      {{ form_label(form.darkBackgroundImage) }}
+      {% if not dark_background_image %}
+        {{ form_widget(form.darkBackgroundImage) }}
+      {% else %}
+        <img src="{{ dark_background_image|imagine_filter('submission_thumbnail_1x') }}"
+             srcset="{{ dark_background_image|imagine_filter('submission_thumbnail_2x') }} 2x"
+             alt=""
+             width="70"
+             height="70">
+        {{ form_widget(form.removeDarkBackgroundImage) }}
+      {% endif %}
+    </div>
+  </div>
+
+  {{ form_row(form.backgroundImageMode) }}
+{% endblock background_image_widget %}

@@ -1,0 +1,16 @@
+{% extends 'user/base.html.twig' %}
+
+{% block title %}
+  {{ 'compose_message.title'|trans({'%username%': user.username}) }}
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {{- 'compose_message.title'|trans({'%username%': '<a href="%s">%s</a>'|format(
+      path('user', {username: user.username})|escape,
+      user.username|escape
+    )})|raw -}}
+  </h1>
+
+  {{ include('message/_form.html.twig', {form: form}, with_context=false) }}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% block news_trend %}
+
+  <!-- CSS -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <!-- JavaScript -->
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  <style>
+    /* external css: flickity.css */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+
+    .carousel-cell {
+      width: 66%;
+      height: 200px;
+      margin-right: 10px;
+      background: #8C8;
+      border-radius: 5px;
+      counter-increment: carousel-cell;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* cell number */
+    .carousel-cell:before {
+      display: block;
+      text-align: center;
+      content: counter(carousel-cell);
+      line-height: 200px;
+      font-size: 80px;
+      color: white;
+    }
+
+    .carousel-cell2 {
+      width: 30%;
+      height: 184px;
+      margin-right: 10px;
+      background: #8C8;
+      border-radius: 5px;
+      counter-increment: carousel-cell;
+    }
+
+    /* cell number */
+    .carousel-cell2:before {
+      display: block;
+      text-align: center;
+      content: counter(carousel-cell);
+      line-height: 200px;
+      font-size: 80px;
+      color: white;
+    }
+
+
+  </style>
+  <div class="carousel"
+       data-flickity='{ "wrapAround": true }'>
+    <img class="carousel-cell" src="/media/getmatch.jpg">
+    <img class="carousel-cell" src="/media/getmatch2.jpg">
+    <img class="carousel-cell" src="/media/getmatch3.jpg">
+  </div>
+  <br>
+  <div class="carousel2" data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": false, "pageDots": false }'>
+    <div  ><a href="/f/news"><img src="/media/getmatch9.jpg"></a></div>
+    <div  ><a href="/f/game"><img src="/media/getmatch10.jpg"></a></div>
+    <div  ><a href="/f/comic"><img src="/media/getmatch11.jpg"></a></div>
+    <div  ><a href="/f/anime"><img src="/media/getmatch12.jpg"></a></div>
+    </div>
+
+{% endblock news_trend %}

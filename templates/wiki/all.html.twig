@@ -1,0 +1,28 @@
+{% extends 'wiki/base.html.twig' %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'wiki' %}
+
+{% block title 'wiki.all_pages'|trans %}
+
+{% block head %}
+  <link rel="canonical" href="{{ path('wiki_all') }}">
+
+  {{ include('_includes/meta_pagination.html.twig', { pager: pages }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% embed '_layouts/table.html.twig' with { items: pages } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'wiki.path'|trans }}</th>
+      <th>{{ 'wiki.page_title'|trans }}</th>
+    {% endblock header %}
+
+    {% block row %}
+      <td class="table__shrink"><a href="{{ path('wiki', {path: item.path}) }}">{{ item.path }}</a></td>
+      <td>{{ item.latestRevision.title }}</td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

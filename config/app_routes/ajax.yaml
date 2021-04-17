@@ -1,0 +1,11 @@
+fetch_title:
+    controller: App\Controller\AjaxController::fetchTitle
+    defaults: { _format: json }
+    path: /ft.json
+    methods: [POST]
+    options: { expose: true }
+
+user_popper:
+    controller: App\Controller\AjaxController::userPopper
+    path: /_up/{username}
+    options: { expose: true }

@@ -1,0 +1,32 @@
+{% extends 'front/moderated.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from 'comment/_macros.html.twig' import comment %}
+{% from 'submission/_macros.html.twig' import submission %}
+
+{% block title 'nav.trash'|trans %}
+
+{% block head %}
+  {{ include('_includes/pagination.html.twig', { pager: trash }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <nav class="flex flex--guttered">
+    <h1>{{ 'nav.trash'|trans }}</h1>
+
+    {{ include('front/_moderator_nav.html.twig', with_context=false) }}
+  </nav>
+
+  {{ alert('help.front_trash'|trans, 'info') }}
+
+  {% for item in trash %}
+    {% if item.title is defined %}
+      {{ submission(item) }}
+    {% else %}
+      {{ comment(item, { show_context: true, show_trashed: true }) }}
+    {% endif %}
+  {% else %}
+    <p class="fg-muted"><small class="text-md">{{ 'flash.no_entries_to_display'|trans }}</small></p>
+  {% endfor %}
+
+  {{ include('_includes/pagination.html.twig', { pager: trash }, with_context=false) }}
+{% endblock body %}

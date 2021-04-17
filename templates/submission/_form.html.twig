@@ -1,0 +1,68 @@
+{% from '_macros/form.html.twig' import button_row -%}
+
+{{ form_start(form, { attr: { 'data-controller': (app.user.autoFetchSubmissionTitles ?? true) ? 'fetch-titles' }}) }}
+  {{ form_errors(form) }}
+
+  {% if form.image is defined %}
+    <div class="form-tabs">
+      {% apply spaceless %}
+        {{ form_widget(form.mediaType.url, {
+          attr: { class: 'form-tabs__checkbox hidden', 'data-for': 0 },
+          unstyled: true,
+        }) }}
+
+        {{ form_label(form.mediaType.url, null, {
+          label_attr: { class: 'discreet-tab form-tabs__tab' },
+          show_required_indicator: false,
+        }) }}
+
+        {{ form_widget(form.mediaType.image, {
+          attr: { class: 'form-tabs__checkbox hidden', 'data-for': 1 },
+          unstyled: true,
+        }) }}
+
+        {{ form_label(form.mediaType.image, null, {
+          label_attr: { class: 'discreet-tab form-tabs__tab' },
+          show_required_indicator: false,
+        }) }}
+      {% endapply %}
+
+      <div class="form-tabs__content" data-id="0">
+        {{ form_row(form.url, {
+          label_attr: { hidden: true },
+          attr: {
+            'data-fetch-titles-target': 'source',
+            'data-action': 'blur->fetch-titles#fetchTitle',
+          },
+        }) }}
+      </div>
+
+      <div class="form-tabs__content" data-id="1">
+        {{ form_row(form.image, { label_attr: { hidden: true }}) }}
+      </div>
+    </div>
+  {% elseif form.url is defined %}
+    {{ form_row(form.url, {
+      attr: {
+        'data-fetch-titles-target': 'source',
+        'data-action': 'blur->fetch-titles#fetchTitle',
+      },
+    }) }}
+  {% endif %}
+
+  {{ form_row(form.title, {
+    attr: { rows: 3, 'data-fetch-titles-target': 'destination', },
+  }) }}
+
+  {{ form_row(form.body, {attr: {rows: 10}}) }}
+
+  {% if form.forum is defined %}
+    {{ form_row(form.forum, {attr: {class: 'select2'}, show_required_indicator: true}) }}
+  {% endif %}
+
+  {% if form.userFlag is defined %}
+    {{ form_row(form.userFlag) }}
+  {% endif %}
+
+  {{ button_row(editing ? 'submission_form.edit'|trans : 'submission_form.create'|trans, {}) }}
+{{ form_end(form) }}

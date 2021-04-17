@@ -1,0 +1,33 @@
+@import (less) '~tippy.js/dist/tippy.css';
+
+.tippy-box[data-theme="postmill"] {
+  background-color: var(--dropdown-card-bg, var(--card-bg));
+  border: solid 1px var(--border-light);
+  color: var(--main);
+  font-size: 1rem;
+  padding: 0.5rem;
+
+  &[data-placement^="top"] .tippy-arrow::before {
+    border-width: 7px 7px 0;
+    border-top-color: var(--border-light);
+  }
+
+  &[data-placement^="bottom"] .tippy-arrow::before {
+    border-width: 0 7px 7px;
+    border-bottom-color: var(--border-light);
+  }
+
+  &[data-placement^="left"] .tippy-arrow::before {
+    border-width: 7px 0 7px 7px;
+    border-left-color: var(--border-light);
+  }
+
+  &[data-placement^="right"] .tippy-arrow::before {
+    border-width: 7px 7px 7px 0;
+    border-right-color: var(--border-light);
+  }
+
+  & .tippy-svg-arrow {
+    fill: var(--dropdown-card-bg, var(--card-bg));
+  }
+}

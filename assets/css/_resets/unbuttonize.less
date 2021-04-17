@@ -1,0 +1,16 @@
+// make <button> look like a regular link
+.unbuttonize {
+  border: none;
+  background: transparent;
+  color: var(--link);
+  padding: 0;
+  text-align: unset;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

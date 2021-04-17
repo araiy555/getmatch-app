@@ -1,0 +1,620 @@
+top.title: GetMatch | Portada de Internet
+top.description: Bienvenido a GetMatch. Somos una red de comunidades basada en los intereses de las personas. Encuentre una comunidad que le interese y forme parte de nuestra comunidad en línea.
+wiki.page_description: Bienvenido a GetMatch. Consulte nuestra "wiki" y vea lo que hemos reunido para usted.
+action.log_in_description: Bienvenido a GetMatch. Al conectarse, tendrá acceso a los contenidos de GetMatch.
+action.sign_up_description: Bienvenido a GetMatch. Al registrarse para obtener una cuenta, podrá acceder a los contenidos de GetMatch.
+forum_list.page_description: Bienvenido a GetMatch. Consulta la información de la "Lista del Foro" y únete a la comunidad.
+nav.shop: shopping
+markdown.image: image
+markdown.movie: video
+markdown.movie_thumbnail: Video thumbnail
+footer.terms_of_service: Terms of Service
+footer.privacy: Privacy
+footer.faq: FAQ
+footer.contact: Contact Us
+action.add: Añadir
+action.ban: Vetar
+action.block: Bloquear
+action.clear: Quitar
+action.clear_all: Quitar todo
+action.compare: Comparar
+action.create: Crear
+action.create_theme: Crear tema
+action.delete: Eliminar
+action.delete_account: Eliminar cuenta
+action.delete_thread: Borrar con respuestas
+action.dismiss: Desechar
+action.downvote: Votar negativamente
+action.edit: Editar
+action.edit_theme: Editar tema
+action.filter: Filtrar
+action.global_ban: Veto global
+action.go_to_home_page: Ir a página principal
+action.hide: Esconder
+action.lock: anclar
+action.log_in: Ingresar
+action.log_out: Cerrar sesión
+action.pin: Anclar
+action.post: Publicar
+action.purge: Purgar
+action.remove: Quitar
+action.restore: Restaurar
+action.retract_downvote: Retirar voto negativo
+action.retract_upvote: Retirar voto positivo
+action.save: Guardar
+action.save_changes: Guardar cambios
+action.search: Buscar
+action.see_full_list: Ver lista completa
+action.see_full_list_of_tags: Ver lista completa de etiquetas
+action.send: Enviar
+action.sign_up: Registrarse
+action.subscribe: Suscribirse
+action.subscribe_via_rss: Suscribirse por RSS
+action.sync_themes: Sincronizar temas
+action.unban: Dejar de vetar
+action.unblock: Desbloquar
+action.unhide: Deshacer «esconder»
+action.unlock: desanclar
+action.unpin: Desanclar
+action.unsubscribe: Desuscribirse
+action.upvote: Votar positivamente
+action.whitelist: Añadir a lista blanca
+action.whitelist_remove: Sacar de lista blanca
+
+add_moderator.title: Agrega una moderadora a %forum%
+
+background.light_background_image: Imagen de fondo clara
+background.dark_background_image: Imagen de fondo oscura
+background.mode: Modo de visualización
+background.center: Centrar
+background.fit_to_page: Ajustar a página
+background.tile: Mosaico
+
+bad_phrase.help: Esta herramienta te permite evitar que se publiquen frases de texto. Se puede usar para prevenir mensajes basura o para reprimir la disidencia.
+bad_phrase.phrase: Frase
+bad_phrase.phrase_to_ban: Frase a vetar
+bad_phrase.search_title: Buscar frases malas
+bad_phrase.title: Frases malas
+bad_phrase.type_text: Texto
+
+ban_add.title: Veta una dirección IP
+
+ban_list.banned_by: Vetada por
+ban_list.expires: Expira
+ban_list.expires_never: Nunca
+ban_list.reason: Razón
+ban_list.remove: Deshacer vetos
+ban_list.timestamp: Tiempo
+ban_list.user: Usuaria
+ban_list.user_none: ninguna
+
+banned.banned_account: Tu cuenta ha sido vetada.
+banned.banned_ip: '{1} Tu dirección IP, %ip%, ha sido vetada.|]1,Inf[ Tu dirección IP, %ip%, tiene ya %formatted_count% vetos registrados:'
+banned.set_on_date: Vetado el %date%.
+banned.set_on_date_for_range: Rando de IP vetado el %date%.
+banned.title: Vetada
+banned.whitelisted: Estos vetos ne te serán aplicados, pues estás en la lista blanca.
+banned.will_expire: Este veto expirará el %date%.
+banned.will_not_expire: Este veto no expirará.
+
+comments.comments: Comentarios
+comments.context.comment_reply: Respuesta a comentario de %comment_author% en %submission_title% por %submission_author%
+comments.context.top_level_reply: Respuesta a %submission_title% por %submission_author%
+comments.edit_info: (Editado %edited_at%)
+comments.form_load_error: Error cargando formulario. Por favor, inténtalo de nuevo.
+comments.info: '%user% escribió %timestamp%'
+comments.linear: Lineal
+comments.moderator_info: (editado por un moderador %edited_at%)
+comments.nested: Escalonado
+comments.not_logged_in: Debes %login_link% o %register_link% para comentar.
+comments.not_logged_in_login_link_label: ingresar
+comments.not_logged_in_register_link_label: registrarse
+comments.parent: Padre
+comments.reply: Responder
+comments.replying_to_comment: Respondiendo a %user% (%id%)
+comments.return_to_forum: Regresar a %forum%
+comments.thread_return: Ver todos los comentarios
+comments.viewing_thread: Viendo un único hilo.
+
+comment_form.create_title: Publicando un comentario
+comment_form.edit_title: Editando comentario
+
+compose_message.title: Redactando un mensaje para %username%
+
+content.empty: Aquí no hay nada…
+
+create_forum.create_new_forum: Crear nuevo foro
+
+delete_account.comments: Elimina sus comentarios.
+delete_account.lead: 'Borrar una cuenta hace lo siguiente:'
+delete_account.messages: Elimina sus mensajes enviados.
+delete_account.metadata: Hace que no se pueda iniciar sesión, mezcla las letras del nombre de usuaria, restablece las preferencias y elimina otros datos asociados con la cuenta.
+delete_account.submissions: Elimina sus publicaciones.
+delete_account.votes: Deshace cada voto en publicaciones y comentarios.
+
+edit_forum.title: Editando %forum%
+
+edit_user.title: Editando usuaria %username%
+
+flash.account_deletion_in_progress: La cuenta está siendo eliminada.
+flash.ban_added: La dirección IP ha sido vetada.
+flash.comment_purged: El comentario fue purgado.
+flash.comment_restored: El comentario fue restablecido.
+flash.delete_account_warning: ¡Una vez eliminada tu cuenta no podrás recuperarla nunca jamás!
+flash.delete_someone_elses_account_warning: ¡Estás borrando la cuenta de otra persona! Una vez hecho esto, no podrá recuperar su cuenta nunca jamás.
+flash.editing_biography_of_other_user: Estás editando la biografía de otra usuaria.
+flash.editing_credentials_of_other_user: Estás editando los credenciales de otra usuaria. Este puede evitar que inicien sesión.
+flash.forum_deleted: El foro y todos sus contenidos han sido borrados.
+flash.forum_moderator_added: La usuaria ha sido ascendida a moderadora.
+flash.forum_updated: Los cambios han sido guardados.
+flash.no_cookies_verification: ¿La imagen no carga correctamente? Asegúrate de que no estás bloqueando las cookies e inténtalo de nuevo.
+flash.no_entries_to_display: No hay entradas que mostrar.
+flash.no_messages: No hay mensajes que mostrar.
+flash.no_moderated_forums: No moderas ningún foro.
+flash.no_moderators: Este foro no tiene moderadoras.
+flash.no_password_resets: Los restablecimientos de contraseña han sido deshabilitados por la administradora.
+flash.notification_cleared: La notificación fue eliminada exitosamente.
+flash.notifications_cleared: Se han limpiado tus notificaciones.
+flash.page_locked: Se ha anclado la página.
+flash.page_unlocked: Se ha desanclado la página.
+flash.registration_closed: Se han deshabilitado los registros por la administradora.
+flash.reset_password_email_sent: Un correo de recuperación ha sido enviado a la dirección que especificó.
+flash.site_settings_saved: Los ajustes han sido guardados.
+flash.submission_deleted: La publicación ha sido borrada.
+flash.submission_edited: La publicación ha sido editada.
+flash.submission_is_locked: La publicación está bloqueada. No puedes publicar nuevos comentarios.
+flash.submission_locked: Se ha bloqueado la publicación.
+flash.submission_pinned: Se ha anclado la publicación.
+flash.submission_purged: Se ha purgado la publicación.
+flash.submission_restored: Se ha restablecido la publicación.
+flash.submission_unlocked: Se ha desbloqueado la publicación.
+flash.submission_unpinned: Se ha desanclado la publicación.
+flash.too_many_characters: Introdujiste demasiados caracteres (máx. %max%, %count% introducidos)
+flash.user_account_registered: Tu cuenta ha sido registrada.
+flash.user_biography_updated: Se actualizó la biografía.
+flash.user_blocked: La usuaria fue bloqueada.
+flash.user_password_updated: Tu contraseña ha sido actualizada.
+flash.user_settings_updated: Las opciones de usuario han sido actualizadas.
+flash.user_unblocked: La usuaria fue desbloqueada.
+flash.user_unmodded: Se le quitó la función de moderadora a la usuaria.
+flash.user_was_banned: La usuaria fue vetada.
+flash.user_was_unbanned: Se dejó de vetar a la usuaria.
+flash.user_whitelisted: La usuaria se añadió a la lista blanca.
+flash.user_whitelist_removed: La usuaria fue sacada de la lista blanca.
+flash.wiki_page_deleted: La página de wiki ha sido eliminada.
+flash.you_must_reauthenticate: Debes volver a identificarte para acceder a esta página.
+
+forum.add_as_moderator: Agregar como moderadora
+forum.add_moderator: Agregar moderadora
+forum.create: Crear foro
+forum.created_on: 'Creado %timestamp%'
+forum.delete: Borrar foro
+forum.edit: Editar foro
+forum.moderators: Moderadoras
+forum.submission_count: '{0} Sin publicaciones|{1} %formatted_count% publicación|[1,Inf[ %formatted_count% publicaciones'
+forum.subscriber_count: '{0} Sin suscriptoras|{1} %formatted_count% suscriptora|[1,Inf[ %formatted_count% suscriptoras'
+
+forum_form.featured: Mostrar en la página principal
+
+forum_list.page_title: Lista de foros
+forum_list.submission_count: Publicaciones
+forum_list.subscribers: Suscriptores
+
+forum_moderators.last_seen: Visto por última vez
+forum_moderators.since: Desde
+forum_moderators.title: Moderadoras de %forum_name%
+
+front.all: Todos
+front.all_forums: Todos los foros
+front.featured: Destacados
+front.featured_forums: Foros destacados
+front.moderated_forums: Foros moderados
+front.no_forums: No hay foros destacados que mostrar.
+front.no_subscriptions: No estás suscrita en ningún foro. Mostrando foros destacados en su lugar.
+front.subscribed: Suscritos
+front.subscribed_forums: Foros suscritos
+
+heading.credentials: Credenciales
+heading.delete_account: Borrar cuenta
+heading.forums_you_moderate: Foros que moderas
+heading.hide_this_forum: Oculta este foro
+heading.message_reply: "%sender% respondió %timestamp%"
+heading.message_thread: "%sender% le escribió a %receiver% %timestamp%"
+heading.multi_forum_view: Vista de múltiples foros
+heading.notifications: Notificaciones
+heading.privacy: Privacidad
+heading.search: Búsqueda
+heading.search_results: '{0} Ningún resultado para %query%|{1} 1 resultado para %query%:|]1,Inf[ %count% resultados para %query%:'
+heading.this_user_is_banned: ¡Esta usuaria está vetada!
+heading.you_were_mentioned: Fuiste mencionada por %user%
+heading.whitelisting: Poniendo en lista blanca
+
+help.allow_private_messages: Si está deshabilitada, solo las administradoras, comoderadoras y moderadoras de foros en los que has participado recientemente podrán enviarte mensajes privados.
+help.ban_reason: Esto no será mostrado a la usuaria vetada.
+help.ban_reason_logged: Esto no será mostrado a la usuaria vetada, pero será mostrado en el registro público de moderación.
+help.blocking_users: Bloquear a una usuaria oculta sus publicaciones, evita que te envíen mensajes privados y no recibirás notificaciones cuando te respondan. Las usuarias bloqueadas pueden seguir viendo tus publicaciones públicas.
+help.delete_forum_warning: ¡Todo el contenido de este foro será borrado irreversiblemente!
+help.forum_description: Una descripción corta del foro. Los motores de búsqueda presentarán una descripción en sus resultados.
+help.forum_is_featured: Este es un foro destacado.
+help.forum_is_hidden: Has elegido ocultar este foro.
+help.front_trash: Esta página muestra publicaciones que fueron eliminadas por un moderador en los foros que moderas.
+help.hidden_forums: Al marcar foros como ocultos, no podrás ver los envíos de esos foros al navegar los listados de publicaciones «destacados» y «todos». Seguirás pudiendo suscribirte y moderar los foros que has elegido ocultar.
+help.hidden_forums_no_comment_hiding: Los comentarios publicados en foros ocultos seguirán siendo mostrados en el listado «comentarios recientes».
+help.notify_on_mentions: Recibe notificaciones cuando alguien enlaza a tu perfil de usuaria.
+help.notify_on_reply: Recibe notificaciones cuando alguien responde a tus publicaciones.
+help.poppers_enabled: Los «emergentes» son pequeños paneles que muestran información y butones cuando pasas el ratón encima de ciertas cosas (p. ej., nombres de usuarias). Solo están disponibles al usar un ratón.
+help.preferred_fonts: 'Lista separada por comas de las fuentes que prefieres. Estas pueden ser fuentes de tu sistema o de la lista de fuentes proporcionadas por el servidor listadas a continuación.'
+help.preferred_fonts_aliases: 'Nombres de fuentes permitidos: '
+help.preferred_fonts_served: 'Fuentes proporcionadas por el servidor (disponibles en cualquier lugar): '
+help.required_field: Este campo es obligatorio.
+help.the_following_changes_will_be_made: 'Se realizarán los siguientes cambios:'
+help.theme_selector: El asterisco indica lo mismo que predeterminado.
+help.whitelisting: Poner en la lista blanca permitirá que esta usuaria evite los vetos de IP y algunas protecciones contra el envío masivo. Además, su dirección IP ya no será registrada.
+help.will_appear_in_the_url: Aparecerá en la URL.
+
+inbox.message_reply_head: 'Re: %title%'
+
+item.op: Publicadora original
+item.op_abbr: PO
+item.short_url: 'URL corta'
+
+label.action: Acción
+label.admin: Administradora
+label.all: Todo
+label.allow_private_messages: Permitir mensajes privados
+label.any: Cualquiera
+label.appearance: Apariencia
+label.appearance_and_behavior: Apariencia & comportamiento
+label.author: Autora
+label.auto_fetch_submission_titles: Obtener automáticamente títulos de publicaciones
+label.background_image: Imagen de fondo
+label.ban: Veto
+label.ban_ip_addresses: ¿Vetar dirección(es) IP?
+label.banned: Vetada
+label.banned_by: Vetada por
+label.bans: Vetos
+label.biography: Biografía
+label.blocked: Bloqueada
+label.body: Contenido
+label.bundled: Empaquetado
+label.comment: Comentar
+label.comment_votes: Votos de comentarios
+label.comment_votes_short: VC
+label.comments: Comentarios
+label.comments_short: C
+label.compare: Comparar
+label.confirm_forum_name: Confirmar nombre de foro
+label.confirm_username: Confirmar nombre de usuaria
+label.creation_date: Fecha de creación
+label.css: CSS
+label.dark: Oscuro
+label.date: Fecha
+label.default: Predeterminado
+label.delete_account_confirmation: Comprendo que no hay forma de recuperar esta cuenta tras ser eliminada.
+label.delete_forum_confirmation: Comprendo que no hay forma de recuperar los datos de este foro tras ser eliminado.
+label.description: Descripción
+label.email_address: Dirección de correo electrónico
+label.expires: Expira
+label.featured: destacado
+label.filter_by: Filtrar por
+label.filter_on_mode: 'Filtrar en: %mode%'
+label.forum: Foro
+label.forums_count: '{0} Ningún foro|{1} %count% foro|]1,Inf[ %count% foros'
+label.forums_with_this_tag: Foros con esta etiqueta
+label.from: De
+label.from_time: 'De: %time%'
+label.front_page: Página principal
+label.full_width_display: Visualización de pantalla completa
+label.general: General
+label.id: ID
+label.image: Imagen
+label.ip_address: Dirección IP
+label.ip_addresses: Direcciones IP
+label.language: Idioma
+label.last_message: Último mensaje
+label.last_revised: Revisado por última vez
+label.let_forums_override_preferred_theme: Permite a foros sobrescribir el tema preferido
+label.light: Claro
+label.media_type: Tipo de archivo multimedia
+label.message: Mensaje
+label.moderated: Moderado
+label.moderates: Modera
+label.name: Nombre
+label.never: Nunca
+label.new_password: Nueva contraseña
+label.night_mode: Modo nocturno
+label.none: Ninguno
+label.not_whitelisted: No listado en lista blanca
+label.notify_on_mentions: Notificar las menciones
+label.notify_on_reply: Notificar las respuestas
+label.open_external_links_in_new_tab: Abre enlaces externos en nueva pestaña
+label.order_by: Ordenar por
+label.overview: Vista general
+label.participants: Participantes
+label.password: Contraseña
+label.permissions: Permisos
+label.poppers_enabled: «Emergentes» activados
+label.posting: Publicando
+label.preferred_fonts: Fuente(s) preferida(s)
+label.preferred_theme: Tema preferido
+label.reason: Razón
+label.reason_for_banning: Razón del veto
+label.recent_changes: Cambios recientes
+label.regex: Expresión regular
+label.registration_date: Fecha de registro
+label.repeat_new_password: Nueva contraseña (repetir)
+label.repeat_password: Contraseña (repetir)
+label.replies: Respuestas
+label.role: Rol
+label.search_query: Consulta de búsqueda
+label.sent: Enviado
+label.show_post_previews: Muestra previsualización de mensajes
+label.show_thumbnails: Mostrar miniaturas
+label.sidebar: Barra lateral
+label.sort_by: Ordenar por
+label.sort_by_mode: 'Ordenar por: %mode%'
+label.source_code: Código fuente
+label.submission_votes: Votos de publicaciones
+label.submission_votes_short: VP
+label.submissions: Publicaciones
+label.submissions_short: P
+label.subscribed: Suscrito
+label.suggested_theme: Tema sugerido
+label.system_preference: Preferencia del sistema
+label.tags: Etiquetas
+label.timezone: Zona horaria
+label.title: Título
+label.to: A
+label.toolbox: Herramientas
+label.type: Tipo
+label.unban: Dejar de vetar
+label.unban_associated_ips: Elimina vetos asociados a IP
+label.upload_image: Subir imagen
+label.url: URL
+label.user_associated_with_ip: Usuaria asociada con la IP
+label.username: Nombre de usuaria
+label.verification: Verificación
+label.verification_image: Imagen de verificación
+label.whitelisted: En lista blanca
+
+log.ban: '%user% vetó %banned% (expira: %expires%). Razón: "%reason%"'
+log.comment_deletion: '%user% eliminó comentario por %author% en "%submission%"'
+log.comment_deletion_with_reason: '%user% eliminó comentario de %author% en "%submission%". Razón: "%reason%"'
+log.comment_restored: '%user% restableció comentario de %author% en "%submission%"'
+log.submission_deletion: '%user% eliminó publicación "%title%" por %author%'
+log.submission_deletion_with_reason: '%user% eliminó publicación "%title%" de %author%. Razón: "%reason%"'
+log.submission_lock: '%user% ancló publicación "%title%" por %author%'
+log.submission_restored: '%user% restableció publicación "%title%" de %author%'
+log.submission_unlock: '%user% desancló publicación "%title%" por %author%'
+log.unban: '%user% quitó el veto a %banned%. Razón: "%reason%"'
+
+login.no_account: ¿Sin cuenta?
+login.remember_me: Mantenme conectada
+login.reset_password: ¿Restablecer Contraseña?
+
+markdown.allowed: Markdown permitido.
+markdown.another_paragraph: Otro párrafo
+markdown.blockquote: Cita
+markdown.break: línea
+markdown.code_block: Bloque de código
+markdown.emphasis: Énfasis
+markdown.forum: Foro
+markdown.heading: 'Título %count%'
+markdown.help: Referencia de sintaxis
+markdown.horizontal_rule: Regla horizontal
+markdown.inline_code: Código en línea
+markdown.line: salto de
+markdown.link: Enlace
+markdown.list_item: Elemento de lista
+markdown.paragraph: Párrafo
+markdown.preview: Previsualización
+markdown.strikethrough: Tachado
+markdown.strong_emphasis: Énfasis fuerte
+markdown.user: usuario
+markdown.wiki_page: página-de-foro
+
+nav.share: share
+nav.actions: Acciones
+nav.add_ban: Añadir veto
+nav.alphabetical: Alfabético
+nav.appearance: Apariencia
+nav.ban_history: Historial de vetos
+nav.bans: Vetos
+nav.block_list: Lista de bloqueos
+nav.block_user: Bloquear usuaria
+nav.censorship: Censura
+nav.comments: Comentarios
+nav.current_page: Página actual
+nav.dark_mode: Modo oscuro
+nav.delete_forum: Borrar foro
+nav.delete_this_account: Borrar esta cuenta
+nav.edit_biography: Editar biografía
+nav.filter_results: Filtrar resultados
+nav.forum_bans: Vetos de foro
+nav.forums: Foros
+nav.global_moderation_log: Registro global de moderación
+nav.hidden_forums: Foros ocultos
+nav.home: Inicio
+nav.ip_bans: Vetos IP
+nav.jump_to_main_content: Saltar al contenido principal
+nav.jump_to_sidebar: Saltar a la barra lateral
+nav.light_mode: Modo claro
+nav.logged_in_as_user: Iniciada sesión como %user%
+nav.messages: Mensajes
+nav.moderated: Moderado
+nav.moderation_log: Registro de moderación
+nav.more: Más
+nav.my_account: Mi cuenta
+nav.next: Siguiente
+nav.notifications: Notificaciones
+nav.notifications_count: 'Notificaciones (%count%)'
+nav.page_number: 'Página %number%'
+nav.permalink: Permalink
+nav.places: Lugares
+nav.previous: Anterior
+nav.profile: Perfil
+nav.search: Buscar
+nav.site_settings: Ajustes del sitio
+nav.submissions: Publicaciones
+nav.submit: Publicar
+nav.themes: Temas
+nav.trash: Papelera
+nav.user: Usuaria
+nav.user_bans: Vetos de usuarias
+nav.user_settings: Opciones de usuario
+nav.users: Usuarias
+nav.wiki: Wiki
+
+number.id: '#%number%'
+
+placeholder.choose_one: Elige uno…
+placeholder.default: (predeterminado)
+placeholder.deleted: '[Eliminado]'
+placeholder.repeat: (repítela)
+
+prompt.confirm_comment_delete: ¿Estás segura de que quieres eliminar este comentario?
+prompt.confirm_message_delete: ¿Estás segura de que quieres eliminar este mensaje?
+prompt.confirm_submission_delete: ¿Estás segura de que quieres eliminar esta publicación?
+prompt.confirm_theme_delete: ¿Estás segura de que quieres eliminar este tema? A cada usuaria que lo eligió se le revertirá su selección.
+prompt.confirm_wiki_delete: ¿Estás segura de que quieres eliminar esta página de wiki? Se perderá permanentemente para siempre.
+
+request_password_reset.multiple_accounts_notice: Si tienes varias cuentas registradas con una dirección de correo, recibirás un correo por cuenta.
+request_password_reset.no_confirmation_notice: Si nunca recibes un correo, la dirección que has especificado es probablemente incorrecta. Por razones de privacidad, nosotros no confirmaremos si una usuaria con el correo especificado existe.
+request_password_reset.title: Solicitar enlace para restablecimiento de contraseña
+
+request_password_reset_form.submit: Enviar
+
+reset_password.title: Restableciendo contraseña
+
+reset_password_email.entry: 'Restablecer la contraseña para %username%:'
+reset_password_email.footer: 'Puedes ignorar este mensaje de forma segura si no requeriste un restablecimiento de contraseña. En enlace expirará pasadas 24 horas.'
+reset_password_email.header: 'Alguien solicitó un restablecimiento de contraseña para tu(s) cuenta(s) de %site_name%.'
+reset_password_email.subject: '%site_name% - Reset password'
+
+role.admins: Administradoras
+role.everyone: Todo el mundo
+role.whitelisted: En la lista blanca
+
+site_footer.app: Usando %app% %version%
+site_footer.version: '%version% (%branch%)'
+
+site_settings.default_sort_mode: Modo de ordenación predeterminado
+site_settings.forum_create_role: ¿Quiénes pueden crear nuevos foros?
+site_settings.image_upload_role: ¿Quiénes pueden subir imágenes?
+site_settings.trash_enabled: Habilitar papelera
+site_settings.trash_enabled_help: Mover publicaciones eliminadas por moderadoras a la papelera, desde donde luego pueden ser restauradas.
+site_settings.registration_captcha_enabled: Habilitar CAPTCHA durante registro
+site_settings.registration_captcha_enabled_help: Habilitar esto detendrá a algunos robots de «spam», pero hará que tu sitio sea menos accesible a usuarias discapacitadas visualmente. Ten en cuenta que muchos «bots» son en realidad humanos empleados en granjas de «spam» y que habilitar esta opción no les detendrá.
+site_settings.registration_open: Habilita registros
+site_settings.site_name: Nombre del sitio
+site_settings.site_theme: Tema del sitio
+site_settings.site_theme_help: Este será el tema que se use en todo el sitio, a no ser que se sobrescriba mediante ajustes del foro o la elección de la usuaria.
+site_settings.url_images_enabled: Traer miniaturas de los enlaces publicados
+site_settings.wiki_edit_role: ¿Quiénes pueden editar el wiki?
+site_settings.wiki_enabled: Habilitar wiki
+
+submission_form.create: Crear publicación
+submission_form.edit: Editar publicación
+
+submission.comments: '{0} Sin comentarios|{1} %count% comentario|[1,Inf[ %count% comentarios'
+submission.deleted_by_moderator: Borrado por una moderadora
+submission.edit_info: (Editado %edited_at%)
+submission.info_with_forum_name: Publicado por %submitter% %timestamp% en %forum%
+submission.info_without_forum_name: Publicado por %submitter% %timestamp%
+submission.locked: Esta publicación está bloqueada
+submission.moderator_info: (editado por un moderador %edited_at%)
+submission.new_comments: '(%count% new)'
+submission.pinned: Esta publicación está anclada
+submission.sort_by_active: Activo
+submission.sort_by_controversial: Controvertido
+submission.sort_by_hot: Caliente
+submission.sort_by_most_commented: Más comentado
+submission.sort_by_new: Nuevo
+submission.sort_by_top: Más votado
+submission.time_all: Todo el tiempo
+submission.time_day: Últimas 24 horas
+submission.time_month: Último mes
+submission.time_week: Última semana
+submission.time_year: Último año
+submission.total_votes: '{1} %count% voto|[0,Inf[ %count% votos'
+submission.vote_stats: (+%up%, −%down%)
+
+theme.to_be_created: A crear
+theme.to_be_deleted: A eliminar
+
+time.at_relative_time: '%relative_time%'
+time.earlier_format: '%relative_time% antes'
+time.later_format: '%relative_time% después'
+time.on_timestamp: en %timestamp%
+
+title.active_global_user_bans: Vetos de usuarias activas, globales
+title.all_forums: Todos los foros
+title.ban_user: Vetando %user%
+title.banning_user_from_forum: Vetando %user% de %forum%
+title.bans_in_forum: Vetos en %forum%
+title.block_list: Lista de bloqueo
+title.blocking_user: Bloqueando %user%
+title.create_submission: Crear publicación
+title.delete_account: Borrar cuenta
+title.delete_comment: Borrar comentario
+title.delete_comment_thread: Borrar hilo de comentarios
+title.delete_forum: Borrar foro %forum%
+title.delete_submission: Borrar publicación
+title.editing_biography_for_user: Editando biografía para %user%
+title.editing_forum: Editando foro %forum%
+title.editing_forum_tag: Editando etiqueta de foro %tag%
+title.editing_submission: Editando publicación %title%
+title.forum_appearance: Apariencia para %forum%
+title.global_moderation_log: Registro global de moderación
+title.hidden_forums: Foros ocultos
+title.ip_bans: Direcciones IP vetadas
+title.list_of_users: 'Lista de usuarias, página #%page%'
+title.messages: Mensajes
+title.notifications: Notificaciones
+title.recent_comments: Comentarios recientes
+title.recent_comments_forum: Comentarios recientes en %forum%
+title.showing_ban_history_for_user_in_forum: Mostrando el historial de vetos de %user% en %forum%
+title.showing_moderation_log_for_forum: Mostrando registro de moderación para %forum%
+title.showing_revision: 'Mostrando revisión #%revision% de página %path%'
+title.site_settings: Ajustes del sitio web
+title.site_wide_trash: Papelera del sitio web
+title.unban_user: Quitando el veto a %user%
+title.unbanning_user_from_forum: Quitando el veto de %user% de %forum%
+title.user_forum_bans: "Vetos de %user%"
+title.wiki_diff: Mostrando diferencia entre revisiones %from% y %to%
+
+user.comments: Comentarios
+user.email_optional: Proporcionar una dirección correo es opcional. Solo la utilizaremos para restablecer contraseñas y enviar códigos de autenticación de dos factores.
+user.message: Enviar mensaje
+user.moderates: '%username% es una moderadora en:'
+user.password_rules: Mínimo de 8 caracteres.
+user.registered: Registrado el %timestamp%
+user.submissions: Publicaciones
+user.username_rules: Los caracteres permitidos son A-Z, a-z, 0-9 y barra baja.
+
+user_flag.admin: administradora
+user_flag.admin_label: Administradora
+user_flag.moderator: moderadora
+user_flag.moderator_label: Moderadora
+user_flag.none_label: (ninguna)
+user_flag.post_as_label: Publicar como
+
+user_settings.title: Editando las opciones del usuario %username%
+
+wiki.all_pages: Todas las páginas
+wiki.create_this_page: Crear esta página
+wiki.create_title: Creando "%path%"
+wiki.edit_page: Editar página
+wiki.editing_title: Editando "%path%"
+wiki.history_title: Mostrando historial de "%path%"
+wiki.id_label: ID
+wiki.last_edited: Última edición por %username% %timestamp%
+wiki.locked_notice: Esta página está bloqueada, solo puede ser editada por las administradoras.
+wiki.navigation: Navegación
+wiki.not_found_message: La página solicitada no ha sido encontrada.
+wiki.not_found_title: Página no encontrada
+wiki.page_history: Historial de la página
+wiki.page_title: Título de página
+wiki.path: Ruta
+wiki.revision_time: Revisado
+wiki.user: Usuaria

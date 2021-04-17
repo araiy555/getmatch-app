@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'create_forum.create_new_forum'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('forum/_form.html.twig', { editing: false, form: form }, with_context=false) }}
+{% endblock body %}

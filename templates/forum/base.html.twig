@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/icon.html.twig' import icon %}
+{% from '_macros/theme.html.twig' import theme_css %}
+{% from '_macros/time.html.twig' import relative_time %}
+
+{% block forum_toolbox_active app.request.attributes.get('_route') %}
+
+{% block feed %}
+  {{ parent() }}
+  <link rel="alternate" type="application/atom+xml" href="{{ path('forum', { forum_name: forum.name, sortBy: 'new', _format: 'atom' }) }}" title="/f/{{ forum.name }}">
+{% endblock feed %}
+
+{% block stylesheets %}
+  {{ parent() }}
+
+  {{ include('_includes/background_image.html.twig', { entity: forum }, with_context=false) }}
+{% endblock stylesheets %}
+
+{% block theme_css %}
+  {{ theme_css(forum.suggestedTheme) }}
+{% endblock theme_css %}
+
+{% block sidebar %}
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title forum-title break-text">
+      <a href="{{ path('forum', {forum_name: forum.name}) }}">{{ forum.title }}</a>
+      {% if forum.featured %}
+        <span class="fg-orange" title="{{ 'help.forum_is_featured'|trans }}">
+          {{- icon('star', '⭐') -}}
+        </span>
+      {% endif %}
+    </h1>
+
+    {% if is_granted('ROLE_USER') %}
+      {% from 'forum/_macros.html.twig' import subscribe_button %}
+      {% set subscribed = forum.subscribed(app.user) %}
+      <form action="{{ path(subscribed ? 'unsubscribe' : 'subscribe', {forum_name: forum.name}) }}"
+            method="POST"
+            class="form subscribe-form"
+            data-forum="{{ forum.name }}">
+        <input type="hidden" name="token" value="{{ csrf_token('subscribe') }}">
+
+        <div class="form__row">
+          {{ subscribe_button(forum, subscribed) }}
+        </div>
+      </form>
+    {% endif %}
+
+    {% if forum.sidebar is not empty %}
+      <div class="forum-sidebar-content break-text text-flow">
+        {{- forum.sidebar|markdown|raw -}}
+      </div>
+
+      <hr>
+    {% endif %}
+
+    <ul class="text-sm unlistify">
+      <li class="fg-muted">
+        {{- 'forum.created_on'|trans({
+          '%timestamp%': relative_time(forum.created, { time_format: 'none' }),
+        })|raw -}}
+      </li>
+
+      <li>
+        <a href="{{ path('forum', { forum_name: forum.name, _format: 'atom', sortBy: 'new' }) }}"
+           rel="alternate"
+           type="application/atom+xml"
+           class="no-underline">
+          {{- icon('rss-squared', '', 'fg-orange') }}
+          <span class="no-underline__exempt">{{ 'action.subscribe_via_rss'|trans -}}</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  {% if is_granted('ROLE_USER') %}
+    {% set is_hidden = app.user.hidingForum(forum) %}
+    <details class="sidebar__section flow">
+      <summary class="sidebar__title">{{ 'heading.hide_this_forum'|trans }}</summary>
+
+      <p class="fg-muted text-md">{{ 'help.hidden_forums'|trans }}</p>
+
+      <form action="{{ path(is_hidden ? 'unhide_forum' : 'hide_forum', {username: app.user.username, forum: forum.id}) }}" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('hide_forum') }}">
+
+        <p>
+          <button class="button button--secondary" title="">
+            {{ is_hidden ? 'action.unhide'|trans : 'action.hide'|trans }}
+          </button>
+        </p>
+      </form>
+    </details>
+  {% endif %}
+
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ 'label.toolbox'|trans }}</h1>
+
+    {% set toolbox_items = {
+      ('nav.bans'|trans): {
+        route: 'forum_bans',
+      },
+      ('nav.moderation_log'|trans): {
+        route: 'moderation_log',
+      },
+      ('forum.edit'|trans): {
+        route: 'edit_forum',
+        condition: is_granted('moderator', forum),
+      },
+      ('nav.appearance'|trans): {
+        route: 'forum_appearance',
+        condition: is_granted('moderator', forum),
+      },
+      ('nav.delete_forum'|trans): {
+        route: 'delete_forum',
+        condition: is_granted('delete', forum),
+      },
+      ('nav.trash'|trans): {
+        route: 'forum_trash',
+        condition: is_granted('moderator', forum),
+      },
+    } %}
+
+    <ul class="unlistify sidebar__no-padding">
+      {% for label in toolbox_items|keys|sort|filter(label => toolbox_items[label].condition ?? true) %}
+        {% set item = toolbox_items[label] %}
+        <li>
+          <a href="{{ path(item.route, { forum_name: forum.name }) }}"
+             class="menu-item {{ block('forum_toolbox_active') == item.route ? 'menu-item--active' }}">
+            {{- label -}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {% with { tags: forum.tags } %}
+    {% if tags is not empty %}
+      <section class="sidebar__section flow">
+        <h1 class="sidebar__title">{{ 'label.tags'|trans }}</h1>
+
+        <ul class="flex flex--slim-gutters unlistify">
+          {% for tag in tags %}
+            <li>
+              <a href="{{ path('forum_tag', { name: tag.name }) }}"
+                 class="button button--flex button--secondary button--small">
+                {{ icon('tag') }}
+                <span>{{ tag.name -}}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endwith %}
+
+  {% if forum.moderators is not empty or is_granted('ROLE_ADMIN') %}
+    <section class="sidebar__section flow">
+      <div class="flex flex--guttered">
+        <h1 class="sidebar__title flex__grow">
+          {{- 'forum.moderators'|trans -}}
+        </h1>
+
+        {% if is_granted('ROLE_ADMIN') %}
+          <div>
+            <a href="{{ path('add_moderator', { forum_name: forum.name }) }}"
+               class="button button--small button--secondary text-sm"
+               aria-label="{{ 'forum.add_moderator'|trans }}">
+              {{ 'action.add'|trans }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if forum.moderators is not empty %}
+        <ul class="unlistify flex flex--guttered flex--slim-gutters">
+          {% for moderator in forum.moderators %}
+            <li>
+              <a href="{{ path('user', {username: moderator.user.username}) }}"
+                 class="button button--secondary button--small">
+                {{- moderator.user.username -}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <p>
+          <a href="{{ path('forum_moderators', { forum_name: forum.name }) }}">
+            {{- 'action.see_full_list'|trans -}}
+          </a>
+        </p>
+      {% else %}
+        <p class="fg-muted text-sm">{{ 'flash.no_moderators'|trans }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+{% endblock sidebar %}

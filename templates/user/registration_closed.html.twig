@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+
+{% block title 'action.sign_up'|trans %}
+{% block description 'action.sign_up_description'|trans %}
+
+{% block body %}
+  <h1>{{ block('title') }}</h1>
+
+  {{ alert('flash.registration_closed'|trans, 'error') }}
+{% endblock body %}

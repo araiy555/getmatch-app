@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block site_nav_active 'registration' %}
+{% block title 'action.sign_up'|trans %}
+{% block description 'action.sign_up_description'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('user/_form.html.twig', { editing: false, form: form }, with_context=false) }}
+{% endblock %}

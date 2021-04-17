@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% from 'comment/_macros.html.twig' import comment %}
+{% from 'submission/_macros.html.twig' import submission %}
+
+{% block title 'title.site_wide_trash'|trans %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', { pager: trash }, with_context=false) }}
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% for item in trash %}
+    {% if item.title is defined %}
+      {{ submission(item) }}
+    {% else %}
+      {{ comment(item, { show_context: true, show_trashed: true }) }}
+    {% endif %}
+  {% else %}
+    <p class="fg-muted"><small class="text-md">{{ 'flash.no_entries_to_display'|trans }}</small></p>
+  {% endfor %}
+
+  {{ include('_includes/pagination.html.twig', { pager: trash }, with_context=false) }}
+{% endblock body %}

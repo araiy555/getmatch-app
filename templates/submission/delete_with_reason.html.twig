@@ -1,0 +1,19 @@
+{% extends 'submission/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.delete_submission'|trans %}
+
+{% block body %}
+  {% from 'submission/_macros.html.twig' import submission %}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ submission(submission) }}
+
+  {{ form_start(form) }}
+    {{ form_row(form.reason) }}
+
+    {{ button_row('action.delete'|trans) }}
+  {{ form_end(form) }}
+{% endblock %}

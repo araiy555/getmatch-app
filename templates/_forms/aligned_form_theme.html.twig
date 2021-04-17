@@ -1,0 +1,45 @@
+{% use '_forms/standard_form_theme.html.twig' with
+    form_label as parent_form_label,
+    form_help as parent_form_help
+%}
+
+{% block checkbox_label %}
+  {{- block('parent_form_label') -}}
+{% endblock checkbox_label %}
+
+{% block checkbox_row -%}
+  <div class="flow-slim">
+    {{ form_errors(form) }}
+    <div class="form-flex form-flex--single-line form-flex--no-collapse">
+      <span class="form-flex__align" aria-hidden="true"></span>
+      {{ form_widget(form) }}
+      {{ form_label(form) }}
+    </div>
+    {{ form_help(form) }}
+  </div>
+{%- endblock checkbox_row %}
+
+{% block form_label %}
+  {%- set label_attr = label_attr|merge({class: (label_attr.class ?? '')~' form-flex__align text-align-right'}) -%}
+  {{- block('parent_form_label') -}}
+{% endblock form_label %}
+
+{%- block form_row -%}
+  <div class="flow-slim">
+    {{- form_errors(form) -}}
+    <div class="form-flex form-flex--single-line">
+      {{- form_label(form) -}}
+      {{- form_widget(form) -}}
+    </div>
+    {{- form_help(form) -}}
+  </div>
+{%- endblock form_row -%}
+
+{%- block form_help -%}
+  {%- if help -%}
+    <div class="form-flex form-flex--single-line">
+      <div class="form-flex__align" aria-hidden="true"></div>
+      {{ block('parent_form_help') }}
+    </div>
+  {%- endif -%}
+{%- endblock form_help -%}

@@ -1,0 +1,16 @@
+{% macro lang_attributes(language) -%}
+  {{- _self.lang_attribute(language) -}}
+  {{- _self.dir_attribute(language) }}
+{%- endmacro lang_attributes %}
+
+{% macro lang_attribute(language) -%}
+  {%- if language -%}
+    {{- ' lang="%s"'|format(language|replace({ '_': '-' })|split('@')[0]|split('.')[0]|e)|raw -}}
+  {%- endif -%}
+{%- endmacro lang_attribute %}
+
+{%- macro dir_attribute(language) -%}
+  {%- if language -%}
+    {{- ' dir="%s"'|format(language matches '/^(ar|fa|he|yi)\\b/' ? 'rtl' : 'ltr')|raw -}}
+  {%- endif -%}
+{%- endmacro dir_attribute -%}

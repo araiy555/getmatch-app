@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'admin' %}
+{% block site_nav_admin_menu_active 'bans' %}
+{% block title 'ban_add.title'|trans %}
+
+{% block body %}
+  {{ include('ban/_tabs.html.twig', {page: 'ip_bans'}, with_context=false) }}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ form_start(form) }}
+    {{ form_row(form.ip) }}
+
+    {{ form_row(form.reason) }}
+
+    {{ form_row(form.expires) }}
+
+    {{ form_row(form.user) }}
+
+    {{ button_row('action.ban'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}
+

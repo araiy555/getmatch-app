@@ -1,0 +1,8 @@
+{% from '_macros/form.html.twig' import button_row %}
+{{ form_start(form) }}
+  {{ form_row(form.name) }}
+  {{ form_row(form.css, { attr: { class: 'monospace', rows: 8 }}) }}
+  {{ form_rest(form) }}
+
+  {{ button_row('action.save'|trans) }}
+{{ form_end(form) }}

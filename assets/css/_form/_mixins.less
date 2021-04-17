@@ -1,0 +1,54 @@
+.form-control-common() {
+  --border-width: 1px;
+  --height: calc(var(--font-size) * var(--line-height) + 1rem + 2 * var(--border-width));
+
+  background-color: var(--form-bg);
+  border: solid var(--border-width) var(--border);
+  color: var(--text);
+  font-size: var(--font-size);
+  min-height: var(--height);
+  padding: 0.5rem;
+  transition: background-color .1s, box-shadow .1s, border-color .1s, color .1s;
+
+  // work around bug that occurs in chrome (and safari?) when parent line-height
+  // is less than the widget's, making the <select> text disappear
+  line-height: var(--line-height);
+
+  @supports (-webkit-overflow-scrolling: touch) {
+    // fix zoom-on-focus in iOS
+    --font-size: 16px;
+  }
+}
+
+.form-control-text() {
+  cursor: text;
+}
+
+.form-control-focus() {
+  border-color: var(--primary);
+  box-shadow: 0 0 2px 2px var(--primary-alpha);
+}
+
+.form-control-disabled() {
+  background-color: var(--bg-grey);
+  color: var(--fg-grey);
+  cursor: default;
+}
+
+.form-control-readonly() {
+  border-color: var(--border);
+}
+
+.form-control-undecorated() {
+  --border-width: 0;
+  --form-bg: transparent;
+  --text: currentColor;
+  cursor: inherit;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.form-control-undecorated-focus() {
+  border-color: transparent;
+  box-shadow: none;
+}

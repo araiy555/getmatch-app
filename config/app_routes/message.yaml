@@ -1,0 +1,37 @@
+message_threads:
+    controller: App\Controller\MessageController::threads
+    defaults: { page: 1 }
+    path: /messages/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+message_thread:
+    controller: App\Controller\MessageController::thread
+    path: /messages/thread/{id}
+    methods: [GET]
+    requirements: { id: "%number_regex%" }
+
+compose_message:
+    controller: App\Controller\MessageController::compose
+    path: /user/{username}/compose_message
+    methods: [GET, POST]
+    requirements: { username: "%username_regex%" }
+
+compose_message_legacy_redirect:
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults: { route: compose_message }
+    path: /compose_message/{username}
+    methods: [GET]
+    requirements: { username: "%username_regex%" }
+
+reply_to_message:
+    controller: App\Controller\MessageController::reply
+    path: /message_reply/{id}
+    methods: [POST]
+    requirements: { id: "%number_regex%" }
+
+delete_message:
+    controller: App\Controller\MessageController::delete
+    path: /messages/message/{id}/delete
+    methods: [POST]
+    requirements: { id: "%uuid_regex%" }

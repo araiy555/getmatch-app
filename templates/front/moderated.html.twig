@@ -1,0 +1,39 @@
+{% extends 'front/_base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+{% from '_macros/post_nav.html.twig' import submission_filter, submission_sort, submission_time %}
+
+{% block listing 'moderated' %}
+
+{% block body %}
+  {% if forums is empty %}
+    {{ alert('flash.no_moderated_forums'|trans) }}
+  {% endif %}
+
+  {{ parent() }}
+{% endblock body %}
+
+{% block front_post_nav %}
+  {{ parent() }}
+  {{ include('front/_moderator_nav.html.twig', with_context=false) }}
+{% endblock %}
+
+{% block sidebar %}
+  {{ parent() }}
+
+  {%- if forums|length > 0 -%}
+    <section class="sidebar__section flow">
+      <h1 class="sidebar__title">{{ 'heading.forums_you_moderate'|trans }}</h1>
+
+      <ul class="unlistify flex flex--guttered flex--slim-gutters">
+        {% for forum in forums %}
+          <li>
+            <a href="{{ path('forum', {forum_name: forum}) }}"
+               class="button button--secondary button--small">
+              {{- forum -}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {%- endif -%}
+{% endblock sidebar %}

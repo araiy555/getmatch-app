@@ -1,0 +1,18 @@
+<nav class="user-nav">
+  <ul class="unlistify flex">
+    {% for tab in [
+      { path: 'user', label: 'label.overview' },
+      { path: 'user_submissions', label: 'user.submissions' },
+      { path: 'user_comments', label: 'user.comments' },
+    ] %}
+      <li>
+        <a href="{{ path(tab.path, {username: user.username}) }}"
+           class="tab {{ tab.path == current ? 'tab--active' }}">
+          {{- tab.label|trans -}}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<h1 class="page-heading break-text no-desktop">{{ user.username }}</h1>

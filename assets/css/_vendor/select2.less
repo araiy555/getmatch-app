@@ -1,0 +1,15 @@
+.select2-dark-mode-fix() {
+  .select2-container {
+    color: #000;
+  }
+}
+
+:root[data-night-mode="dark"] {
+  .select2-dark-mode-fix();
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root[data-night-mode="auto"] {
+    .select2-dark-mode-fix();
+  }
+}

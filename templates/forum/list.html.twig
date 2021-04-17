@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% use '_layouts/forum_card.html.twig' %}
+{% from '_macros/icon.html.twig' import icon %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'forums' %}
+
+{% block title 'forum_list.page_title'|trans %}
+{% block description 'forum_list.page_description'|trans %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: forums}, with_context=false) }}
+  <link rel="canonical" href="{{ url('forum_list') }}">
+{% endblock %}
+
+{% set forum_sort_modes = {
+  'by_name': 'label.name'|trans,
+  'by_title': 'label.title'|trans,
+  'by_submissions': 'forum_list.submission_count'|trans,
+  'by_subscribers': 'forum_list.subscribers'|trans,
+  'by_creation_date': 'label.creation_date'|trans,
+} %}
+
+{% block body %}
+  <nav class="flex flex--guttered">
+    {{ include('forum/_list_nav.html.twig', { active: 'forums' }, with_context=false) }}
+
+    <ul class="unlistify">
+      <li class="dropdown">
+        <button type="button"
+                class="tab dropdown__toggle unbuttonize no-underline"
+                aria-label="{{ 'label.sort_by_mode'|trans({
+                  '%mode%': forum_sort_modes[sortBy]
+                }) }}">
+          {{ icon('sort') }}
+          <span class="no-underline__exempt">{{ forum_sort_modes[sortBy] }}</span>
+          <span class="dropdown__arrow" aria-hidden="true"></span>
+        </button>
+
+        <ul class="dropdown__menu dropdown-card unlistify">
+          {% for mode, label in forum_sort_modes %}
+            <li>
+              <a href="{{ path('forum_list', { sortBy: mode }) }}"
+                 class="menu-item {{ sortBy == mode ? 'menu-item--active' }} no-wrap">
+                {{- label -}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="flex flex--guttered">
+    <h1 class="page-heading flex__grow">{{ 'forum_list.page_title'|trans }}</h1>
+
+    {% if is_granted('create_forum') %}
+      <div>
+        <a href="{{ path('create_forum') }}" class="button">{{ 'forum.create'|trans }}</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="border-list">
+    {% for forum in forums %}
+      {{ block('forum_card') }}
+    {% endfor %}
+  </div>
+
+  {{ include('_includes/pagination.html.twig', {pager: forums}, with_context=false) }}
+{% endblock %}

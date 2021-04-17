@@ -1,0 +1,61 @@
+.button-common() {
+  --bg: var(--primary);
+  --bg-active: var(--primary-bright);
+  --border-width: 1px;
+  --fg: var(--primary-fg);
+  --fg-active: var(--fg);
+  --fg-border: transparent;
+  --fg-border-active: var(--fg-border);
+  --font-size: 1rem;
+  --font-weight: 500;
+  --padding-v: 0.5em;
+  --padding-h: 1em;
+
+  background-color: var(--bg);
+  border: solid var(--border-width);
+  border-color: var(--fg-border);
+  color: var(--fg);
+  cursor: pointer;
+  display: inline-block;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  padding: var(--padding-v) var(--padding-h);
+  text-align: center;
+  transition: background-color .3s;
+}
+
+.button-active() {
+  background-color: var(--bg-active);
+  border-color: var(--fg-border-active);
+  color: var(--fg-active);
+  outline: none;
+  text-decoration: none;
+}
+
+.button-small() {
+  --font-weight: 400;
+  --padding-v: calc(0.25rem - var(--border-width));
+  --padding-h: calc(0.5rem - var(--border-width));
+}
+
+.button-secondary() {
+  --bg: var(--accent);
+  --bg-active: var(--accent-alt);
+  --fg: var(--accent-fg);
+  --fg-border: var(--accent-alt);
+}
+
+.button-transparent() {
+  --bg: transparent;
+  --bg-active: transparent;
+  --fg: currentColor;
+  --fg-border: transparent;
+}
+
+.button-disabled() {
+  --bg-active: var(--bg);
+  --fg-active: var(--fg);
+  --fg-border-active: var(--fg-border);
+  cursor: not-allowed;
+  opacity: 0.5;
+}

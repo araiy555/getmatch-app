@@ -1,0 +1,20 @@
+{%- set fonts = (app.user.preferredFonts ?? 'default')|trim(', ')|split(',') %}
+{%- set font_family = '' %}
+{%- for font in fonts|map(font => font|trim) %}
+  {%- set entrypoint = font_entrypoint(font) %}
+  {%- if entrypoint %}
+    {{- encore_entry_link_tags(entrypoint) }}
+  {%- endif %}
+  {%- for name in font_names(font) %}
+    {% if name|lower not in ['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'] %}
+      {% set name = '"%s"'|format(name|e('css')) %}
+    {% endif %}
+    {% set font_family = '%s,%s'|format(font_family, name) %}
+  {%- endfor %}
+{%- endfor %}
+
+{% cspstyle %}
+  <style>:root { --font-family: {{ font_family|trim(' ,')|raw }} }</style>
+{% endcspstyle %}
+
+{{ encore_entry_link_tags('core') }}

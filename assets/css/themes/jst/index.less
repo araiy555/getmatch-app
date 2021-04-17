@@ -1,0 +1,19 @@
+/*! https://postmill.xyz/ | Inspired by jstpst.net */
+@import '_light';
+@import '_dark';
+
+:root[data-night-mode="light"] {
+  .light();
+}
+
+:root[data-night-mode="dark"] {
+  .dark();
+}
+
+:root[data-night-mode="auto"] {
+  .light();
+
+  @media screen and (prefers-color-scheme: dark) {
+    .dark();
+  }
+}

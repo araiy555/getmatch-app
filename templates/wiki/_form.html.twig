@@ -1,0 +1,9 @@
+{% from '_macros/form.html.twig' import button_row %}
+
+{{ form_start(form) }}
+  {{ form_row(form.title) }}
+
+  {{ form_row(form.body, {attr: {rows: 16}}) }}
+
+  {{ button_row('action.save'|trans) }}
+{{ form_end(form) }}

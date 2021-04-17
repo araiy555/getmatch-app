@@ -1,0 +1,627 @@
+top.title: GetMatch:ゲットマッチ | インタネットフロントページ
+top.description: GetMatchへようこそ。人々の興味に基づいたコミュニティのネットワークです。興味のあるコミュニティを見つけて、オンラインコミュニティの一員になりましょう！
+wiki.page_description: GetMatchへようこそ。「wiki」をチェックして、情報を集めたものを見てみよう。
+action.log_in_description: GetMatchへようこそ。ログインすることにより、GetMatchのコンテンツをご利用いただけます。
+action.sign_up_description: GetMatchへようこそ。アカウント登録することにより、GetMatchのコンテンツをご利用いただけます。
+forum_list.page_description: GetMatchへようこそ。「フォーラムリスト」情報をチェックして、コミュニティに参加しましょう。
+nav.shop: ショッピング
+markdown.image: 画像
+markdown.movie: 動画
+footer.terms_of_service: 利用規約
+footer.privacy: プライバシー
+footer.faq: FAQ
+footer.contact: お問い合わせ
+footer.copy: © getatch Inc.
+
+action.add: 追加
+action.ban: 禁止
+action.block: ブロック
+action.clear: クリア
+action.clear_all: すべてクリア
+action.compare: 比較
+action.create: 作成
+action.create_theme: テーマを作成します
+action.delete: 削除
+action.delete_account: アカウントを削除します
+action.delete_thread: スレッドを削除します
+action.dismiss: 却下
+action.downvote: 反対票
+action.edit: 編集
+action.edit_theme: テーマを編集します
+action.filter: フィルター
+action.global_ban: グローバル禁止
+action.go_to_home_page: ホームページに移動します
+action.hide: 非表示
+action.lock: ロック
+action.log_in: ログイン
+action.log_out: ログアウト
+action.pin: ピン
+action.post: 投稿
+action.purge: パージ
+action.remove: 削除
+action.restore: 復元
+action.retract_downvote: 反対票を撤回する
+action.retract_upvote: 賛成票を撤回します
+action.save: 保存
+action.save_changes: 変更を保存します
+action.search: 検索
+action.see_full_list: 完全なリストを表示
+action.see_full_list_of_tags: タグの完全なリストを表示します
+action.send: 送信
+action.sign_up: サインアップ
+action.subscribe: 購読
+action.subscribe_via_rss: RSS経由で購読する
+action.sync_themes: テーマを同期する
+action.unban: 禁止解除
+action.unblock: ブロックを解除する
+action.unhide: 再表示
+action.unlock: ロックを解除します
+action.unpin: 固定を解除します
+action.unsubscribe: 登録解除
+action.upvote: 賛成
+action.whitelist: ホワイトリスト
+action.whitelist_remove: ホワイトリスト解除
+
+add_moderator.title: モデレーターを %forum% に追加します
+
+background.light_background_image: 明るい背景画像
+background.dark_background_image: 暗い背景画像
+background.mode: 表示モード
+background.center: センター
+background.fit_to_page: ページに合わせる
+background.tile: タイル
+
+bad_phrase.help: このツールを使用すると、テキストのフレーズの投稿を禁止できます。スパムを防止したり、異議申し立てを抑制したりするために使用できます。
+bad_phrase.phrase: フレーズ
+bad_phrase.phrase_to_ban: 禁止するフレーズ
+bad_phrase.search_title: 悪いフレーズを検索する
+bad_phrase.title: 悪いフレーズ
+bad_phrase.type_text: テキスト
+
+ban_add.title: IPアドレスを禁止する
+
+ban_list.banned_by: 禁止者
+ban_list.expires: 有効期限
+ban_list.expires_never: 決して
+ban_list.reason: 理由
+ban_list.remove: 禁止を削除します
+ban_list.timestamp: 時間
+ban_list.user: ユーザー
+ban_list.user_none: なし
+
+banned.banned_account: あなたのアカウントは禁止されています。
+banned.banned_ip:  '{1} あなたのIPアドレス %ip% は禁止されました。|] 1、Inf [あなたのIPアドレス %ip% は %formatted_count% が記録上禁止されています: '
+banned.set_on_date: '%date% に設定された禁止。'
+banned.set_on_date_for_range: '%date% に設定されたIP範囲の禁止。'
+banned.title: 禁止
+banned.whitelisted: ホワイトリストに登録されているため、これらの禁止は適用されません。
+banned.will_expire: この禁止は %date% に期限切れになります。
+banned.will_not_expire: この禁止は期限切れになりません。
+
+comments.comments: コメント
+comments.context.comment_reply: '%submission_author% による %submission_title% の %comment_author% によるコメントへの返信'
+comments.context.top_level_reply: '%submission_author% による %submission_title% への返信'
+comments.edit_info: '(編集済み %edited_at%）'
+comments.form_load_error: フォームの読み込み中にエラーが発生しました。もう一度やり直してください。
+comments.info: '%user% wrote %timestamp%'
+comments.linear: 線形
+Comments.moderator_info: '(モデレーター %edited_at% によって編集されました）'
+comments.nested: ネスト
+comments.not_logged_in: 'コメントするには %login_link% または %register_link% が必要です。'
+comments.not_logged_in_login_link_label: ログイン
+comments.not_logged_in_register_link_label: 登録
+comments.parent: 親
+comments.reply: 返信
+comments.replying_to_comment: '%user% ( %id% )に返信しています'
+comments.return_to_forum: '%forum% に戻る'
+comments.thread_return: すべてのコメントを表示
+comments.viewing_thread: 単一のコメントスレッドを表示しています。
+
+comment_form.create_title: コメントを投稿する
+comment_form.edit_title: コメントの編集
+
+compose_message.title: '%username% へのメッセージの作成'
+
+content.empty: ここには何もありません…
+
+create_forum.create_new_forum: 新しいフォーラムを作成します
+
+delete_account.comments: コメントを削除します。
+delete_account.lead:  'アカウントを削除すると、次のようになります。'
+delete_account.messages: 送信されたメッセージを削除します。
+delete_account.metadata: ログインできないようにし、ユーザー名をスクランブルし、設定をリセットし、アカウントに関連付けられている他のデータを削除します。
+delete_account.submissions: 送信を削除します。
+delete_account.votes: 送信とコメントに対するすべての投票を撤回します。
+
+edit_forum.title: '%forum% の編集'
+
+edit_user.title: 'ユーザー %username% を編集しています'
+
+flash.account_deletion_in_progress: アカウントが削除されています。
+flash.ban_added: IPアドレスが禁止されました。
+flash.comment_purged: コメントが削除されました。
+flash.comment_restored: コメントが復元されました。
+flash.delete_account_warning: アカウントを削除すると、元に戻すことはできなくなります。
+flash.delete_someone_elses_account_warning: 他の誰かのアカウントを削除しています！これを行うと、アカウントを取り戻すことはできなくなります。
+flash.editing_biography_of_other_user: 別のユーザーの経歴を編集しています。
+flash.editing_credentials_of_other_user: 別のユーザーの資格情報を編集しています。これにより、ログインできなくなる可能性があります。
+flash.forum_deleted: フォーラムとそのすべてのコンテンツが削除されました。
+
+flash.forum_moderator_added: ユーザーがモデレーターに昇格しました。
+flash.forum_updated: 変更が保存されました。
+flash.no_cookies_verification: 画像が正しく読み込まれませんか？ Cookieをブロックしていないことを確認して、再試行してください。
+flash.no_entries_to_display: 表示するエントリはありません。
+flash.no_messages: 表示するメッセージはありません。
+flash.no_moderated_forums: フォーラムをモデレートしません。
+flash.no_moderators: このフォーラムにはモデレーターがいません。
+flash.no_password_resets: パスワードのリセットは管理者によって無効にされています。
+flash.notification_cleared: 通知は正常にクリアされました。
+flash.notifications_cleared: 通知がクリアされました。
+flash.page_locked: ページがロックされました。
+flash.page_unlocked: ページのロックが解除されました。
+flash.registration_closed: 管理者によってサインアップが無効にされています。
+flash.reset_password_email_sent: 指定したアドレスにリセットメールが送信されました。
+flash.site_settings_saved: 設定が保存されました。
+flash.submission_deleted: 送信が削除されました。
+flash.submission_edited: 送信が編集されました。
+flash.submission_is_locked: 送信はロックされています。新しいコメントを投稿することはできません。
+flash.submission_locked: 送信がロックされました。
+flash.submission_pinned: 送信が固定されました。
+flash.submission_purged: 送信が削除されました。
+flash.submission_restored: 送信が復元されました。
+flash.submission_unlocked: 送信のロックが解除されました。
+flash.submission_unpinned: 送信は固定解除されました。
+flash.too_many_characters: '入力した文字が多すぎます（最大 %max% 、%count% 入力）'
+flash.user_account_registered: アカウントが登録されました。
+flash.user_biography_updated: 伝記が更新されました。
+flash.user_blocked: ユーザーがブロックされました。
+flash.user_password_updated: パスワードが更新されました。
+flash.user_settings_updated: ユーザー設定が更新されました。
+flash.user_unblocked: ユーザーのブロックが解除されました。
+flash.user_unmodded: ユーザーは変更されていません。
+flash.user_was_banned: ユーザーは禁止されました。
+flash.user_was_unbanned: ユーザーの禁止が解除されました。
+flash.user_whitelisted: ユーザーはホワイトリストに登録されました。
+flash.user_whitelist_removed: ユーザーはホワイトリストから削除されました。
+flash.wiki_page_deleted: wikiページが削除されました。
+flash.you_must_reauthenticate: このページにアクセスするには、再認証する必要があります。
+
+forum.add_as_moderator: モデレーターとして追加
+forum.add_moderator: モデレーターを追加します
+forum.create: フォーラムを作成します
+forum.created_on:  '作成された %timestamp%'
+forum.delete: フォーラムを削除します
+forum.edit: フォーラムの編集
+forum.moderators: モデレーター
+forum.submission_count: '{0} No submissions|{1} %formatted_count% submission|[1,Inf[ %formatted_count% submissions'
+forum.subscriber_count: '{0} No subscribers|{1} %formatted_count% subscriber|[1,Inf[ %formatted_count% subscribers'
+
+forum_form.featured: フロントページに表示
+
+forum_list.page_title: フォーラムのリスト
+forum_list.submission_count: 提出物
+forum_list.subscribers: サブスクライバー
+
+forum_moderators.last_seen: 最後に見た
+forum_moderators.since: 以来
+forum_moderators.title: '%forum_name% のモデレーター'
+
+front.all: すべて
+front.all_forums: すべてのフォーラム
+front.featured: 注目
+front.featured_forums: 注目のフォーラム
+front.moderated_forums: モデレートされたフォーラム
+front.no_forums: 表示する注目のフォーラムはありません。
+front.no_subscriptions: どのフォーラムにも登録していません。代わりに、注目のフォーラムを表示します。
+front.subscribed: 購読済み
+front.subscribed_forums: 購読済みフォーラム
+
+heading.credentials: 資格情報
+heading.delete_account: アカウントを削除します
+heading.forums_you_moderate: モデレートするフォーラム
+heading.hide_this_forum: このフォーラムを非表示にする
+heading.message_reply:  "%sender% が %timestamp% に返信しました"
+heading.message_thread:  "%sender% が %receiver% %timestamp% に書き込みました"
+heading.multi_forum_view: マルチフォーラムビュー
+heading.notifications: 通知
+heading.privacy: プライバシー
+heading.search: 検索
+heading.search_results:  '{0} %query% の結果はありません| {1} %query% の結果は1つです: |] 1、Inf [ %count% %query% の結果: '
+heading.this_user_is_banned: このユーザーは禁止されています！
+heading.you_were_based: 'あなたは %user% によって言及されました'
+heading.whitelisting: ホワイトリスト
+
+help.allow_private_messages: 無効にすると、最近参加したフォーラムの管理者、共同モデレーター、およびモデレーターのみがプライベートメッセージを送信できます。
+help.ban_reason: これは禁止されたユーザーには表示されません。
+help.ban_reason_logged: これは禁止されたユーザーには表示されませんが、パブリックモデレーションログには表示されます。
+help.blocking_users: ユーザーをブロックすると、投稿が非表示になり、プライベートメッセージが送信されなくなり、ユーザーが返信しても通知が届きません。ブロックされたユーザーは引き続きあなたの公開投稿を表示できます。
+help.delete_forum_warning: このフォーラムのすべてのコンテンツは不可逆的に削除されます！
+help.forum_description: フォーラムの簡単な説明。検索エンジンは、結果にこの説明を表示します。
+help.forum_is_featured: このフォーラムは特集されています。
+help.forum_is_hidden: このフォーラムを非表示にすることを選択しました。
+help.front_trash: このページには、モデレートするフォーラムのモデレーターによって削除された投稿が表示されます。
+help.hidden_​​forums: フォーラムを非表示としてマークすると、「注目」および「すべて」の投稿リストを閲覧するときに、それらのフォーラムからの投稿が表示されなくなります。非表示にすることを選択したフォーラムを引き続き購読およびモデレートできます。
+help.hidden_​​forums_no_comment_hiding: 非表示のフォーラムに投稿されたコメントは、引き続き「最近のコメント」リストに表示されます。
+help.notify_on_mentions: 誰かがあなたのユーザープロファイルにリンクしたときに通知を受け取ります。
+help.notify_on_reply: 誰かがあなたの投稿に返信したときに通知を受け取ります。
+
+help.poppers_enabled: ポッパーは、特定のもの（ユーザー名など）にカーソルを合わせると情報とボタンを表示する小さなパネルです。 これらは、マウスを使用している場合にのみ使用できます。
+help.preferred_fonts: '好みのフォントのコンマ区切りのリスト。 これらは、システムからのフォント、または以下のサーバー提供のフォントのリストからのフォントである可能性があります。'
+help.preferred_fonts_aliases: 'エイリアスフォント名:'
+help.preferred_fonts_served: 'サーバー提供のフォント（どこでも利用可能）:'
+help.required_field: このフィールドは必須です。
+help.the_following_changes_will_be_made:  '次の変更が行われます: '
+help.theme_selector: アスタリスクはデフォルトと同じことを示します。
+help.whitelisting: ホワイトリストに登録すると、このユーザーはIP禁止と一部のフラッド保護をバイパスできます。 さらに、それらのIPアドレスは保存されなくなります。
+help.will_appear_in_the_url: URLに表示されます。
+
+inbox.message_reply_head:  'Re: %title%'
+
+item.op: オリジナルポスター
+item.op_abbr: OP
+item.short_url:  '短縮URL: '
+
+label.action: アクション
+label.admin: 管理者
+label.all: すべて
+label.allow_private_messages: プライベートメッセージを許可する
+label.any: 任意
+label.appearance: 外観
+label.appearance_and_behavior: 外観と動作
+label.author: 作成者
+label.auto_fetch_submission_titles: 送信タイトルを自動フェッチします
+label.background_image: 背景画像
+label.ban: 禁止
+label.ban_ip_addresses: IPアドレスを禁止しますか？
+label.banned: 禁止
+label.banned_by: 禁止者
+label.bans: 禁止
+label.biography: 伝記
+label.blocked: ブロックされています
+label.body: ボディ
+label.bundled: バンドル
+label.comment: コメント
+label.comment_votes: コメント投票
+label.comment_votes_short: CV
+label.comments: コメント
+label.comments_short: C
+label.compare: 比較
+label.confirm_forum_name: フォーラム名を確認してください
+label.confirm_username: ユーザー名を確認します
+label.creation_date: 作成日
+label.css: CSS
+label.dark: ダーク
+label.date: 日付
+label.default: デフォルト
+label.delete_account_confirmation: このアカウントがなくなると、このアカウントを取得する方法がないことを理解しています。
+label.delete_forum_confirmation: このフォーラムのデータがなくなったら、それを復活させる方法がないことを理解しています。
+label.description: 説明
+label.email_address: メールアドレス
+label.expires: 期限切れ
+label.featured: 注目
+label.filter_by: フィルタリング
+label.filter_on_mode:  'フィルターオン: %mode%'
+label.forum: フォーラム
+label.forums_count:  '{0}フォーラムなし| {1} %count% フォーラム|] 1、Inf [ %count% フォーラム'
+label.forums_with_this_tag: このタグが付いたフォーラム
+label.from: From
+label.from_time:  'From: %time%'
+label.front_page: フロントページ
+label.full_width_display: 全幅表示
+label.general: 一般
+label.id: ID
+label.image: 画像
+label.ip_address: IPアドレス
+label.ip_addresses: IPアドレス
+label.language: 言語
+label.last_message: 最後のメッセージ
+label.last_revised: 最終改訂
+label.let_forums_override_preferred_theme: フォーラムに優先テーマを上書きさせます
+label.light: ライト
+label.media_type: メディアタイプ
+label.message: メッセージ
+label.moderated: モデレート
+label.moderates: 中程度
+label.name: 名前
+label.never: 決して
+label.new_password: 新しいパスワード
+label.night_mode: ナイトモード
+label.none: なし
+label.not_whitelisted: ホワイトリストに登録されていません
+label.notify_on_mentions: 言及について通知する
+label.notify_on_reply: 返信時に通知する
+label.open_external_links_in_new_tab: 新しいタブで外部リンクを開きます
+label.order_by: Order by
+label.overview: 概要
+label.participants: 参加者
+label.password: パスワード
+label.permissions: 権限
+label.poppers_enabled: ポッパーを有効にします
+label.posting: 投稿
+label.preferred_fonts: 優先フォント
+label.preferred_theme: 優先テーマ
+label.reason: 理由
+label.reason_for_banning: 禁止する理由
+label.recent_changes: 最近の変更
+label.regex: 正規表現
+label.registration_date: 登録日
+label.repeat_new_password: 新しいパスワード（繰り返し）
+label.repeat_password: パスワード（繰り返し）
+label.replies: 返信
+label.role: 役割
+label.search_query: 検索クエリ
+label.sent: 送信済み
+label.show_post_previews: 投稿のプレビューを表示する
+label.show_thumbnails: サムネイルを表示する
+label.sidebar: サイドバー
+label.sort_by: 並べ替え
+label.sort_by_mode:  '並べ替え: %mode%'
+label.source_code: ソースコード
+label.submission_votes: 提出投票
+label.submission_votes_short: SV
+label.submissions: 提出物
+label.submissions_short: S
+label.subscribed: 購読済み
+label.suggested_theme: 提案されたテーマ
+label.system_preference: システム環境設定
+label.tags: タグ
+label.timezone: タイムゾーン
+label.title: タイトル
+label.to: 宛先
+label.toolbox: ツールボックス
+label.type: タイプ
+label.unban: 禁止解除
+label.unban_associated_ips: 関連するIP禁止を削除します
+label.upload_image: 画像をアップロードします
+label.url: URL
+label.user_associated_with_ip: IPに関連付けられたユーザー
+label.username: ユーザー名
+label.verification: 検証
+label.verification_image: 検証画像
+label.whitelisted: ホワイトリストに登録
+
+log.ban:  '%user% banned %banned% （expires: %expires% ）。理由:  "%reason%" '
+log.comment_deletion:  '%user% が "%submission%"の %author%によるコメントを削除しました'
+log.comment_deletion_with_reason:  '%user%は、 "%submission%"の %author% によるコメントを削除しました。理由:  "%reason%" '
+log.comment_restored:  '%user% が "%submission% "の %author% によるコメントを復元しました'
+log.submission_deletion:  '%user% が %author% によって送信 "%title%" を削除しました'
+log.submission_deletion_with_reason:  '%user% が %author% によって送信 "%title%" を削除しました。理由:  "%reason%" '
+log.submission_lock:  '%user% ロックされた送信 "%title%" by %author%'
+log.submission_restored:  '%user% が %author% によって送信 "%title%" を復元しました'
+log.submission_unlock:  '%user% ロック解除された送信 "%title%" by%author%'
+log.unban:  '%user% unbanned %banned% 。理由:  "%reason%" '
+
+login.no_account: アカウントがありませんか？
+login.remember_me: ログインしたままにします
+login.reset_password: パスワードをリセットしますか？
+
+markdown.allowed: マークダウンが許可されました。
+markdown.another_paragraph: 別の段落
+markdown.blockquote: Blockquote
+markdown.break: break
+markdown.code_block: コードブロック
+markdown.emphasis: 強調
+markdown.forum: フォーラム
+markdown.heading:  '見出し %count%'
+markdown.help: フォーマットヘルプ
+markdown.horizo​​ntal_rule: 水平方向のルール
+markdown.inline_code: インラインコード
+markdown.line: line
+markdown.link: リンク
+markdown.list_item: リストアイテム
+markdown.paragraph: 段落
+markdown.preview: プレビュー
+markdown.strikethrough: 取り消し線
+markdown.strong_emphasis: 強い強調
+markdown.user: ユーザー
+markdown.wiki_page: wiki_page
+
+nav.share: シェア
+nav.actions: アクション
+nav.add_ban: 禁止を追加
+nav.alphabetical: アルファベット順
+nav.appearance: 外観
+nav.ban_history: 禁止履歴
+nav.bans: 禁止
+nav.block_list: ブロックリスト
+nav.block_user: ユーザーをブロックする
+nav.censorship: 検閲
+nav.comments: コメント
+nav.current_page: 現在のページ
+nav.dark_mode: ダークモード
+nav.delete_forum: フォーラムを削除
+nav.delete_this_account: このアカウントを削除します
+nav.edit_biography: 伝記を編集する
+nav.filter_results: 結果をフィルタリングします
+nav.forum_bans: フォーラムの禁止
+nav.forums: フォーラム
+nav.global_moderation_log: グローバルモデレーションログ
+nav.hidden_​​forums: 非表示のフォーラム
+nav.home: ホーム
+nav.ip_bans: IP禁止
+nav.jump_to_main_content: メインコンテンツにジャンプします
+nav.jump_to_sidebar: サイドバーにジャンプ
+nav.light_mode: ライトモード
+nav.logged_in_as_user: '%user% としてログイン'
+nav.messages: メッセージ
+nav.moderated: モデレート
+nav.moderation_log: モデレーションログ
+nav.more: もっと
+nav.my_account: 私のアカウント
+nav.next: 次へ
+nav.notifications: 通知
+nav.notifications_count:  '通知（ %count% ）'
+nav.page_number:  'ページ %number%'
+nav.permalink: パーマリンク
+nav.places: 場所
+nav.previous: 前へ
+nav.profile: プロファイル
+nav.search: 検索
+nav.site_settings: サイト設定
+nav.submissions: 提出物
+nav.submit: 送信
+nav.themes: テーマ
+nav.trash: ゴミ箱
+nav.user: ユーザー
+nav.user_bans: ユーザーの禁止
+nav.user_settings: ユーザー設定
+nav.users: ユーザー
+nav.wiki: Wiki
+
+number.id: '＃ %number% '
+
+placeholder.choose_one: 1つ選択してください…
+placeholder.default: (デフォルト）
+placeholder.deleted:  '[削除済み]'
+placeholder.repeat: (繰り返し）
+
+prompt.confirm_comment_delete: このコメントを削除してもよろしいですか？
+prompt.confirm_message_delete: このメッセージを削除してもよろしいですか？
+prompt.confirm_submission_delete: この送信を削除してもよろしいですか？
+prompt.confirm_theme_delete: このテーマを削除してもよろしいですか？それを選択したすべてのユーザーは、選択が元に戻されます。
+prompt.confirm_wiki_delete: このWikiページを削除してもよろしいですか？それは永久に永久に失われます。
+
+request_password_reset.multiple_accounts_notice: 1つのメールアドレスに複数のアカウントが登録されている場合、アカウントごとに1つのメールが届きます。
+request_password_reset.no_confirmation_notice: メールが届かない場合は、指定したアドレスが間違っている可能性があります。プライバシー上の理由から、指定されたメールアドレスのユーザーが実際に存在するかどうかは確認しません。
+request_password_reset.title: パスワードリセットのリクエストリンク
+
+request_password_reset_form.submit: 送信
+
+reset_password.title: パスワードのリセット
+
+reset_password_email.entry:  '%username% のパスワードをリセットします: '
+reset_password_email.footer:  'パスワードのリセットを要求しなかった場合は、この電子メールを無視しても問題ありません。リンクは24時間で期限切れになります。」'
+reset_password_email.header:  '誰かがあなたの %site_name% アカウントのパスワードのリセットを要求しました。'
+reset_password_email.subject:  '%site_name% - パスワードをリセット'
+
+role.admins: 管理者
+role.everyone: 全員
+role.whitelisted: ホワイトリストに登録
+
+site_footer.app: '%app% %version% を実行しています'
+site_footer.version:  '%version%（%branch%）'
+
+site_settings.default_sort_mode: デフォルトのソートモード
+site_settings.forum_create_role: 誰が新しいフォーラムを作成できますか？
+site_settings.image_upload_role: 誰が画像をアップロードできますか？
+site_settings.trash_enabled: ゴミ箱を有効にする
+site_settings.trash_enabled_help: モデレーターによって削除された投稿をゴミ箱に移動し、後で復元できるようにします。
+site_settings.registration_captcha_enabled: サインアップ中にCAPTCHAを有効にします
+site_settings.registration_captcha_enabled_help: これを有効にすると、一部のスパムボットを阻止できますが、視覚障害のあるユーザーがサイトにアクセスしにくくなります。多くの「ボット」は実際にはスパムファームで雇用されている人間であり、このオプションを有効にしてもそれらを止めることはできないことに注意してください。
+site_settings.registration_open: サインアップを有効にします
+site_settings.site_name: サイト名
+site_settings.site_theme: サイトのテーマ
+site_settings.site_theme_help: これは、フォーラムの設定またはユーザーの選択によって上書きされない限り、サイト全体で使用されるテーマになります。
+site_settings.url_images_enabled: 送信されたリンクのサムネイルを取得します
+site_settings.wiki_edit_role: 誰がwikiを編集できますか？
+site_settings.wiki_enabled: wikiを有効にする
+
+submit_form.create: 送信を作成します
+submit_form.edit: 送信を編集します
+
+submit.comments:  '{0}コメントなし| {1} %count% コメント| [1、Inf [ %count% コメント'
+submit.deleted_by_moderator: モデレーターによって削除されました
+submit.edit_info: '(編集済み %edited_at% ）'
+submit.info_with_forum_name: '%forum% の %submitter% %timestamp% によって送信されました'
+submit.info_without_forum_name: '%submitter% %timestamp% によって送信されました'
+submit.locked: この送信はロックされています
+submit.moderator_info: (モデレーター %edited_at% によって編集されました）
+submit.new_comments: '（ %count% new）'
+submit.pinned: この送信は固定されています
+submit.sort_by_active: アクティブ
+submit.sort_by_controversial: 物議を醸す
+submit.sort_by_hot: ホット
+submit.sort_by_most_commented: 最もコメントが多い
+submit.sort_by_new: 新規
+submit.sort_by_top: トップ
+submit.time_all: 常に
+submit.time_day: 過去24時間
+submit.time_month: 先月
+submit.time_week: 先週
+submit.time_year: 過去1年
+submit.total_votes: '{1} %count% point | [0、Inf [ %count% points'
+submit.vote_stats: '（+ %up% 、- %down% ）'
+
+submit_link_destination.label: 送信リンクをクリックすると…
+submit_link_destination.submission: 送信を開きます
+submit_link_destination.url: リンクされたコンテンツを開きます
+
+theme.to_be_created: 作成予定
+theme.to_be_deleted: 削除する
+
+time.at_relative_time:  '%relative_time%'
+time.earlier_format:  '%relative_time% early'
+time.later_format:  '%relative_time% 後で'
+time.on_timestamp: '%timestamp% で'
+
+title.active_global_user_bans: アクティブなグローバルユーザーの禁止
+title.all_forums: すべてのフォーラム
+title.ban_user: '%user% の禁止'
+title.banning_user_from_forum: '%forum% から %user% を禁止する'
+title.bans_in_forum: '%forum% での禁止'
+title.block_list: ブロックリスト
+title.blocking_user: '%user% をブロックしています'
+title.create_submission: 提出物を作成します
+title.delete_account: アカウントを削除します
+title.delete_comment: コメントを削除します
+title.delete_comment_thread: コメントスレッドを削除します
+title.delete_forum: 'フォーラム %forum% を削除します'
+title.delete_submission: 送信を削除します
+title.editing_biography_for_user: '%user% の伝記を編集しています'
+title.editing_forum: '編集フォーラム %forum%'
+title.editing_forum_tag: 'フォーラムタグ %tag% を編集しています'
+title.editing_submission: '投稿の編集 %title%'
+title.forum_appearance: '%forum% の外観'
+title.global_moderation_log: グローバルモデレーションログ
+title.hidden_​​forums: 非表示のフォーラム
+title.ip_bans: 禁止されたIPアドレス
+title.list_of_users:  'ユーザーのリスト、ページ＃ %page%'
+title.messages: メッセージ
+title.notifications: 通知
+title.recent_comments: 最近のコメント
+title.recent_comments_forum: '%forum% の最近のコメント'
+title.showing_ban_history_for_user_in_forum: '%forum% の %user% の禁止履歴を表示しています'
+title.showing_moderation_log_for_forum: '%forum% のモデレートログを表示しています'
+title.showing_revision:  'ページ %path% のリビジョン＃ %revision% を表示しています'
+title.site_settings: サイト設定
+title.site_wide_trash: サイト全体のゴミ箱
+title.unban_user: '%user% の禁止を解除します'
+title.unbanning_user_from_forum: '%forum% から %user% の禁止を解除します'
+title.user_forum_bans:  "%user% のフォーラム禁止"
+title.wiki_diff: リビジョン '%from% と %to% の違いを表示'
+
+user.comments: コメント
+user.email_optional: メールアドレスの提供はオプションです。パスワードのリセットにのみ使用します。
+user.message: メッセージを送信する
+user.moderates:  '%username% は次のモデレーターです: '
+user.password_rules: 最低8文字。
+user.registered: '登録済み %timestamp%'
+user.submissions: 提出物
+user.username_rules: 使用できる文字はA〜Z、a〜z、0〜9、およびアンダースコアです。
+
+user_flag.admin: admin
+user_flag.admin_label: 管理者
+user_flag.moderator: モデレーター
+user_flag.moderator_label: モデレーター
+user_flag.none_label: (なし）
+user_flag.post_as_label: 名前を付けて投稿
+
+user_settings.title: '%username% のユーザー設定を編集しています'
+
+wiki.all_pages: すべてのページ
+wiki.create_this_page: このページを作成します
+wiki.create_title: '「 %path% 」の作成'
+wiki.edit_page: ページの編集
+wiki.editing_title: '「 %path% 」の編集'
+wiki.history_title: '「 %path% 」の履歴を表示しています'
+wiki.id_label: ID
+wiki.last_edited: '最終編集者 %username% %timestamp%'
+wiki.locked_notice: ページがロックされています。管理者のみが編集できます。
+wiki.navigation: ナビゲーション
+wiki.not_found_message: リクエストされたページが見つかりませんでした。
+wiki.not_found_title: ページが見つかりません
+wiki.page_history: ページ履歴
+wiki.page_title: ページタイトル
+wiki.path: パス
+wiki.revision_time: 改訂
+wiki.user: ユーザー

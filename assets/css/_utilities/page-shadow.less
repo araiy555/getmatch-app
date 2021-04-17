@@ -1,0 +1,7 @@
+.page-shadow {
+  each(range(-1px, 1px), .(@y) {
+    each(range(-1px, 1px) .(@x) {
+      text-shadow+: @x @y 0 var(--bg-page);
+    })
+  });
+}

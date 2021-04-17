@@ -1,0 +1,52 @@
+{
+    "private": true,
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@symfony/webpack-encore": "^0.31.0",
+        "autoprefixer": "^9.7.4",
+        "babel-eslint": "^10.0.2",
+        "core-js": "^3.6.4",
+        "eslint": "^7.4.0",
+        "font-blast": "^0.7.0",
+        "less": "^3.11.1",
+        "less-loader": "^6.2.0",
+        "postcss-loader": "^3.0.0",
+        "postcss-rtl": "^1.7.3"
+    },
+    "dependencies": {
+        "date-fns": "^2.10.0",
+        "grapheme-splitter": "^1.0.4",
+        "highlight.js": "^10.1.1",
+        "jquery": "^3.4.1",
+        "lodash-es": "^4.17.15",
+        "markdown-it": "^11.0.0",
+        "normalize.css": "^8.0.1",
+        "regenerator-runtime": "^0.13.3",
+        "select2": "^4.0.13",
+        "stimulus": "^2.0.0",
+        "tippy.js": "^6.1.0",
+        "typeface-roboto": "^0.0.75",
+        "typeface-roboto-mono": "^0.0.75",
+        "typeface-ubuntu": "^0.0.65"
+    },
+    "resolutions": {
+        "@babel/parser": "7.7.5"
+    },
+    "scripts": {
+        "build-dev": "encore dev",
+        "build-prod": "encore production",
+        "lint": "npm run lint:js",
+        "lint:js": "eslint assets/js *.config.js",
+        "watch": "encore dev --watch"
+    },
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "Firefox 52",
+        "not dead",
+        "not IE 11",
+        "not IE_mob 11",
+        "not OperaMini all"
+    ]
+}

@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'nav.themes'|trans %}
+
+{% block head %}
+  {{ parent() }}
+  {{ include('_includes/meta_pagination.html.twig', { pager: themes }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <div class="flex flex--guttered">
+    <h1 class="page-heading flex__grow">{{ block('title') }}</h1>
+
+    <nav>
+      <a href="{{ path('theme_create_css') }}" class="button">
+        {{- 'action.create'|trans -}}
+      </a>
+    </nav>
+  </div>
+
+  {% embed '_layouts/table.html.twig' with { items: themes } %}
+    {% block header %}
+      <th>{{ 'label.name'|trans }}</th>
+      <th class="table__shrink">{{ 'label.type'|trans }}</th>
+      <th class="table__shrink"></th>
+    {% endblock header %}
+
+    {% block row %}
+      <td>
+        {{- item.name }}
+        {% if item.type == 'bundled' and item.configKey == default %}
+          <small>{{ 'placeholder.default'|trans }}</small>
+        {% endif %}
+      </td>
+
+      <td class="table__shrink">
+        {{- item.type == 'css' ? 'label.css'|trans -}}
+        {{- item.type == 'bundled' ? 'label.bundled'|trans -}}
+      </td>
+
+      <td class="table__shrink">
+        {# TODO: shouldn't be a flex, has undesirable wrapping characteristics #}
+        <span class="flex flex--slim-gutters flex--no-wrap">
+          {%- if item.type == 'css' -%}
+            <a href="{{ path('theme_edit_css', { id: item.id }) }}"
+               class="button button--small">
+              {{ 'action.edit'|trans }}
+            </a>
+          {%- endif -%}
+
+          <form action="{{ path('theme_delete', { id: item.id }) }}" method="post">
+            <input type="hidden" name="token" value="{{ csrf_token('delete_theme') }}">
+            <button class="button button--small"
+                    data-controller="dialog"
+                    data-action="dialog#confirm"
+                    data-dialog-text-value="{{ 'prompt.confirm_theme_delete'|trans }}">
+              {{- 'action.delete'|trans -}}
+            </button>
+          </form>
+        </span>
+      </td>
+    {% endblock row %}
+  {% endembed %}
+
+  {% if to_create is not empty or to_remove is not empty %}
+    <h2>{{ 'action.sync_themes'|trans }}</h2>
+
+    <p>{{ 'help.the_following_changes_will_be_made'|trans }}</p>
+
+    <ul class="unlistify">
+      {% for theme in to_create %}
+        <li>
+          <span class="fg-green" aria-hidden="true">+</span>
+          <ins class="undecorate" aria-label="{{ 'theme.to_be_created'|trans }}">
+            {{ theme.name }}
+          </ins>
+        </li>
+      {% endfor %}
+      {% for theme in to_remove %}
+        <li>
+          <span class="fg-red" aria-hidden="true">&minus;</span>
+          <del class="undecorate" aria-label="{{ 'theme.to_be_deleted'|trans }}">
+            {{ theme.name }}
+          </del>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <form action="{{ path('theme_sync') }}" method="POST">
+      <input type="hidden" name="token" value="{{ csrf_token('sync_themes') }}">
+
+      {{ button_row('action.sync_themes'|trans) }}
+    </form>
+  {% endif %}
+{% endblock body %}

@@ -1,0 +1,111 @@
+@import '~typeface-roboto-mono';
+@import '_variables';
+
+:root {
+  --font-size: 14px;
+  --line-height: 1.5;
+  --mono-font-family: Roboto Mono, monospace;
+  --mono-font-size: 14px;
+}
+
+html {
+  background-color: var(--bg-page);
+  background-image: var(--bg-image, none);
+  box-sizing: border-box;
+  color: var(--text);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  height: 100%;
+  line-height: var(--line-height);
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+::selection {
+  background-color: var(--primary-alt);
+  color: var(--primary-fg);
+  text-shadow: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+// spoiler tags
+a[href="#s"],
+a[href="#spoiler"] {
+  background-color: currentColor;
+  color: inherit;
+  cursor: text;
+  outline: none;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background-color: unset;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p, dl, ol, ul, blockquote, pre {
+  margin: 0;
+}
+
+// opinionated blockquote styling - should be safe?
+blockquote {
+  border-left: 0.25em solid var(--border);
+  padding: 0 0.5em;
+
+  & > * {
+    color: var(--text-muted);
+  }
+
+  a {
+    color: var(--text);
+  }
+}
+
+button,
+input,
+optgroup,
+option,
+select,
+textarea {
+  font: inherit;
+}
+
+pre, code, kbd {
+  font-family: var(--mono-font-family, monospace);
+  font-size: var(--mono-font-size, 1em);
+}
+
+pre code {
+  display: block;
+  overflow-x: auto;
+}
+
+hr {
+  border: none;
+  border-top: solid 1px var(--border-light);
+  margin: 0.5rem 0;
+}
+
+summary {
+  cursor: pointer;
+}

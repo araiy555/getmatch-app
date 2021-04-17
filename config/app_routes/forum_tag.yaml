@@ -1,0 +1,24 @@
+forum_tags:
+    controller: App\Controller\ForumTagController::list
+    defaults: { page: 1 }
+    methods: [GET]
+    path: /tags/{page}
+    requirements: { page: "%number_regex%" }
+
+forum_tag:
+    controller: App\Controller\ForumTagController::tag
+    defaults: { sortBy: ~ }
+    path: /tag/{name}/{sortBy}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%" }
+
+forum_tag_edit:
+    controller: App\Controller\ForumTagController::edit
+    methods: [GET, POST]
+    path: /tag/{name}/edit
+
+forum_tag_legacy_redirect:
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults: { sortBy: ~, route: forum_tag }
+    path: /c/{name}/{sortBy}
+    requirements: { sortBy: "%submission_sort_modes%" }

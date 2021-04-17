@@ -1,0 +1,138 @@
+{
+    "name": "postmill/postmill",
+    "license": "Zlib",
+    "type": "project",
+    "description": "Free, web-based, social link aggregator with voting and nested comments.",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.3 || 8.0.*",
+        "ext-dom": "*",
+        "ext-gd": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-pdo_pgsql": "*",
+        "composer/package-versions-deprecated": "^1.8",
+        "doctrine/doctrine-bundle": "^2.1",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.7",
+        "embed/embed": "^3.4",
+        "friendsofsymfony/http-cache-bundle": "^2.7",
+        "friendsofsymfony/jsrouting-bundle": "^2.1",
+        "gregwar/captcha-bundle": "^2.0",
+        "league/commonmark": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "liip/imagine-bundle": "^2.1.0",
+        "nelmio/cors-bundle": "^2.0",
+        "nelmio/security-bundle": "^2.7",
+        "pagerfanta/core": "^2.4",
+        "pagerfanta/doctrine-collections-adapter": "^2.4",
+        "pagerfanta/doctrine-orm-adapter": "^2.4",
+        "patrickschur/language-detection": "^5.0",
+        "postmill/pagerwave": "^1.3",
+        "ramsey/uuid": "^4.0",
+        "ramsey/uuid-doctrine": "^1.4",
+        "sebastian/diff": "^4.0",
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/asset": "^5.1",
+        "symfony/cache": "^5.1",
+        "symfony/dotenv": "^5.1",
+        "symfony/expression-language": "^5.1",
+        "symfony/flex": "^1.0",
+        "symfony/form": "^5.1",
+        "symfony/framework-bundle": "^5.1",
+        "symfony/http-client": "^5.1",
+        "symfony/http-client-contracts": "^2.1.1",
+        "symfony/mailer": "^5.1",
+        "symfony/messenger": "^5.1",
+        "symfony/monolog-bundle": "^3.0",
+        "symfony/polyfill-php80": "^1.15",
+        "symfony/property-access": "^5.1",
+        "symfony/rate-limiter": "^5.2",
+        "symfony/requirements-checker": "^2.0",
+        "symfony/security-bundle": "^5.1",
+        "symfony/serializer": "^5.1",
+        "symfony/translation": "^5.1",
+        "symfony/twig-bundle": "^5.1",
+        "symfony/validator": "^5.1",
+        "symfony/web-link": "^5.1",
+        "symfony/webpack-encore-bundle": "^1.2",
+        "symfony/yaml": "^5.1",
+        "twig/extra-bundle": "^3.0",
+        "twig/intl-extra": "^3.0",
+        "twig/string-extra": "^3.0",
+        "twig/twig": "^3.0",
+        "willdurand/js-translation-bundle": "^4.0",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^6.3",
+        "dms/phpunit-arraysubset-asserts": "^0.2.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "roave/security-advisories": "dev-latest",
+        "symfony/browser-kit": "^5.1",
+        "symfony/css-selector": "^5.1",
+        "symfony/debug-bundle": "^5.1",
+        "symfony/maker-bundle": "^1.5",
+        "symfony/phpunit-bridge": "^5.1",
+        "symfony/var-dumper": "^5.1",
+        "symfony/web-profiler-bundle": "^5.1"
+    },
+    "replace": {
+        "paragonie/random_compat": "^v9.99.99",
+        "phpunit/phpunit": "^8|<9.1.2,>9.1.2",
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-intl-grapheme": "*",
+        "symfony/polyfill-intl-icu": "*",
+        "symfony/polyfill-intl-idn": "*",
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "requirements-checker": "script",
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "postmill:init-assets": "symfony-cmd",
+            "fos:js-routing:dump --target=public/js/routing.js": "symfony-cmd",
+            "bazinga:js-translation:dump public/js --merge-domains --format=js": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.1-dev"
+        },
+        "symfony": {
+            "allow-contrib": true
+        }
+    },
+    "suggest": {
+        "ext-amqp": "For AMQP (RabbitMQ, etc.) support"
+    },
+    "config": {
+        "platform": {
+            "php": "7.3.0",
+            "ext-amqp": "1.6.0"
+        },
+        "sort-packages": true
+    }
+}

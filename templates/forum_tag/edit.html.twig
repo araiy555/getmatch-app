@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'title.editing_forum_tag'|trans({ '%tag%': tag.name }) %}
+
+{% block body %}
+  <h1>{{ 'title.editing_forum_tag'|trans({
+    '%tag%': '<a href="%s">%s</a>'|format(
+      path('forum_tag', { name: tag.name })|e,
+      tag.name|e
+    )})|raw }}</h1>
+
+  {{ include('forum_tag/_form.html.twig', { form: form, editing: true }, with_context=false) }}
+{% endblock %}

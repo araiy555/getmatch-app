@@ -1,0 +1,17 @@
+{% extends 'forum/base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.unbanning_user_from_forum'|trans({
+  '%user%': '/u/'~user.username,
+  '%forum%': '/f/'~forum.name,
+}) %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ form_start(form) }}
+    {{ form_row(form.reason) }}
+
+    {{ button_row('action.unban'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}

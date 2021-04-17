@@ -1,0 +1,188 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/icon.html.twig' import icon %}
+
+{% block site_nav_active app.user is same as(user) ? 'user' %}
+{% block user_toolbox_active app.request.attributes.get('_route') %}
+
+{% block sidebar %}
+  {% from '_macros/time.html.twig' import relative_time %}
+
+  <section class="sidebar__section flow break-text">
+    <header>
+      <h1 class="sidebar__title">
+        <a href="{{ path('user', {username: user.username}) }}">{{ user.username }}</a>
+        {% if user.admin %}
+          <span title="{{ 'user_flag.admin'|trans }}">
+          {{ icon('wrench', 'user_flag.admin'|trans, '', 'text-sm') }}
+        </span>
+        {% endif %}
+      </h1>
+
+      <p>
+        <small class="fg-muted text-sm">{{ 'user.registered'|trans({
+            '%timestamp%': relative_time(user.created, { time_format: 'none', natural: true })
+          })|raw }}
+        </small>
+
+        {% if user is same as(app.user) or is_granted('ROLE_ADMIN') %}
+          <br>
+          <small class="fg-muted text-sm">
+            {%- if user.whitelisted -%}
+              {{ 'label.whitelisted'|trans -}}
+            {%- else -%}
+              {{ 'label.not_whitelisted'|trans -}}
+            {%- endif -%}
+          </small>
+        {% endif %}
+      </p>
+    </header>
+
+    {% if user.biography is not empty %}
+      <div class="user-bio__biography text-flow">{{ user.biography|markdown|raw }}</div>
+    {% endif %}
+
+    {% if user is same as(app.user) and is_granted('edit_biography', user) %}
+      <p>
+        <a href="{{ path('edit_biography', { username: user.username }) }}"
+           class="button button--flex button--small button--secondary">
+          {{ icon('pencil') }}
+          <span>{{ 'nav.edit_biography'|trans }}</span>
+        </a>
+      </p>
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') and app.user.blocking(user) %}
+      <form action="{{ path('unblock_user', { username: user.username }) }}" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('unblock') }}">
+
+        <p>
+          <button class="button button--secondary">
+            {{- 'action.unblock'|trans -}}
+          </button>
+        </p>
+      </form>
+    {% endif  %}
+  </section>
+
+  {% set active_ban = user.activeBan %}
+
+  {% if is_granted('ROLE_ADMIN') and active_ban %}
+    <section class="sidebar__section flow bg-red">
+      <h1 class="sidebar__title">{{ 'heading.this_user_is_banned'|trans }}</h1>
+
+      <dl class="definition-list">
+        <dt>{{ 'label.reason'|trans }}</dt>
+        <dd>{{ active_ban.reason }}</dd>
+
+        <dt>{{ 'label.banned_by'|trans }}</dt>
+        <dd>
+          <a href="{{ path('user', { username: active_ban.bannedBy.username }) }}">
+            {{- active_ban.bannedBy.username -}}
+          </a>
+        </dd>
+
+        <dt>{{ 'label.expires'|trans }}</dt>
+        <dd>
+          {%- if active_ban.expires -%}
+            {{ relative_time(active_ban.expires) }}
+          {%- else -%}
+            <small class="fg-muted text-md">{{ 'label.never'|trans }}</small>
+          {%- endif -%}
+        </dd>
+      </dl>
+
+      <p>
+        <a href="{{ path('unban_user', { username: user.username }) }}"
+           class="button">
+          {{- 'action.unban'|trans -}}
+        </a>
+      </p>
+    </section>
+  {% endif %}
+
+  {% set toolbox_items = {
+    ('user.message'|trans): {
+      route: 'compose_message',
+      condition: is_granted('ROLE_USER') and user is not same as(app.user) and is_granted('message', user),
+    },
+    ('nav.block_user'|trans): {
+      route: 'block_user',
+      condition: is_granted('ROLE_USER') and user is not same as(app.user) and not app.user.isBlocking(user),
+    },
+    ('action.ban'|trans): {
+      route: 'ban_user',
+      condition: is_granted('ROLE_ADMIN') and user is not same as(app.user) and not active_ban,
+    },
+    ('nav.forum_bans'|trans): {
+      route: 'user_forum_bans',
+      condition: is_granted('ROLE_ADMIN')
+    },
+    ('nav.edit_biography'|trans): {
+      route: 'edit_biography',
+      condition: is_granted('edit_biography', user) and user is not same as(app.user)
+    },
+    ('nav.hidden_forums'|trans): {
+      route: 'hidden_forums',
+      condition: is_granted('ROLE_USER') and user is same as(app.user)
+    },
+    ('nav.trash'|trans): {
+      'route': 'user_trash',
+      condition: is_granted('ROLE_ADMIN') or user is same as(app.user)
+    },
+  } %}
+
+  {% set open = false %}
+  {% for label in toolbox_items|keys|sort|filter(label => toolbox_items[label].condition) %}
+    {% if loop.first %}
+      {% set open = true %}
+      <section class="sidebar__section flow">
+        <h1 class="sidebar__title">{{ 'label.toolbox'|trans }}</h1>
+        <ul class="unlistify sidebar__no-padding">
+    {% endif %}
+    {% set item = toolbox_items[label] %}
+    <li>
+      <a href="{{ path(item.route, { username: user.username }) }}"
+         class="menu-item {{ block('user_toolbox_active') == item.route ? 'menu-item--active' }}">
+        {{- label -}}
+      </a>
+    </li>
+  {% endfor %}
+  {% if open %}
+        </ul>
+      </section>
+  {% endif %}
+
+  {% if is_granted('ROLE_ADMIN') %}
+    <section class="sidebar__section flow">
+      <h1 class="sidebar__title">{{ 'heading.whitelisting'|trans }}</h1>
+
+      <p class="fg-muted">{{ 'help.whitelisting'|trans }}</p>
+
+      <form action="{{ path(user.whitelisted ? 'user_dewhitelist' : 'user_whitelist', {username: user.username}) }}" method="post" class="form">
+        <input type="hidden" name="token" value="{{ csrf_token('whitelist') }}">
+        <div class="form-flex form__row">
+          <button class="button button--secondary">
+            {{ not user.whitelisted ? 'action.whitelist'|trans : 'action.whitelist_remove'|trans }}
+          </button>
+        </div>
+      </form>
+    </section>
+  {% endif %}
+
+  {% if user.moderatorTokens|length > 0 %}
+    <section class="sidebar__section flow">
+      <h1 class="sidebar__title break-text">{{ 'user.moderates'|trans({'%username%': user.username}) }}</h1>
+
+      <ul class="unlistify flex flex--guttered flex--slim-gutters">
+        {% for token in user.moderatorTokens %}
+          <li>
+            <a href="{{ path('forum', {forum_name: token.forum.name}) }}"
+               class="button button--secondary button--small">
+              {{- token.forum.name -}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+
+{% block site_nav_main_menu_active 'censorship' %}
+
+{% block title 'bad_phrase.title'|trans %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', { pager: bad_phrases }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1>{{ block('title') }}</h1>
+  {{ alert('bad_phrase.help'|trans, 'info') }}
+
+  {{ render(controller('App\\Controller\\BadPhraseController::renderForm')) }}
+
+  <hr>
+
+  {% if bad_phrases is not empty %}
+    {{ render(controller('App\\Controller\\BadPhraseController::renderSearchForm')) }}
+    <hr>
+  {% endif %}
+
+  {{ include('bad_phrase/_list.html.twig', { bad_phrases: bad_phrases }, with_context=false) }}
+{% endblock body %}

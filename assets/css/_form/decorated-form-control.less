@@ -1,0 +1,30 @@
+@import '_mixins';
+
+.decorated-form-control {
+  .form-control-common();
+
+  align-items: center;
+  display: flex;
+  padding: 0 0.5rem;
+  width: 100%;
+
+  &:focus-within {
+    .form-control-focus();
+  }
+
+  &--disabled {
+    .form-control-disabled();
+  }
+
+  &--read-only {
+    .form-control-readonly();
+  }
+
+  &--text {
+    .form-control-text();
+  }
+
+  &__widget {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,47 @@
+@import '_mixins';
+
+.subscribe-button {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  padding: 0;
+
+  &__label,
+  &__subscriber-count {
+    .button-common();
+  }
+
+  &:focus,
+  &:hover {
+    outline: none;
+
+    > * {
+      .button-active();
+    }
+  }
+
+  &:disabled {
+    .button-disabled();
+  }
+
+  &__label {
+    margin-right: 2px;
+  }
+
+  &__subscriber-count {
+    --padding-h: 0;
+    min-width: 8ch;
+  }
+
+  &--subscribe &__label,
+  &--subscribe &__subscriber-count {
+    .button-secondary();
+  }
+
+  &__dummy-label {
+    display: block;
+    height: 0;
+    visibility: hidden;
+  }
+}

@@ -1,0 +1,10 @@
+twig:
+    paths:
+        "%kernel.project_dir%/templates": Postmill
+        "%kernel.project_dir%/templates/overrides": ~
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - _forms/standard_form_theme.html.twig
+        - _forms/markdown.html.twig
+        - _forms/background_image_theme.html.twig

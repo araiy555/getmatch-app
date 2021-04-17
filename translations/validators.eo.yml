@@ -1,0 +1,17 @@
+bad_phrase.match: La kampo enhavas forbaritan vorton aŭ frazon.
+comment.empty: La komento ne devas esti malplena.
+forum.banned: Vi estis forbarita de ĉi tiu diskutejo.
+forum.duplicate_name: Diskutejo kun tiu nomo jam eksistas.
+forum.name_characters: La nomo devas enhavi nur signojn, nombrojn, kaj substrekojn.
+ip.cidr_missing: Mankas CIDR-n maskon.
+ip.invalid: La IP adreso ne estas valida.
+ip.invalid_cidr_mask: La CIDR masko ne estas valida.
+ratelimit.error: Vi ne povas afiŝi pli. Atendu mallongan tempon antaŭ provi ree.
+regex.invalid: La kampo devas enhavi validan regulan esprimon, sen limigiloj.
+regex.must_not_match_empty: La regula esprimo ne povas kongrui kun malplena ĉeno.
+tag.invalid_characters: Etikedoj nur povas enhavi leterojn, nombrojn kaj substrekojn.
+tag.too_short: La etikedo {{ value }} estas tro mallonga. Ĝi devus havi almenaŭ {{ limit }} signon.|La etikedo {{ value }} estas tro mallonga. Ĝi devus havi almenaŭ {{ limit }} signojn.
+tag.too_long: La etikedo {{ value }} estas tro longa. Ĝi devus havi maksimume {{ limit }} signon.|La etikedo {{ value }} estas tro longa. Ĝi devus havi maksimume {{ limit }} signojn.
+user.already_moderator: Tiu uzanto jam estas kontrolanto.
+user.none_by_username: Ne ekzistas tiu uzanto
+user.rate_limit: Vi ne povas krei novajn kontojn nun. Bonvolu provi denove poste.

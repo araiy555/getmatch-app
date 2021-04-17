@@ -1,0 +1,23 @@
+{##
+ # Options:
+ # - raw_label (bool)
+ # - attr (array): attributes to apply to the link
+ #}
+{% macro return_nav(label, url, options={}) -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  <nav>
+    <ul class="flex flex--guttered unlistify">
+      <li>
+        <a href="{{ url }}"
+           class="flex flex--slim-gutters flex--align-center fg-text {{ options.attr.class ?? '' }}"
+           {{ (options.attr ?? {})
+             |filter((v, k) => k != 'class')
+             |map((v, k) => v is same as(true) ? k : v is same as(false) or v is null ? '' : '%s="%s"'|format(k, v|e('html_attr')))
+             |join(' ')|raw }}>
+          {{ icon('left-small', '', 'icon--circled text-xl') }}
+          <span class="text-lg">{{ (options.raw_label ?? false) ? (label|raw) : label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+{%- endmacro return_nav %}

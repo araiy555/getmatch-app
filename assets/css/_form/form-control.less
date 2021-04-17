@@ -1,0 +1,114 @@
+@import '_mixins';
+
+.form-control {
+  .form-control-common();
+
+  border-radius: 0; // disable rounded corners on iOS
+  display: inline-block;
+
+  input&:not([type]),
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="url"],
+  &[type="search"],
+  textarea {
+    .form-control-text();
+  }
+
+  input&:not([type]),
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="url"],
+  &[type="search"],
+  &[type="date"],
+  &[type="time"],
+  &[type="checkbox"],
+  &[type="radio"],
+  textarea& {
+    // remove ugly shade on iOS, and disable native styling for checkbox/radio
+    appearance: none;
+  }
+
+  input&:not([type]),
+  &[type="text"],
+  &[type="password"],
+  &[type="email"],
+  &[type="url"],
+  &[type="search"],
+  &[type="file"] {
+    max-width: 100%;
+
+    &:not([size]) {
+      width: 100%;
+    }
+  }
+
+  &[type="date"],
+  &[type="time"] {
+    min-width: 5rem; // fix for iOS
+  }
+
+  // should only be used in combination with .unstylable-widget. leave
+  // .form-control off otherwise.
+  &[type="checkbox"],
+  &[type="radio"] {
+    cursor: default;
+    min-height: unset;
+  }
+
+  &[type="radio"] {
+    border-radius: 9999px;
+  }
+
+  &[type="file"] {
+    cursor: pointer;
+  }
+
+  textarea& {
+    max-width: 100%;
+    resize: vertical;
+
+    // make textarea height be calculated as intended in Firefox
+    overflow-x: hidden;
+
+    &:not([cols]) {
+      width: 100%;
+    }
+  }
+
+  select&:not([multiple]) {
+    height: var(--height); // dropdown caret doesn't acknowledge min-height
+
+    // having vertical padding cuts off the text inside. having height set is
+    // enough to achieve a padding effect.
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &:invalid {
+    box-shadow: unset; // remove default browser style
+  }
+
+  &:focus {
+    outline: none; // remove default browser style
+    .form-control-focus();
+  }
+
+  &:disabled {
+    .form-control-disabled();
+  }
+
+  &[readonly] {
+    .form-control-readonly();
+  }
+
+  &--no-decoration {
+    .form-control-undecorated();
+
+    &:focus {
+      .form-control-undecorated-focus();
+    }
+  }
+}

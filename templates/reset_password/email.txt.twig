@@ -1,0 +1,9 @@
+{{ 'reset_password_email.header'|trans({ '%site_name%': site_name() })|u.wordwrap(72) }}
+
+{% for link in links %}
+    {{~ 'reset_password_email.entry'|trans({ '%username%': link.username })|u.wordwrap(72) }}
+    {{~ link.url }}
+    {{~ "\n" }}
+{%- endfor %}
+
+{{ 'reset_password_email.footer'|trans|u.wordwrap(72) }}

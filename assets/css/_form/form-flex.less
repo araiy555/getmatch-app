@@ -1,0 +1,46 @@
+@import (reference) '../_variables';
+
+.form-flex {
+  display: flex;
+
+  // keep stacked by default
+  align-items: flex-start;
+  flex-direction: column;
+
+  &--stretch {
+    // TODO: temporary workaround
+    align-items: stretch;
+  }
+
+  @media screen and (min-width: @desktop-min-width) {
+    &--single-line {
+      align-items: center;
+      flex-direction: row;
+
+      > :not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+
+    &__align {
+      display: inline-block;
+      flex-shrink: 0;
+      width: 10rem;
+    }
+  }
+
+  @media not screen and (min-width: @desktop-min-width) {
+    &--no-collapse {
+      align-items: center;
+      flex-direction: row;
+
+      > :not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+
+    &--no-collapse > &__align + * {
+      margin-left: 0;
+    }
+  }
+}

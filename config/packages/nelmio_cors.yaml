@@ -1,0 +1,10 @@
+nelmio_cors:
+    paths:
+        '^/api':
+            origin_regex: false
+            allow_credentials: true
+            allow_origin: ['*']
+            allow_headers: [Content-Type, Cookie, X-Experimental-API]
+            allow_methods: [GET, OPTIONS, POST, PUT, PATCH, DELETE]
+            expose_headers: [Link]
+            max_age: 600

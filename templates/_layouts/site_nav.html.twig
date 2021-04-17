@@ -1,0 +1,258 @@
+{% block site_nav %}
+  {% set active %}{% block site_nav_active '' %}{% endset %}
+  <nav class="site-nav">
+    <div class="site-nav__container content-container">
+      {{ block('site_nav_header') }}
+      {{ block('site_nav_main_menu') }}
+      {{ block('site_nav_search') }}
+      {{ block('site_nav_user_menu') }}
+    </div>
+  </nav>
+{% endblock site_nav %}
+
+{% block site_nav_header %}
+  {% from '_macros/icon.html.twig' import icon %}
+  <header class="site-nav__header">
+    <a href="{{ path('front') }}"
+       class="site-nav__link {{ active == 'front' ? 'site-nav__link--active' }}"
+       aria-label="{{ 'nav.home'|trans }}">
+      {{ icon('home', 'nav.home'|trans, 'no-desktop') }}
+      <b class="no-mobile">{{ site_name() }}</b>
+    </a>
+  </header>
+{% endblock site_nav_header %}
+
+{% block site_nav_main_menu %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% set active_menu_item %}{% block site_nav_main_menu_active '' %}{% endset %}
+
+  <div class="site-nav__main-menu-container site-nav__mobile-hidden dropdown dropdown--mobile-only">
+    <button type="button"
+            class="site-nav__link {{ (active == 'places' or active == 'admin') ? 'site-nav__link--active' }} site-nav__mobile-toggle no-desktop dropdown__toggle unbuttonize"
+            aria-label="{{ 'nav.places'|trans }}">
+      {{- icon('menu', 'nav.places'|trans) -}}
+    </button>
+
+    <ul class="site-nav__menu site-nav__main-menu unlistify dropdown__menu">
+      {{ block('site_nav_main_menu_items') }}
+    </ul>
+  </div>
+{% endblock site_nav_main_menu %}
+
+{% block site_nav_main_menu_items %}
+  {% from '_macros/icon.html.twig' import icon %}
+  <li>
+    <a href="{{ path('forum_list') }}"
+       class="site-nav__link {{ active_menu_item == 'forums' ? 'site-nav__link--active' }}">
+      {{- 'nav.forums'|trans -}}
+    </a>
+  </li>
+
+  {% if is_granted('view_wiki') %}
+    <li>
+      <a href="{{ path('wiki') }}"
+         class="site-nav__link {{ active_menu_item == 'wiki' ? 'site-nav__link--active' }}">
+        {{- 'nav.wiki'|trans -}}
+      </a>
+    </li>
+  {% endif %}
+  <li>
+    <a href="https://getmatch.base.shop/"
+       class="site-nav__link">
+      {{- 'nav.shop'|trans -}}
+    </a>
+  </li>
+  {% if is_granted('ROLE_ADMIN') %}
+    <li class="dropdown">
+      <button type="button"
+              class="dropdown__toggle no-wrap site-nav__link unbuttonize {{ active == 'admin' ? 'site-nav__link--active' }}">
+        {{- 'label.admin'|trans }}
+        <span class="dropdown__arrow" aria-hidden="true"></span>
+      </button>
+      <ul class="dropdown-card dropdown__menu no-wrap unlistify">
+        {{ block('site_nav_main_menu_admin_items') }}
+      </ul>
+    </li>
+  {% endif %}
+{% endblock site_nav_main_menu_items %}
+
+{% block site_nav_main_menu_admin_items %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% for key, item in {
+    censorship: { label: 'nav.censorship'|trans, route: path('bad_phrase_list'), icon: 'unlink' },
+    bans: { label: 'label.bans'|trans, route: path('user_bans'), icon: 'hammer' },
+    site_settings: { label: 'nav.site_settings'|trans, route: path('site_settings'), icon: 'settings' },
+    site_wide_trash: { label: 'nav.trash'|trans, route: path('site_wide_trash'), 'icon': 'trash' },
+    themes: { label: 'nav.themes'|trans, route: path('themes'), icon: 'brush' },
+    users: { label: 'nav.users'|trans, route: path('users'), icon: 'user' },
+  }|sort((a, b) => a.label <=> b.label) %}
+    <li>
+      <a href="{{ item.route }}" class="menu-item {{ active_menu_item == key ?  'menu-item--active' }}">
+        {{- icon(item.icon) }}
+        {{ item.label -}}
+      </a>
+    </li>
+  {% endfor %}
+{% endblock site_nav_main_menu_admin_items %}
+
+{% block site_nav_search %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% set search_query = app.request.query.get('q') %}
+  {% if active != 'search' or search_query is iterable %}
+    {% set search_query = null %}
+  {% endif %}
+  <form action="{{ path('search') }}" class="site-nav__mobile-hidden site-nav__search dropdown dropdown--mobile-only">
+    <button type="button"
+            class="site-nav__link {{ active == 'search' ? 'site-nav__link--active' }} site-nav__mobile-toggle no-desktop dropdown__toggle unbuttonize"
+            aria-label="{{ 'nav.search'|trans }}">
+      {{- icon('search', 'nav.search'|trans) -}}
+    </button>
+
+    <div class="site-nav__search-row dropdown__menu">
+      <label class="site-nav__search-label" for="site-nav-search" aria-hidden="true">
+        {{ icon('search', '', 'icon--no-align') }}
+      </label>
+      <input name="q"
+             type="search"
+             class="form-control site-nav__search-input"
+             id="site-nav-search"
+             value="{{ search_query }}"
+             aria-label="{{ 'label.search_query'|trans }}">
+    </div>
+  </form>
+{% endblock site_nav_search %}
+
+{% block site_nav_user_menu %}
+  <ul class="site-nav__menu site-nav__user-menu unlistify">
+    {% if not is_granted('ROLE_USER') %}
+      {{ block('site_nav_user_menu_logged_out') }}
+    {% else %}
+      {{ block('site_nav_user_menu_logged_in') }}
+    {% endif %}
+  </ul>
+{% endblock site_nav_user_menu %}
+
+{% block site_nav_user_menu_logged_out %}
+  <li>
+    <a href="{{ path('login') }}" class="site-nav__link {{ active == 'login' ? 'site-nav__link--active' }}">
+      {{- 'action.log_in'|trans -}}
+    </a>
+  </li>
+  {% if registration_open() %}
+    <li>
+      <a href="{{ path('registration') }}" class="site-nav__link {{ active == 'registration' ? 'site-nav__link--active' }}">
+        {{- 'action.sign_up'|trans -}}
+      </a>
+    </li>
+  {% endif %}
+{% endblock site_nav_user_menu_logged_out %}
+
+{% block site_nav_user_menu_logged_in %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% set notification_count = app.user.notificationCount ?? 0 %}
+  {% set active_menu_item %}{% if active == 'user' %}{% block site_nav_user_menu_active '' %}{% endif %}{% endset %}
+  <li>
+    <a href="{{ path('notifications') }}"
+       class="no-wrap site-nav__link
+             {{ notification_count > 0 ? 'site-nav__has-notifications' }}
+             {{ active == 'notifications' ? 'site-nav__link--active' }}"
+       title="{{ 'nav.notifications_count'|trans({'%count%': notification_count|format_number}) }}"
+       aria-label="{{ 'nav.notifications_count'|trans({'%count%': notification_count|format_number}) }}">
+      {% if notification_count > 0 %}
+        {{ icon('envelope-open', 'nav.notifications'|trans) }}
+        <small aria-hidden="true">{{ notification_count|format_number }}</small>
+      {% else %}
+        {{ icon('envelope', 'nav.notifications'|trans) }}
+      {% endif %}
+    </a>
+  </li>
+
+  <li>
+    <a href="{{ path('submit', { forum_name: forum.name ?? null }) }}"
+       class="no-wrap site-nav__link {{ active == 'submit' ? 'site-nav__link--active' }}"
+       aria-label="{{ 'nav.submit'|trans }}">
+      {{ icon('plus', 'nav.submit'|trans, '', 'no-desktop') }}
+      <span class="no-mobile">{{ 'nav.submit'|trans }}</span>
+    </a>
+  </li>
+
+  <li class="dropdown dropdown--right">
+    <button type="button" class="dropdown__toggle site-nav__link no-wrap unbuttonize {{ active == 'user' ? 'site-nav__link--active' }}">
+      {{ icon('user', 'nav.user'|trans, '', 'no-desktop') }}
+      <strong class="no-mobile">{{ app.user.username }}</strong>
+      <span class="dropdown__arrow no-mobile" aria-hidden="true"></span>
+    </button>
+
+    <ul class="dropdown-card dropdown__menu unlistify no-wrap">
+      {{ block('site_nav_user_menu_dropdown_items') }}
+    </ul>
+  </li>
+{% endblock site_nav_user_menu_logged_in %}
+
+{% block site_nav_user_menu_dropdown_items %}
+  {% from '_macros/icon.html.twig' import icon %}
+  <li class="no-desktop">
+    <span class="menu-item ">
+      {{ 'nav.logged_in_as_user'|trans({
+        '%user%': '<strong>%s</strong>'|format(app.user.username|e)
+      })|raw }}
+    </span>
+  </li>
+  <li class="no-desktop"><hr></li>
+  <li>
+    <a href="{{ path('user', {username: app.user.username}) }}"
+       class="menu-item {{ active_menu_item == 'profile' ? 'menu-item--active' }}">
+      {{ icon('user') }}
+      {{ 'nav.profile'|trans }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('edit_user', {username: app.user.username}) }}"
+       class="menu-item {{ active_menu_item == 'account' ? 'menu-item--active' }}">
+      {{ icon('lock') }}
+      {{ 'nav.my_account'|trans }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('user_settings', {username: app.user.username}) }}"
+       class="menu-item {{ active_menu_item == 'preferences' ? 'menu-item--active' }}">
+       {{ icon('cog') }}
+       {{ 'nav.user_settings'|trans }}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('user_block_list', {username: app.user.username}) }}"
+       class="menu-item {{ active_menu_item == 'block_list' ? 'menu-item--active' }}">
+      {{ icon('block') }}
+      {{ 'nav.block_list'|trans }}
+    </a>
+  </li>
+  <li><hr></li>
+  <li>
+    <form action="{{ path('change_night_mode') }}" method="POST" data-controller="toggle-night-mode">
+      <input type="hidden" name="token" value="{{ csrf_token('night_mode') }}">
+      <button name="nightMode"
+              value="{{ constant('App\\Entity\\User::NIGHT_MODE_DARK') }}"
+              class="menu-item unbuttonize light-mode-only"
+              data-action="toggle-night-mode#darken">
+        {{ icon('moon-inv') }}
+        {{ 'nav.dark_mode'|trans }}
+      </button>
+      <button name="nightMode"
+              value="{{ constant('App\\Entity\\User::NIGHT_MODE_LIGHT') }}"
+              class="menu-item unbuttonize dark-mode-only"
+              data-action="toggle-night-mode#lighten">
+        {{ icon('sun-inv') }}
+        {{ 'nav.light_mode'|trans }}
+      </button>
+    </form>
+  </li>
+  <li>
+    <form action="{{ logout_path() }}" method="POST">
+      <button class="menu-item unbuttonize">
+        {{ icon('logout') }}
+        {{ 'action.log_out'|trans }}
+      </button>
+    </form>
+  </li>
+{% endblock site_nav_user_menu_dropdown_items %}

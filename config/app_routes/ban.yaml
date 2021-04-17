@@ -1,0 +1,40 @@
+banned:
+    controller: App\Controller\BannedController
+    path: /banned
+    methods: [GET]
+
+user_bans:
+    controller: App\Controller\BanController::userBans
+    defaults: { page: 1 }
+    path: /bans/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+ban_user:
+    controller: App\Controller\BanController::banUser
+    methods: [GET, POST]
+    path: /bans/ban_user/{username}
+    requirements: { username: "%username_regex%" }
+
+unban_user:
+    controller: App\Controller\BanController::unbanUser
+    methods: [GET, POST]
+    path: /bans/unban_user/{username}
+    requirements: { username: "%username_regex%" }
+
+ip_bans:
+    controller: App\Controller\BanController::ipBans
+    defaults: { page: 1 }
+    path: /bans/by_ip/{page}
+    methods: [GET]
+    requirements: { page: \d+ }
+
+ban_ip:
+    controller: App\Controller\BanController::banIp
+    path: /bans/ban_ip
+    methods: [GET, POST]
+
+unban_ips:
+    controller: App\Controller\BanController::unbanIps
+    path: /bans/unban_ips
+    methods: [POST]

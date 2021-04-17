@@ -1,0 +1,7 @@
+{% macro pagination(pager) %}
+  {% with { route: app.request.attributes.get('_route'), params: app.request.attributes.get('_route_params') ?? {} } %}
+    {% if pager.hasNextPage %}
+      <link rel="next" href="{{ url(route, params|merge(pager.nextPageParams)) }}"/>
+    {% endif %}
+  {% endwith %}
+{% endmacro %}

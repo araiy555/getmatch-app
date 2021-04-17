@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'label.tags'|trans %}
+
+{% set can_manage_tags = is_granted('ROLE_ADMIN') %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', { pager: tags }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  {{ include('forum/_list_nav.html.twig', { active: 'tags' }, with_context=false) }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% embed '_layouts/table.html.twig' with { items: tags } %}
+    {% block header %}
+      <th>{{ 'label.name'|trans }}</th>
+      <th class="table__shrink">{{ 'nav.forums'|trans }}</th>
+      {% if can_manage_tags %}
+        <th class="table__shrink"></th>
+      {% endif %}
+    {% endblock header %}
+
+    {% block row %}
+      <td>
+        <a href="{{ path('forum_tag', { name: item.name }) }}">
+          {{- item.name -}}
+        </a>
+      </td>
+      <td class="table__shrink">
+        {{ 'label.forums_count'|trans({ '%count%': item.forumCount }) }}
+      </td>
+      {% if can_manage_tags %}
+        <td class="table__shrink">
+          <a href="{{ path('forum_tag_edit', { name: item.name }) }}"
+             class="button button--secondary button--small inline">
+            {{- 'action.edit'|trans -}}
+          </a>
+        </td>
+      {% endif %}
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

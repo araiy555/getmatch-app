@@ -1,0 +1,39 @@
+{% extends 'front/_base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert %}
+
+{% block listing 'featured' %}
+
+{% block front_alerts %}
+  {% if is_granted('ROLE_USER') %}
+    {% if app.user.frontPage == 'subscribed' and app.user.subscriptionCount == 0 %}
+      {{ alert('front.no_subscriptions'|trans) }}
+    {% endif %}
+  {% endif %}
+{% endblock front_alerts %}
+
+{% block sidebar %}
+  {{ parent() }}
+
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ 'front.featured_forums'|trans }}</h1>
+
+    {% if forums|length > 0 %}
+      <ul class="unlistify flex flex--guttered flex--slim-gutters">
+        {% for name in forums %}
+          <li>
+            <a href="{{ path('forum', {forum_name: name}) }}"
+               class="button button--secondary button--small">
+              {{- name -}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="fg-muted">
+        <small class="text-sm">
+          {{- 'front.no_forums'|trans -}}
+        </small>
+      </p>
+    {% endif %}
+  </section>
+{% endblock sidebar %}

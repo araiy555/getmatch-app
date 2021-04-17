@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'action.edit_theme'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('theme/_css_form.html.twig', { form: form }, with_context=false) }}
+{% endblock body %}

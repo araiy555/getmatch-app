@@ -1,0 +1,22 @@
+{% extends 'front/_base.html.twig' %}
+
+{% block listing 'subscribed' %}
+
+{% block sidebar %}
+  {{ parent() }}
+
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ 'front.subscribed_forums'|trans }}</h1>
+
+    <ul class="unlistify flex flex--guttered flex--slim-gutters">
+      {% for name in forums %}
+        <li>
+          <a href="{{ path('forum', {forum_name: name}) }}"
+             class="button button--secondary button--small">
+            {{- name -}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock sidebar %}

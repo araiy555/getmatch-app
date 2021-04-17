@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% from '_macros/icon.html.twig' import icon %}
+{% from '_macros/post_nav.html.twig' import submission_sort, submission_time %}
+{% from 'submission/_macros.html.twig' import submission %}
+
+{% block title tag.name %}
+
+{% block head %}
+  {{ parent() }}
+  {{ include('_includes/meta_pagination.html.twig', { pager: submissions }, with_context=false) }}
+{% endblock %}
+
+{% block sidebar %}
+  <section class="sidebar__section flow">
+    <h2 class="sidebar__title">
+      <span class="flex flex--slim-gutters">
+        {{ icon('tag') }}
+        <span>{{ tag.name }}</span>
+      </span>
+    </h2>
+
+    {% if tag.description is not empty %}
+      <div class="text-flow">
+        {{ tag.description|markdown|raw }}
+      </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+      <nav>
+        <p>
+          <a href="{{ path('forum_tag_edit', { name: tag.name }) }}"
+             class="button button--small inline">
+            {{- 'action.edit'|trans -}}
+          </a>
+        </p>
+      </nav>
+    {% endif %}
+  </section>
+
+  <section class="sidebar__section flow">
+    <h2 class="sidebar__title">{{ 'label.forums_with_this_tag'|trans }}</h2>
+
+    <ul class="flex flex--slim-gutters unlistify">
+      {% for forum in tag.forums %}
+        <li>
+          <a href="{{ path('forum', { forum_name: forum.name }) }}"
+             class="button button--secondary button--small">
+            {{- forum.name -}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}
+
+{% block body %}
+  <h1 class="page-heading">{{ tag.name }}</h1>
+
+  <nav>
+    <ul class="unlistify flex">
+      {{ submission_sort(sort_by) }}
+      {{ submission_time(sort_by) }}
+    </ul>
+  </nav>
+
+  {% for submission in submissions %}
+    {{ submission(submission) }}
+  {% endfor %}
+
+  {{ include('_includes/pagination.html.twig', { pager: submissions }, with_context=false) }}
+{% endblock body %}

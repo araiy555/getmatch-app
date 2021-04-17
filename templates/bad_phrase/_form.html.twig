@@ -1,0 +1,7 @@
+{% from '_macros/form.html.twig' import button_row %}
+
+{{ form_start(form) }}
+  {{ form_rest(form) }}
+
+  {{ button_row('action.add'|trans) }}
+{{ form_end(form) }}

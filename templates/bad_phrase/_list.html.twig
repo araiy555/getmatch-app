@@ -1,0 +1,35 @@
+{%- from '_macros/form.html.twig' import button_row -%}
+{%- set type_label_map = {
+  (constant('App\\Entity\\BadPhrase::TYPE_TEXT')): 'bad_phrase.type_text'|trans,
+  (constant('App\\Entity\\BadPhrase::TYPE_REGEX')): 'label.regex'|trans,
+} -%}
+
+<form action="{{ path('bad_phrase_remove') }}" method="post" class="flow">
+  <input type="hidden" name="token" value="{{ csrf_token('remove_bad_phrase') }}">
+
+  {% embed '_layouts/table.html.twig' with { items: bad_phrases } %}
+    {% from '_macros/form.html.twig' import checkbox %}
+
+    {% block header %}
+      <th class="table__shrink"></th>
+      <th>{{ 'bad_phrase.phrase'|trans }}</th>
+      <th class="table__shrink">{{ 'label.type'|trans }}</th>
+    {% endblock header %}
+
+    {% block row %}
+      <td class="table__shrink">
+        {{ checkbox({
+          id: 'bad_phrase_%s'|format(item.id),
+          name: 'remove_bad_phrase[]',
+          value: item.id,
+        }) }}
+      </td>
+      <td><label for="{{ 'bad_phrase_%s'|format(item.id) }}"><kbd>{{ item.phrase }}</kbd></label></td>
+      <td class="table__shrink">{{ type_label_map[item.phraseType] }}</td>
+    {% endblock row %}
+  {% endembed %}
+
+  {% if bad_phrases is not empty %}
+    {{ button_row('action.remove'|trans) }}
+  {% endif %}
+</form>

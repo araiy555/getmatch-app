@@ -1,0 +1,14 @@
+.site-accessibility-nav {
+  &__link {
+    background-color: var(--card-bg);
+    color: var(--text);
+    display: inline-block;
+    padding: 1rem;
+    position: fixed;
+    z-index: 10000;
+
+    &:not(:focus) {
+      left: -9999px;
+    }
+  }
+}

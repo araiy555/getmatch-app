@@ -1,0 +1,39 @@
+front:
+    controller: App\Controller\FrontController::front
+    defaults: { sortBy: ~ }
+    path: /{sortBy}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%" }
+
+featured:
+    controller: App\Controller\FrontController::featured
+    defaults: { sortBy: ~, _format: html }
+    path: /featured/{sortBy}.{_format}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%", _format: html|atom }
+
+subscribed:
+    controller: App\Controller\FrontController::subscribed
+    defaults: { sortBy: ~ }
+    path: /subscribed/{sortBy}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%" }
+
+all:
+    controller: App\Controller\FrontController::all
+    defaults: { sortBy: ~, _format: html }
+    path: /all/{sortBy}.{_format}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%", _format: html|atom }
+
+moderated:
+    controller: App\Controller\FrontController::moderated
+    defaults: { sortBy: ~ }
+    path: /moderated/{sortBy}
+    methods: [GET]
+    requirements: { sortBy: "%submission_sort_modes%" }
+
+trash:
+    controller: App\Controller\FrontController::trash
+    methods: [GET]
+    path: /trash

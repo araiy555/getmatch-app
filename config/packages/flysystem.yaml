@@ -1,0 +1,15 @@
+services:
+    postmill.abstract_filesystem:
+        class: League\Flysystem\FilesystemInterface
+        factory: [App\Storage\DsnAwareFilesystemFactory, createFilesystem]
+        arguments:
+            $dsn: "%env(resolve:UPLOAD_DSN)%"
+        abstract: true
+
+    postmill.submission_images:
+        parent: postmill.abstract_filesystem
+        arguments:
+            $options: { prefix: submission_images/, visibility: public }
+
+    postmill.submission_thumbnails:
+        parent: postmill.abstract_filesystem

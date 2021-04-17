@@ -1,0 +1,11 @@
+framework:
+    rate_limiter:
+        enabled: true
+        login_local:
+            policy: sliding_window
+            limit: 20
+            interval: 10 minutes
+        login_global:
+            policy: fixed_window
+            limit: 50
+            interval: 30 minutes

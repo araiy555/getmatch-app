@@ -1,0 +1,34 @@
+themes:
+    controller: App\Controller\ThemeController::themes
+    defaults: { page: 1 }
+    methods: [GET]
+    path: /site/themes/{page}
+    requirements: { page: "%number_regex%" }
+
+theme_css:
+    controller: App\Controller\ThemeController::css
+    methods: [GET]
+    path: /site/themes/css/{themeId}/revision/{revisionId}.css
+    requirements: { themeId: "%uuid_regex%", revisionId: "%uuid_regex%" }
+
+theme_create_css:
+    controller: App\Controller\ThemeController::createCss
+    methods: [GET, POST]
+    path: /site/themes/css/create
+
+theme_edit_css:
+    controller: App\Controller\ThemeController::editCss
+    methods: [GET, POST]
+    path: /site/themes/css/{id}/edit
+    requirements: { id: "%uuid_regex%" }
+
+theme_delete:
+    controller: App\Controller\ThemeController::delete
+    methods: [POST]
+    path: /site/themes/{id}/delete
+    requirements: { id: "%uuid_regex%" }
+
+theme_sync:
+    controller: App\Controller\ThemeController::sync
+    methods: [POST]
+    path: /site/themes/sync

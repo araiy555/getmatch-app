@@ -1,0 +1,38 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert_classes, alert_icon %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title 'title.delete_account'|trans %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  <p>{{ 'delete_account.lead'|trans }}</p>
+
+  <ul>
+    <li>{{ 'delete_account.submissions'|trans }}</li>
+    <li>{{ 'delete_account.comments'|trans }}</li>
+    <li>{{ 'delete_account.messages'|trans }}</li>
+    <li>{{ 'delete_account.votes'|trans }}</li>
+    <li>{{ 'delete_account.metadata'|trans }}</li>
+  </ul>
+
+  <div class="{{ alert_classes('warn') }}">
+    {{ alert_icon('warn') }}
+    <div class="alert__text">
+      {% if app.user is same as(user) %}
+        <p>{{ 'flash.delete_account_warning'|trans }}</p>
+      {% else %}
+        <p><strong class="text-xl">{{ 'flash.delete_someone_elses_account_warning'|trans }}</strong></p>
+      {% endif %}
+    </div>
+  </div>
+
+  {{ form_start(form) }}
+    {{ form_row(form.name, { label: 'label.confirm_username'|trans }) }}
+
+    {{ form_row(form.confirm, { label: 'label.delete_account_confirmation'|trans }) }}
+
+    {{ button_row('action.delete_account'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}

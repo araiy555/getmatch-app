@@ -1,0 +1,29 @@
+{% extends 'wiki/page.html.twig' %}
+
+{% block title %}
+  {{ 'title.showing_revision'|trans({
+    '%revision%': revision.id.hex|slice(0, 8),
+    '%path%': '<a href="%s">%s</a>'|format(path('wiki', {path: page.path})|e, page.path|e),
+  })|raw }}
+{% endblock %}
+
+{% block wiki_page_toolbox_active 'wiki_history' %}
+
+{% block body %}
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  <article class="wiki-article">
+    <h1 class="wiki-article__title">{{ revision.title }}</h1>
+
+    <div class="wiki-article__body text-flow">
+      {{ revision.body|markdown({
+        (constant('App\\Markdown\\Listener\\WikiListener::ATTR_ENABLE_WIKI_MODE')): true,
+      })|raw }}
+    </div>
+  </article>
+
+  <hr>
+
+  <h1>{{ 'label.source_code'|trans }}</h1>
+  <pre><code class="language-markdown">{{ revision.body }}</code></pre>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% set links = {
+  notifications: { path: path('notifications'), label: 'nav.notifications'|trans },
+  messages: { path: path('message_threads'), label: 'nav.messages'|trans },
+} %}
+
+<nav class="flex flex--guttered">
+  <ul class="flex unlistify">
+    {% for name, link in links %}
+      <li>
+        <a href="{{ link.path }}" class="tab {{ active == name ? 'tab--active' }}">
+          {{- link.label -}}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

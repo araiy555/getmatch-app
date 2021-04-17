@@ -1,0 +1,23 @@
+{% extends 'forum/base.html.twig' %}
+{% from '_macros/form.html.twig' import button_row %}
+
+{% block title block('html_title')|striptags %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {% block html_title %}
+      {{- 'add_moderator.title'|trans({
+        '%forum%': '<a href="%s">/f/%s</a>'|format(
+          path('forum', { forum_name: forum.name })|e,
+          forum.name|e
+        ),
+      })|raw -}}
+    {% endblock html_title %}
+  </h1>
+
+  {{ form_start(form) }}
+    {{ form_row(form.user) }}
+
+    {{ button_row('forum.add_as_moderator'|trans) }}
+  {{ form_end(form) }}
+{% endblock body %}

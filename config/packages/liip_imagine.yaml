@@ -1,0 +1,29 @@
+# https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html#create-thumbnails
+liip_imagine:
+    filter_sets:
+        submission_thumbnail_1x:
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail: { size: [70, 70], mode: outbound, allow_upscale: true }
+            quality: 60
+
+        submission_thumbnail_2x:
+            filters:
+                auto_rotate: ~
+                strip: ~
+                thumbnail: { size: [140, 140], mode: outbound, allow_upscale: true }
+            quality: 60
+
+    loaders:
+        default:
+            flysystem:
+                filesystem_service: postmill.submission_images
+
+    resolvers:
+        default:
+            flysystem:
+                filesystem_service: postmill.submission_thumbnails
+                root_url: "%env(resolve:UPLOAD_ROOT)%"
+                cache_prefix: media/cache
+                visibility: public

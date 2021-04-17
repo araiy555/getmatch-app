@@ -1,0 +1,17 @@
+{% use '_layouts/submission.html.twig' %}
+
+{%- macro submission(submission, options) -%}
+  {%- with {
+    link_to: options.link_to ?? submission_link_destination(),
+    open_external_links_in_new_tab: options.open_external_links_in_new_tab ?? app.user.openExternalLinksInNewTab ?? false,
+    raw_body: options.raw_body ?? null,
+    raw_title: options.raw_title ?? null,
+    self: app.user,
+    show_content: options.show_content ?? false,
+    show_forum_name: options.show_forum_name ?? true,
+    show_thumbnails: options.show_thumbnails ?? app.user.showThumbnails ?? true,
+    submission: submission,
+  } only -%}
+    {{ block('submission') }}
+  {%- endwith -%}
+{%- endmacro -%}

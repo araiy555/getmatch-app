@@ -1,0 +1,122 @@
+{% macro front_post_types(current) %}
+  <ul class="unlistify flex">
+    <li>
+      <a href="{{ path('front') }}"
+         class="tab {{ current == 'submissions' ? 'tab--active' }}">
+        {{- 'nav.submissions'|trans -}}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('comment_list') }}"
+         class="tab {{ current == 'comments' ? 'tab--active' }}">
+        {{- 'nav.comments'|trans -}}
+      </a>
+    </li>
+  </ul>
+{% endmacro front_post_types %}
+
+{% macro forum_post_types(forum_name, current) %}
+  <ul class="unlistify flex">
+    <li>
+      <a href="{{ path('forum', { forum_name: forum_name }) }}"
+         class="tab {{ current == 'submissions' ? 'tab--active' }}">
+        {{- 'nav.submissions'|trans -}}
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('forum_comments', { forum_name: forum_name }) }}"
+         class="tab {{ current == 'comments' ? 'tab--active' }}">
+        {{- 'nav.comments'|trans -}}
+      </a>
+    </li>
+  </ul>
+{% endmacro forum_post_types %}
+
+{% macro submission_sort(current) %}
+  {% from _self import _submission_sort_items, _tab_button %}
+  {% set current_label = 'submission.sort_by_%s'|format(current)|trans %}
+  <li class="dropdown">
+    {{ _tab_button(current_label, 'label.sort_by_mode', '%mode%', 'sort') }}
+
+    <ul class="dropdown__menu dropdown-card unlistify">
+      {{ _submission_sort_items(current, ['hot', 'new', 'active'], null) }}
+      {{ _submission_sort_items(current, ['top', 'controversial', 'most_commented'], 'day') }}
+    </ul>
+  </li>
+{% endmacro submission_sort %}
+
+{% macro _submission_sort_items(current, types, time) %}
+  {% set attr = app.request.attributes %}
+  {% for type in types %}
+    <li>
+      <a href="{{ path(attr.get('_route'), (attr.get('_route_params') ?? [])|merge({sortBy: type, t: time})) }}"
+         class="no-wrap menu-item {{ type == current ? 'menu-item--active' }}">
+        {{- ('submission.sort_by_'~type)|trans -}}
+      </a>
+    </li>
+  {% endfor %}
+{% endmacro _submission_sort_items %}
+
+{% macro submission_filter(choice, sort_by) %}
+  {% from _self import _tab_button %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% set filter_modes = {
+    featured: { label: 'front.featured'|trans },
+    subscribed: { label: 'front.subscribed'|trans, condition: is_granted('ROLE_USER') },
+    all: { label: 'front.all'|trans },
+    moderated: { label: 'nav.moderated'|trans, condition: (app.user.moderatorTokens ?? [])|length > 0 },
+  } %}
+  {% set current_label = filter_modes[choice].label %}
+  <li class="dropdown">
+    {{ _tab_button(current_label, 'label.filter_on_mode', '%mode%', 'filter') }}
+
+    <ul class="dropdown__menu dropdown-card unlistify">
+      {% for route, mode in filter_modes|filter(mode => mode.condition ?? true) %}
+        <li>
+          <a href="{{ path(route, {sortBy: sort_by}) }}"
+             class="no-wrap menu-item {{ choice == route ? 'menu-item--active' }}">
+            {{- mode.label -}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </li>
+{% endmacro submission_filter %}
+
+{% macro submission_time(sort_by) %}
+  {% from _self import _tab_button %}
+  {% set current = app.request.query.get('t', 'all') %}
+  {% set times = constant('App\\Entity\\Submission::TIME_OPTIONS') %}
+  {% if current not in times %}
+    {% set current = 'all' %}
+  {% endif %}
+  {% if app.request.query.has('t') or sort_by not in ['active', 'hot', 'new'] %}
+    {% set attr = app.request.attributes %}
+    {% set current_label = 'submission.time_%s'|format(current)|trans %}
+    <li class="dropdown">
+      {{ _tab_button(current_label, 'label.from_time', '%time%', 'clock') }}
+
+      <ul class="dropdown__menu dropdown-card unlistify">
+        {% for time in times %}
+          <li>
+            <a href="{{ path(attr.get('_route'), (attr.get('_route_params') ?? [])|merge({t: time})) }}"
+               class="no-wrap menu-item {{ time == current ? 'menu-item--active' }}">
+              {{- ('submission.time_'~time)|trans -}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+{% endmacro submission_time %}
+
+{% macro _tab_button(choice_label, label_name, label_key, icon) %}
+  {% from '_macros/icon.html.twig' import icon %}
+  <button type="button"
+          class="dropdown__toggle tab no-underline unbuttonize"
+          aria-label="{{ label_name|trans({ (label_key): choice_label }) }}">
+    {{ icon(icon) }}
+    <span class="no-underline__exempt">{{ choice_label }}</span>
+    <span class="dropdown__arrow"></span>
+  </button>
+{% endmacro _tab_button %}

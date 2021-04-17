@@ -1,0 +1,12 @@
+.flow-mixin(@margin) {
+  > * + * {
+    margin-top: @margin;
+  }
+
+  > legend + * {
+    margin-top: 0;
+  }
+}
+
+.flow { .flow-mixin(1rem) }
+.flow-slim { .flow-mixin(0.5rem) }

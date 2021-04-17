@@ -1,0 +1,10 @@
+// remove underline on links
+.no-underline {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover &__exempt {
+    text-decoration: underline;
+  }
+}

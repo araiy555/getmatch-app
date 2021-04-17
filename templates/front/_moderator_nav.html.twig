@@ -1,0 +1,14 @@
+{% set route = app.request.attributes.get('_route') %}
+<div class="flex__grow"></div>
+<ul class="unlistify flex">
+  <li>
+    <a href="{{ path('moderated') }}" class="tab {{ route == 'moderated' ? 'tab--active' }}">
+      {{- 'nav.forums'|trans -}}
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('trash') }}" class="tab {{ route == 'trash' ? 'tab--active' }}">
+      {{- 'nav.trash'|trans -}}
+    </a>
+  </li>
+</ul>

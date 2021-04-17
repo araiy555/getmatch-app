@@ -1,0 +1,43 @@
+@import (reference) '../_utilities/hidden';
+
+// js-free method for hiding things
+.hideable {
+  &__checkbox {
+    .hidden();
+  }
+
+  &:not(&--direct) &__checkbox:not(:checked) ~ &__hide,
+  &:not(&--direct) &__checkbox:not(:checked) ~ * &__hide {
+    display: none;
+  }
+
+  &--direct &__checkbox:not(:checked) + &__hide,
+  &--direct &__checkbox:not(:checked) + * &__hide {
+    display: none;
+  }
+
+  &__toggle {
+    color: var(--link);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__checkbox:focus ~ &__toggle {
+    text-decoration: underline;
+  }
+
+  // double selectors for increased specificity - needed for recursive hideables
+  // to work.
+  &__checkbox&__checkbox:not(:checked) ~ &__indicator::after,
+  &__checkbox&__checkbox:not(:checked) ~ * &__indicator::after {
+    content: attr(data-unhide-text) ' +';
+  }
+
+  &__checkbox:checked ~ &__indicator::after,
+  &__checkbox:checked ~ * &__indicator::after {
+    content: attr(data-hide-text) '\20\2212';
+  }
+}

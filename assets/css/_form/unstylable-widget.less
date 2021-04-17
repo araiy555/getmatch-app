@@ -1,0 +1,65 @@
+// wrapper for so-called "unstylable" form widgets (select, radio, checkbox).
+// the widget is expected to have the .form-control class.
+.unstylable-widget {
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  white-space: nowrap;
+
+  select:not([multiple]) {
+    appearance: none;
+    padding-right: 2ch;
+  }
+
+  &__caret,
+  &__check,
+  &__circle {
+    pointer-events: none;
+    position: absolute;
+
+    :disabled + & {
+      color: var(--fg-grey);
+    }
+  }
+
+  &__caret {
+    border-left: 0.5ch solid transparent;
+    border-right: 0.5ch solid transparent;
+    border-top: 0.5ch solid;
+    display: none;
+    top: calc(50% - 0.25ch);
+    right: calc(1px + 0.5ch);
+
+    select:not([multiple]) + & {
+      display: unset;
+    }
+
+    :focus + & {
+      border-top: none;
+      border-bottom: solid 0.5ch;
+    }
+  }
+
+  &__check,
+  &__circle {
+    font-size: calc(var(--font-size) - var(--shrink));
+    left: calc(var(--shrink) / 2 + 1px);
+    top: calc(var(--shrink) / 2 + 1px);
+
+    :not(:checked) + & {
+      display: none;
+    }
+  }
+
+  &__check {
+    --shrink: 2px;
+  }
+
+  &__circle {
+    --shrink: 6px;
+    background: currentColor;
+    border-radius: 50%;
+    width: calc(var(--font-size) - var(--shrink));
+    height: calc(var(--font-size) - var(--shrink));
+  }
+}

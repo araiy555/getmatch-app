@@ -1,0 +1,244 @@
+{% block markdown_row %}
+  {{ form_row(form, {
+    help: block('_markdown_help'),
+    help_attr: { class: 'hideable' },
+    raw_help: true,
+    row_attr: { class: 'form-flex--stretch' },
+  }) }}
+{%- endblock markdown_row %}
+
+{% block markdown_widget -%}
+  <div class="flow-slim" {{ (app.user.enablePostPreviews ?? false) ? 'data-controller="markdown"' }}>
+    {{- form_widget(form, {
+      attr: {
+        class: 'flex__grow body_cnt',
+        'data-action': 'markdown#preview',
+        'data-markdown-target': 'input',
+      },
+    }) -}}
+
+    <div class="markdown-preview" data-markdown-target="previewContainer" hidden>
+      <h3 class="markdown-preview__title">{{ 'markdown.preview'|trans }}</h3>
+      <div class="markdown-preview__inner text-flow" data-markdown-target="preview"></div>
+    </div>
+  </div>
+{%- endblock markdown_widget %}
+
+{% block _markdown_help %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+      function setClickImageLink() {
+          let image_field = $('input[name="image_field"]').val();
+          let set_image = '!['+ image_field +']('+ image_field +')';
+
+          $('.body_cnt').append(set_image);
+      }
+      function setClickMovieLink() {
+          let movie_field = $('input[name="movie_field"]').val();
+          let movie_thumbnail_field = $('input[name="movie_thumbnail_field"]').val();
+          let set_movie_thumbnail_field = movie_thumbnail_field == '' ? '-' : movie_thumbnail_field;
+          let set_movie_field = '[![]('+ set_movie_thumbnail_field +')]('+ movie_field +')';
+
+
+          $('.body_cnt').append(set_movie_field);
+      }
+</script>
+
+  <input type="checkbox" class="hideable__checkbox" id="{{ id~'_markdown_help' }}">
+  <span class="fg-muted text-sm">{{ 'markdown.allowed'|trans }}</span>
+
+  <label class="hideable__toggle no-underline text-sm" for="{{ id~'_markdown_help' }}">
+    <span class="no-underline__exempt">{{- 'markdown.help'|trans }}</span>
+    <span class="hideable__indicator" role="presentation"></span>
+  </label>
+
+  {% apply spaceless %}
+    <table class="formatting-help hideable__hide fg-muted text-sm">
+      <tbody>
+        <tr>
+          <td class="text-flow">
+            <p>{{ 'markdown.paragraph'|trans }}</p>
+            <p>{{ 'markdown.another_paragraph'|trans }}</p>
+          </td>
+          <td>
+            <kbd>
+              {{ 'markdown.paragraph'|trans }}<br>
+              <br>
+              {{ 'markdown.another_paragraph'|trans }}
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ 'markdown.line'|trans }}<br>
+            {{ 'markdown.break'|trans }}
+          </td>
+          <td>
+            <kbd>
+              {{ 'markdown.line'|trans }} \<br>
+              {{ 'markdown.break'|trans }}
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td><em>{{ 'markdown.emphasis'|trans }}</em></td>
+          <td><kbd>*{{ 'markdown.emphasis'|trans }}*</kbd></td>
+        </tr>
+        <tr>
+          <td><strong>{{ 'markdown.strong_emphasis'|trans }}</strong></td>
+          <td><kbd>**{{ 'markdown.strong_emphasis'|trans }}**</kbd></td>
+        </tr>
+        <tr>
+          <td><del>{{ 'markdown.strikethrough'|trans }}</del></td>
+          <td><kbd>~~{{ 'markdown.strikethrough'|trans }}~~</kbd></td>
+        </tr>
+        <tr>
+          <td>
+            {% for i in 1..6 %}
+              <h{{ i }}>
+                {{ 'markdown.heading'|trans({ '%count%': i }) }}
+              </h{{ i }}>
+            {% endfor %}
+          </td>
+          <td>
+            <kbd>
+              {{ 'markdown.heading'|trans({ '%count%': 1 }) }}<br>
+              ===<br>
+              <br>
+              {{ 'markdown.heading'|trans({ '%count%': 2 }) }}<br>
+              ---<br>
+              <br>
+              ### {{ 'markdown.heading'|trans({ '%count%': 3 }) }}<br>
+              #### {{ 'markdown.heading'|trans({ '%count%': 4 }) }}<br>
+              ##### {{ 'markdown.heading'|trans({ '%count%': 5 }) }}<br>
+              ###### {{ 'markdown.heading'|trans({ '%count%': 6 }) }}
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>{{ 'markdown.list_item'|trans }}</li>
+              <li>{{ 'markdown.list_item'|trans }}</li>
+            </ul>
+          </td>
+          <td>
+            <kbd>
+              * {{ 'markdown.list_item'|trans }}<br>
+              * {{ 'markdown.list_item'|trans }}<br>
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ol>
+              <li>{{ 'markdown.list_item'|trans }}</li>
+              <li>{{ 'markdown.list_item'|trans }}</li>
+            </ol>
+          </td>
+          <td>
+            <kbd>
+              1. {{ 'markdown.list_item'|trans }}<br>
+              2. {{ 'markdown.list_item'|trans }}<br>
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="#" tabindex="-1">{{ 'markdown.link'|trans }}</a><br>
+            <a href="#" tabindex="-1">/f/{{ 'markdown.forum'|trans }}</a><br>
+            <a href="#" tabindex="-1">/u/{{ 'markdown.user'|trans }}</a><br>
+            <a href="#" tabindex="-1">/w/{{ 'markdown.wiki_page'|trans }}</a>
+          </td>
+          <td>
+            <kbd>
+              [{{ 'markdown.link'|trans }}](http://example.com)<br>
+              /f/{{ 'markdown.forum'|trans }}<br>
+              /u/{{ 'markdown.user'|trans }}<br>
+              /w/{{ 'markdown.wiki_page'|trans }}
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-flow">
+            <blockquote>
+              <p>{{ 'markdown.blockquote'|trans }}</p>
+              <p>{{ 'markdown.another_paragraph'|trans }}</p>
+            </blockquote>
+          </td>
+          <td>
+            <kbd>
+              &gt; {{ 'markdown.blockquote'|trans }}<br>
+              &gt;<br>
+              &gt; {{ 'markdown.another_paragraph'|trans }}
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>{{ 'markdown.horizontal_rule'|trans }}<hr></td>
+          <td>
+            <kbd>
+              {{ 'markdown.horizontal_rule'|trans }}<br>
+              <br>
+              ---
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td><code>{{ 'markdown.inline_code'|trans }}</code></td>
+          <td><kbd>`{{ 'markdown.inline_code'|trans }}`</kbd></td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              <span class="fg-blue">&lt;</span><span class="fg-orange">div</span><span class="fg-blue">&gt;</span><br>
+              &nbsp;&nbsp;<span class="fg-text">{{ 'markdown.code_block'|trans }}</span><br>
+              <span class="fg-blue">&lt;/</span><span class="fg-orange">div</span><span class="fg-blue">&gt;</span><br>
+            </code>
+          </td>
+          <td>
+            <kbd>
+              ~~~html<br>
+              &lt;div&gt;<br>
+              &nbsp;&nbsp;{{ 'markdown.code_block'|trans }}<br>
+              &lt;/div&gt;<br>
+              ~~~
+            </kbd>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>
+              &nbsp;&nbsp;<span class="fg-text">{{ 'markdown.image'|trans }}</span><br>
+            </code>
+          </td>
+          <td>
+            <kbd>
+
+              <input name="image_field" value="{{ 'markdown.image'|trans }}">
+             <input type="button" value="{{ 'action.send'|trans }}" onclick="setClickImageLink()">
+            </kbd>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>
+              &nbsp;<span class="fg-text">{{ 'markdown.movie'|trans }}</span><br>
+            </code>
+          </td>
+          <td>
+            <kbd>
+              <input name="movie_thumbnail_field" value="{{ 'markdown.movie_thumbnail'|trans }}">
+              <input name="movie_field" value="{{ 'markdown.movie'|trans }}">
+              <input type="button" value="{{ 'action.send'|trans }}" onclick="setClickMovieLink()">
+            </kbd>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  {% endapply %}
+{% endblock _markdown_help %}
+

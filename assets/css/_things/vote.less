@@ -1,0 +1,44 @@
+@import '../_variables';
+
+.vote {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  width: @vote-width;
+
+  &--loading &__net-score,
+  &:not(&--loading) &__spinner {
+    display: none;
+  }
+
+  &__button {
+    color: var(--fg-grey);
+    cursor: pointer;
+    line-height: 1;
+    height: 1em;
+    transition: opacity .1s;
+    white-space: nowrap;
+  }
+
+  &--loading &__button {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &--user-upvoted &__up {
+    color: var(--fg-orange);
+  }
+
+  &--user-downvoted &__down {
+    color: var(--fg-blue);
+  }
+
+  &__net-score {
+    font-weight: bold;
+  }
+
+  &--failed &__net-score {
+    color: var(--fg-red);
+  }
+}

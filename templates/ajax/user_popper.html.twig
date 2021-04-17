@@ -1,0 +1,58 @@
+{% from '_macros/time.html.twig' import relative_time %}
+
+<div class="flow">
+  <h1 class="text-md unheaderize">
+    {% apply spaceless %}
+      <a href="{{ path('user', { username: user.username }) }}"
+         tabindex="-1">
+        <b>{{ user.username }}</b>
+      </a>
+    {% endapply %}
+    <small class="fg-muted text-md">
+      &mdash;
+      {{ 'user.registered'|trans({
+        '%timestamp%': relative_time(user.created, { time_format: 'none', natural: true })
+      })|raw }}
+    </small>
+  </h1>
+
+  <ul class="flex flex--guttered flex--slim-gutters unlistify">
+    <li>
+      <a href="{{ path('user', { username: user.username }) }}"
+         class="button button--secondary button--small"
+         tabindex="-1">
+        {{- 'nav.profile'|trans -}}
+      </a>
+    </li>
+
+    {% if is_granted('ROLE_USER') and user is not same as(app.user) %}
+      <li>
+        {% if not app.user.blocking(user) %}
+          <a href="{{ path('block_user', { username: user.username }) }}"
+             class="button button--secondary button--small"
+             tabindex="-1">
+            {{- 'nav.block_user'|trans -}}
+          </a>
+        {% else %}
+          <form action="{{ path('unblock_user', { username: user.username }) }}"
+                method="POST">
+            <input type="hidden" name="token" value="{{ csrf_token('unblock') }}">
+            <button class="button button--secondary button--small" tabindex="-1">
+              {{- 'action.unblock'|trans -}}
+            </button>
+          </form>
+        {% endif %}
+      </li>
+
+      {% if is_granted('message', user) %}
+        <li>
+          <a href="{{ path('compose_message', { username: user.username }) }}"
+             class="button button--secondary button--small"
+             tabindex="-1">
+            {{- 'user.message'|trans -}}
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+  </ul>
+</div>

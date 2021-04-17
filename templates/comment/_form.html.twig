@@ -1,0 +1,16 @@
+{% from '_macros/form.html.twig' import button_row %}
+
+{{ form_start(form, {attr: {class: 'comment-form'}}) }}
+  {{ form_errors(form) }}
+
+  {{ form_row(form.comment, {
+    attr: { 'aria-label': 'label.comment'|trans, rows: 6 },
+    label_attr: { hidden: true }
+  }) }}
+
+  {% if form.userFlag is defined %}
+    {{ form_row(form.userFlag) }}
+  {% endif %}
+
+  {{ button_row(editing ? 'action.save'|trans : 'action.post'|trans) }}
+{{ form_end(form) }}

@@ -1,0 +1,102 @@
+{% extends 'wiki/base.html.twig' %}
+{% from '_macros/icon.html.twig' import icon %}
+
+{% block title page.latestRevision.title %}
+{% block description 'wiki.page_description'|trans %}
+
+{% block head %}
+  <link rel="canonical" href="{{ url('wiki', {path: page.path}) }}">
+{% endblock %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'wiki' %}
+{% block wiki_page_toolbox_active app.request.attributes.get('_route') %}
+
+{% block body %}
+  <article class="wiki-article flow">
+    <h1 class="page-heading wiki-article__title">{{ block('title') }}</h1>
+
+    <div class="wiki-article__body text-flow">
+      {{ page.latestRevision.body|markdown({
+        (constant('App\\Markdown\\Listener\\WikiListener::ATTR_ENABLE_WIKI_MODE')): true,
+      })|raw }}
+    </div>
+  </article>
+{% endblock %}
+
+{% block sidebar %}
+  {% from '_macros/time.html.twig' import relative_time %}
+
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ page.path }}</h1>
+      <p>
+        {{- 'wiki.last_edited'|trans({
+          '%username%': '<a href="%s">%s</a>'|format(
+            path('user', {username: page.latestRevision.user.username})|escape,
+            page.latestRevision.user.username|escape
+          ),
+          '%timestamp%': relative_time(page.latestRevision.timestamp, { natural: true }),
+        })|raw -}}
+      </p>
+
+    {% if page.locked %}
+      <p class="wiki-lock-notice">
+        <span>{{ icon('lock') }}</span>
+        <span>{{ 'wiki.locked_notice'|trans }}</span>
+      </p>
+    {% endif %}
+
+    {% if is_granted('lock', page) or is_granted('delete', page) %}
+      <nav>
+        <ul class="flex flex--guttered unlistify">
+          {% if is_granted('lock', page) %}
+            <li>
+              <form action="{{ path(page.locked ? 'wiki_unlock' : 'wiki_lock', {path: page.path}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('wiki_lock') }}">
+                <button class="button button--small">{{ (page.locked ? 'action.unlock' : 'action.lock')|trans }}</button>
+              </form>
+            </li>
+          {% endif %}
+
+          {% if is_granted('delete', page) %}
+            <li>
+              <form action="{{ path('wiki_delete', { path: page.path }) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('wiki_delete') }}">
+                <button class="button button--small"
+                        data-controller="dialog"
+                        data-action="dialog#confirm"
+                        data-dialog-text-value="{{ 'prompt.confirm_wiki_delete'|trans }}">
+                  {{- 'action.delete'|trans -}}
+                </button>
+              </form>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  </section>
+
+  <section class="sidebar__section flow">
+    <h1 class="sidebar__title">{{ 'label.toolbox'|trans }}</h1>
+
+    <ul class="unlistify sidebar__no-padding">
+      {% if is_granted('write', page) %}
+        <li>
+          <a href="{{ path('wiki_edit', {path: page.path}) }}"
+             class="menu-item {{ block('wiki_page_toolbox_active') == 'wiki_edit' ? 'menu-item--active' }}">
+            {{ 'wiki.edit_page'|trans }}
+          </a>
+        </li>
+      {% endif %}
+
+      <li>
+        <a href="{{ path('wiki_history', {path: page.path}) }}"
+           class="menu-item {{ block('wiki_page_toolbox_active') == 'wiki_history' ? 'menu-item--active' }}">
+          {{- 'wiki.page_history'|trans -}}
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  {{ parent() }}
+{% endblock %}

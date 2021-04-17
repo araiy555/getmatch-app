@@ -1,0 +1,243 @@
+stages:
+    - audit
+    - lint
+    - build-app
+    - test
+    - build-web
+    - release
+
+
+# =====
+# Audit
+# =====
+
+audit:php:
+    stage: audit
+    image: composer:2
+    needs: []
+    allow_failure: true
+    script:
+        - composer update roave/security-advisories:dev-latest
+          --dry-run
+          --ignore-platform-reqs
+
+audit:node:
+    stage: audit
+    image: node:10-alpine
+    needs: []
+    allow_failure: true
+    script:
+        - yarn audit
+
+
+# ====
+# Lint
+# ====
+
+lint:composer:
+    stage: lint
+    image: composer:2
+    needs: []
+    except:
+        - schedules
+    script:
+        - composer validate --strict
+
+lint:yaml:
+    stage: lint
+    image: composer:2
+    needs: []
+    except:
+        - schedules
+    before_script:
+        - composer global require symfony/console symfony/yaml
+    script:
+        - $COMPOSER_HOME/vendor/bin/yaml-lint --parse-tags config translations
+
+lint:js:
+    stage: lint
+    image: node:10-alpine
+    needs: []
+    except:
+        - schedules
+    cache:
+        paths:
+            - .yarn
+            - node_modules
+    before_script:
+        - yarn install --cache-folder .yarn
+    script:
+        - yarn run lint:js
+
+lint:php:8.0: &lint-php
+    stage: lint
+    image: php:8.0-alpine
+    needs: []
+    except:
+        - schedules
+    script:
+        - find config public src tests -type f -name "*.php" -print0 |
+          xargs -0 -n1 -P4 php -l -n |
+          (! grep -v "No syntax errors detected" )
+
+lint:php:7.4:
+    <<: *lint-php
+    image: php:7.4-alpine
+
+lint:php:7.3:
+    <<: *lint-php
+    image: php:7.3-alpine
+
+
+# =========
+# Build app
+# =========
+
+build-app:8.0: &build-app
+    image: docker:19-git
+    stage: build-app
+    needs: ['lint:php:7.4']
+    except:
+        - schedules
+    services:
+        - docker:dind
+    variables: &build-app-vars
+        PHP_VERSION: '8.0'
+        TEST_IMAGE_APP: ${CI_REGISTRY_IMAGE}/app:${PHP_VERSION}-${CI_COMMIT_SHA}
+        TEST_IMAGE_WEB: ${CI_REGISTRY_IMAGE}/web:${CI_COMMIT_SHA}
+        RELEASE_IMAGE_APP: ${CI_REGISTRY_IMAGE}/app:latest
+        RELEASE_IMAGE_WEB: ${CI_REGISTRY_IMAGE}/web:latest
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker pull $RELEASE_IMAGE_APP || true
+        - docker build
+            --build-arg APP_VERSION="$(git describe --tags)"
+            --build-arg APP_BRANCH="$CI_COMMIT_REF_NAME"
+            --build-arg PHP_VERSION="$PHP_VERSION"
+            --cache-from $RELEASE_IMAGE_APP
+            --target postmill_php
+            -t $TEST_IMAGE_APP
+            .
+        - docker build
+            --build-arg APP_VERSION="$(git describe --tags)"
+            --build-arg APP_BRANCH="$CI_COMMIT_REF_NAME"
+            --build-arg PHP_VERSION="$PHP_VERSION"
+            --target postmill_php_test
+            -t $TEST_IMAGE_APP-test
+            .
+        - docker push $TEST_IMAGE_APP
+        - docker push $TEST_IMAGE_APP-test
+
+build-app:7.4:
+    <<: *build-app
+    needs: ['lint:php:7.4']
+    variables:
+        <<: *build-app-vars
+        PHP_VERSION: '7.4'
+
+build-app:7.3:
+    <<: *build-app
+    needs: ['lint:php:7.3']
+    variables:
+        <<: *build-app-vars
+        PHP_VERSION: '7.3'
+
+
+# ====
+# Test
+# ====
+
+test:8.0: &test
+    image: ${CI_REGISTRY_IMAGE}/app:8.0-${CI_COMMIT_SHA}-test
+    stage: test
+    needs: ['build-app:8.0']
+    except:
+        - schedules
+    services:
+        - postgres:9.4-alpine
+    variables:
+        APP_ENV: test
+        DATABASE_URL: pgsql://postmill:secret@postgres/postmill?serverVersion=9.4
+        ENABLE_EXPERIMENTAL_REST_API: 1
+        POSTGRES_USER: postmill
+        POSTGRES_PASSWORD: secret
+    before_script:
+        - composer install --prefer-dist --no-suggest --no-interaction
+        - bin/console doctrine:migrations:migrate --no-interaction
+        - bin/console doctrine:fixtures:load --no-interaction
+        - mkdir public/build
+        - cp /app/public/build/*.json public/build/
+    script:
+        - bin/console doctrine:mapping:info -q
+        - bin/phpunit --coverage-cobertura=coverage.xml --log-junit=report.xml
+    artifacts:
+        reports:
+            cobertura: coverage.xml
+            junit: report.xml
+
+test:7.4:
+    <<: *test
+    image: ${CI_REGISTRY_IMAGE}/app:7.4-${CI_COMMIT_SHA}-test
+    needs: ['build-app:7.4']
+
+test:7.3:
+    <<: *test
+    image: ${CI_REGISTRY_IMAGE}/app:7.3-${CI_COMMIT_SHA}-test
+    needs: ['build-app:7.3']
+
+
+# =========
+# Build web
+# =========
+
+build-web:
+    stage: build-web
+    image: docker:19
+    services:
+        - docker:dind
+    needs: ['test:8.0']
+    variables:
+        <<: *build-app-vars
+    except:
+        - schedules
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker pull $TEST_IMAGE_APP
+        - docker build
+            --build-arg APP_VERSION="$(git describe --tags)"
+            --build-arg APP_BRANCH="$CI_COMMIT_REF_NAME"
+            --build-arg PHP_VERSION="8.0"
+            --cache-from $TEST_IMAGE_APP
+            --target postmill_web
+            -t $TEST_IMAGE_WEB
+            .
+        - docker push $TEST_IMAGE_WEB
+
+
+# =======
+# Release
+# =======
+
+release:
+    image: docker:19
+    stage: release
+    needs: ['test:8.0', 'build-web']
+    services:
+        - docker:dind
+    variables:
+        <<: *build-app-vars
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker pull $TEST_IMAGE_APP
+        - docker pull $TEST_IMAGE_WEB
+        - docker tag $TEST_IMAGE_APP $RELEASE_IMAGE_APP
+        - docker tag $TEST_IMAGE_WEB $RELEASE_IMAGE_WEB
+        - docker push $RELEASE_IMAGE_APP
+        - docker push $RELEASE_IMAGE_WEB
+    except:
+        - schedules
+    only:
+        - main

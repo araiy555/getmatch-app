@@ -1,0 +1,40 @@
+/.*
+!/.babelrc
+!/.env
+
+# IDEA/PhpStorm
+*.iml
+.idea/
+
+# Vim
+*.sw[a-z]
+*~
+.lvimrc
+Session.vim
+tags
+
+# misc
+*.bak
+*.md
+*.phar
+*.sql
+*.sw[a-z]
+.DS_Store
+.editorconfig
+.env.*
+.gitignore
+.gitlab-ci.yml
+.php_cs.cache
+docs/
+keys/
+node_modules/
+phpunit.xml.dist
+public/
+!public/index.php
+templates/overrides/
+!templates/overrides/.gitignore
+translations/overrides/
+!translations/overrides/.gitignore
+tests/
+var/
+vendor/

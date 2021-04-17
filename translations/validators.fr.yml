@@ -1,0 +1,4 @@
+comment.empty: Le commentaire ne doit pas être vide.
+forum.duplicate_name: Un forum existe déjà sous ce nom.
+forum.name_characters: Le nom doit contenir que des lettres, nombres, et des caractères de soulignement.
+ratelimit.error: Tu ne peux pas publier davantage. Attends un peu avant de réessayer.

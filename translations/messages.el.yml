@@ -1,0 +1,326 @@
+top.title: GetMatch | Πρώτη σελίδα στο Διαδίκτυο
+top.description: Καλώς ήρθατε στο GetMatch. Είμαστε ένα δίκτυο κοινοτήτων που βασίζεται στα ενδιαφέροντα των ανθρώπων. Βρείτε μια κοινότητα που σας ενδιαφέρει και γίνετε μέλος της διαδικτυακής μας κοινότητας!
+wiki.page_description: Καλώς ήρθατε στο GetMatch. Ελέγξτε το "wiki" μας και δείτε τι έχουμε συγκεντρώσει για εσάς.
+action.log_in_description: Καλώς ήρθατε στο GetMatch. Με τη σύνδεση, θα έχετε πρόσβαση στο περιεχόμενο του GetMatch.
+action.sign_up_description: Καλώς ήρθατε στο GetMatch. Με την εγγραφή σας για λογαριασμό, θα έχετε πρόσβαση στο περιεχόμενο του GetMatch.
+forum_list.page_description: Καλώς ήρθατε στο GetMatch. Ελέγξτε τις πληροφορίες του "Forum List" και γίνετε μέλος της κοινότητας.
+nav.shop: shopping
+markdown.image: image
+markdown.movie: video
+markdown.movie_thumbnail: Video thumbnail
+footer.terms_of_service: Terms of Service
+footer.privacy: Privacy
+footer.faq: FAQ
+footer.contact: Contact Us
+action.ban: Απαγόρευση
+action.block: Αποκλεισμός
+action.delete: Διέγραψε
+action.delete_thread: Διαγραφή με απαντήσεις
+action.downvote: Κατοψηφίσει
+action.edit: Επεξεργασία
+action.global_ban: Πλήρης απαγόρευση
+action.go_to_home_page: Επιστροφή στην Αρχική σελίδα
+action.lock: Κλείδωμα
+action.log_in: Σύνδεση
+action.log_out: Αποσυνδέση
+action.remove: Αφαίρεσε
+action.retract_downvote: Ανακαλέστε καταψήφο
+action.retract_upvote: Ανακαλέστε ψήφο
+action.save: Υποβάλλετε
+action.save_changes: Αποθήκευσε αλλαγές
+action.send: Στείλε
+action.sign_up: Εγγραφή
+action.subscribe: Εγγραφείτε
+action.unban: Αντιστρέψτε την απαγόρευση
+action.unblock: Ξεμπλοκάρισμα
+action.unlock: Ξεκλείδωμα
+action.unsubscribe: Διαγραφείτε
+action.upvote: Πανοψηφίσει
+
+add_moderator.title: Προσθέστε τον συντονιστή στο %forum%
+
+ban_add.title: Κάντε απαγόρευση μιας διεύθυνσης IP
+
+ban_list.banned_by: Έχει απαγορευτεί από
+ban_list.expires: Λήγει
+ban_list.expires_never: ποτέ
+ban_list.reason: Λόγος
+ban_list.remove: Αφαιρέστε τις απαγορεύσεις
+ban_list.timestamp: Ωρα
+ban_list.user: Χρήστης
+ban_list.user_none: κανένας
+
+banned.title: Έχετε απαγορευτεί
+
+comments.comments: Σχόλια
+comments.edit_info: (Επεξεργασία %edited_at%)
+comments.form_load_error: Πρόβλημα φόρτωσης. Παρακαλω προσπαθησε ξανα.
+comments.info: '%user% έγραψε %timestamp%'
+comments.moderator_info: (Επεξεργασία απο συντονιστή %edited_at%)
+comments.not_logged_in: Πρεπει να κάνεις %login_link% ή %register_link% για να κάνεις σχόλιο.
+comments.not_logged_in_login_link_label: Σύνδεσε
+comments.not_logged_in_register_link_label: Εγγραφή
+comments.parent: Γονικό σχόλιο
+comments.reply: Απάντησε
+comments.return_to_forum: Επιστρέψετε στην %forum%
+comments.thread_return: Δείτε όλα τα σχόλια
+comments.viewing_thread: Βλέπετε ένα νήμα σχολίων.
+
+comment_form.create_title: Γράφω σχόλιο
+comment_form.edit_title: Διόρθωση σχολίου
+
+compose_message.title: Γράφοντας μήνυμα στον/στη %username%
+
+create_forum.create_new_forum: Δημιουργία νέου φόρουμ
+
+edit_forum.title: Επεξεργασία %forum%
+
+edit_user.title: Επεξεργασία χρήστη %username%
+
+flash.ban_added: Η διεύθυνση IP έχει απαγορευτεί.
+flash.forum_deleted: Το φόρουμ και όλο το περιεχόμενό του έχουν αφαιρεθεί.
+flash.forum_moderator_added: Ο χρήστης έχει γίνει συντονιστής.
+flash.forum_updated: Οι αλλαγές έχουν αποθηκευτεί.
+flash.no_cookies_verification: Η εικόνα δεν φορτώνεται σωστά; Βεβαιωθείτε ότι δεν αποκλείετε τα cookies και προσπαθήστε ξανά.
+flash.no_entries_to_display: Δεν υπάρχουν καταχωρήσεις για εμφάνιση.
+flash.no_messages: Δεν υπάρχουν μηνύματα.
+flash.no_moderated_forums: Δεν συντονίζετε κανένα φόρουμ.
+flash.no_password_resets: Η επαναφορά κωδικών πρόσβασης έχει απενεργοποιηθεί από το διαχειριστή.
+flash.page_locked: Η σελίδα έχει κλειδωθεί.
+flash.page_unlocked: Η σελίδα έχει ξεκλειδωθεί.
+flash.reset_password_email_sent: Ένα μήνυμα επαναφοράς στάλθηκε στη διεύθυνση που καθορίσατε.
+flash.submission_deleted: Η υποβολή διαγράφηκε.
+flash.submission_edited: Έχετε κάνει τις αλλαγές
+flash.submission_is_locked: Η υποβολή είναι κλειδωμένη. Δεν μπορείτε να δημοσιεύσετε νέα σχόλια.
+flash.submission_locked: Η υποβολή έχει κλειδωθεί.
+flash.submission_unlocked: Η υποβολή έχει ξεκλειδωθεί.
+flash.user_account_registered: Ο λογαριασμός σας έχει εγγραφεί.
+flash.user_biography_updated: Η βιογραφία ενημερώθηκε.
+flash.user_blocked: Ο χρήστης αποκλείστηκε.
+flash.user_password_updated: Ο κωδικός πρόσβασής σας έχει ενημερωθεί.
+flash.user_settings_updated: Οι προτιμήσεις χρήστη έχουν αλλάξει.
+flash.user_unblocked: Ο χρήστης ξεκλειδώθηκε.
+flash.user_unmodded: Ο χρήστης δεν είναι πλέον συντονιστής.
+flash.user_was_banned: Ο χρήστης απαγορεύτηκε.
+flash.user_was_unbanned: Η απαγόρευση του χρήστη αντιστράφηκε.
+
+forum.add_as_moderator: Υποβάλλε
+forum.add_moderator: Προσθέστε συντονιστή
+forum.create: Δημιουργία φόρουμ
+forum.delete: Διαγραφή φόρουμ
+forum.edit: Επεξεργασία φόρουμ
+forum.moderators: Συντονιστές
+forum.subscriber_count: '{0} Μηδενικούς συνδρομητές|{1} %formatted_count% συνδρομητής|[1,Inf[ %formatted_count% συνδρομητές'
+
+forum_form.featured: Εμφανίστε την στην πρώτη σελίδα
+
+forum_list.page_title: Λίστα φόρουμ
+forum_list.submission_count: Συνεισφορές
+forum_list.subscribers: Συνδρομητές
+
+forum_moderators.last_seen: Τελευταία ενεργή
+forum_moderators.since: από
+forum_moderators.title: Συντονιστές για %forum_name%
+
+front.all: Ολα
+front.featured: Προεπιλεγμένα
+front.featured_forums: Προεπιλεγμένα φόρουμ
+front.no_forums: Δεν υπάρχουν προεπιλεγμένα φόρουμ για να δείτε.
+front.no_subscriptions: Δεν είστε εγγεγραμμένοι σε κανένα φόρουμ. Εμφανίζονται τα προεπιλεγμένα φόρουμ.
+front.subscribed: Συνδρομητής
+front.subscribed_forums: Φόρουμ στα οποία είμαι συνδρομητής
+
+heading.forums_you_moderate: Φόρουμ στα οποία είστε συντονιστής
+heading.message_reply: "%sender% απάντησε στον %timestamp%"
+heading.message_thread: "%sender% έγραψε στον %receiver% %timestamp%"
+heading.multi_forum_view: Εμφάνιση πολλαπλών φόρουμ
+
+help.delete_forum_warning: Όλο το περιεχόμενο σε αυτό το φόρουμ θα διαγραφεί για πάντα!
+help.forum_description: Σύντομη περιγραφή του φόρουμ. Οι μηχανές αναζήτησης θα παρουσιάσουν αυτήν την περιγραφή στα αποτελέσματά τους.
+
+inbox.message_reply_head: 'Re: %τίτλος%'
+
+label.action: Δράση
+label.admin: Διαχειριστής
+label.all: Ολα
+label.appearance: Εμφάνιση
+label.author: Author
+label.ban: Απαγόρευση
+label.banned: Αποκλεισμένος
+label.banned_by: Απαγορεύτηκε από τον
+label.bans: Λίστα απαγορεύσεων
+label.biography: Βιογραφία
+label.blocked: Αποκλεισμένος
+label.body: Σώμα
+label.comment: Σχόλιο
+label.date: Ημερομηνία
+label.default: Προκαθορισμένο
+label.description: Περιγραφή
+label.email_address: Διεύθυνση email
+label.expires: Λήγει
+label.featured: Προτεινόμενα
+label.forum: Φόρουμ
+label.from: Από
+label.front_page: Μπροστινή σελίδα
+label.general: Γενικός
+label.id: Ταυτότητα
+label.ip_address: Διεύθυνσης IP
+label.language: Γλώσσα
+label.message: Μήνυμα
+label.moderated: Συντονιστείτε
+label.name: Ονομα
+label.never: Ποτέ
+label.new_password: Νέος Κωδικός
+label.open_external_links_in_new_tab: Ανοίξτε εξωτερικούς συνδέσμους σε νέα καρτέλα
+label.overview: Επισκόπηση
+label.password: Κωδικός πρόσβασης
+label.preferred_theme: Προτιμώμενο φύλλο στυλ
+label.reason: Λόγος
+label.reason_for_banning: Λόγος απαγορευσεις
+label.recent_changes: Πρόσφατες αλλαγές
+label.repeat_new_password: Νέος Κωδικός (επαναλαμβάνω)
+label.repeat_password: Κωδικός πρόσβασης (επαναλαμβάνω)
+label.replies: Απαντήσεις
+label.sent: Στάλθηκε
+label.sidebar: Πλευρικός πίνακας
+label.source_code: Κωδικός προγραμματισμού
+label.subscribed: Συνδρομητής
+label.title: Τίτλος
+label.to: Προς
+label.toolbox: Εργαλειοθήκη
+label.unban: Αντιστρέψτε την απαγόρευση
+label.unban_associated_ips: Αφαιρέστε τις σχετικές απαγορεύσεις IP
+label.url: URL
+label.user_associated_with_ip: Χρήστης που συνδέεται με τη διεύθυνση IP
+label.username: Όνομα χρήστη
+label.verification: Επαλήθευση
+
+log.ban: '%user% έχει απαγορεύσει %banned% (λήγει: %expires%). Λόγος: "%reason%"'
+log.comment_deletion: '%user% διαγράψει σχόλιο που έκανε ο %author% στο "%submission%"'
+log.submission_deletion: '%user% διέγραψε την υποβολή "%title%" του %author%'
+log.submission_lock: '%user% έχει κλειδώσει την υποβολή "%title%" του %author%'
+log.submission_unlock: '%user% έχει ξεκλειδώσει την υποβολή "%title%" του %author%'
+log.unban: '%user% Η απαγόρευσή αντιστράφηκε %banned%. Λόγος: "%reason%"'
+
+login.reset_password: Επαναφέρετε τον κωδικό πρόσβασης;
+
+markdown.help: Βοήθεια μορφοποίησης
+
+nav.add_ban: Προσθέστε απαγόρευση
+nav.appearance: Εμφάνιση
+nav.ban_history: Ιστορία των απαγορεύσεων
+nav.bans: Απαγορεύσεων
+nav.block_list: Λίστα των μπλοκαρισμένων
+nav.block_user: Αποκλεισμός χρήστη
+nav.delete_forum: Διαγραφή φόρουμ
+nav.edit_biography: Επεξεργασία βιογραφίας
+nav.forums: Φόρουμ
+nav.ip_bans: Απαγορεύσεις IP
+nav.messages: Μηνύματα
+nav.moderated: Συντονιστείτε
+nav.moderation_log: Δραστηριότητα του Συντονιστή
+nav.my_account: Ο λογαριασμός μου
+nav.next: Επόμενο
+nav.permalink: Μόνιμη διεύθυνση
+nav.previous: Προηγούμενο
+nav.profile: Προφίλ
+nav.submit: Υποβάλλε
+nav.themes: Στυλ
+nav.user_bans: Απαγορεύσεις χρηστών
+nav.user_settings: Προτιμήσεις χρήστη
+nav.wiki: Wiki
+
+placeholder.choose_one: Διάλεξε ένα…
+placeholder.default: (Προκαθορισμένο)
+placeholder.deleted: '[διαγράφηκε]'
+
+prompt.confirm_comment_delete: Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το σχόλιο;
+prompt.confirm_submission_delete: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτήν την υποβολή;
+
+request_password_reset.multiple_accounts_notice: Αν έχετε εγγραφεί πολλοί λογαριασμοί σε μία διεύθυνση email, θα λάβετε ένα μήνυμα ανά λογαριασμό
+request_password_reset.no_confirmation_notice: Αν δεν λάβετε ένα μήνυμα, η διεύθυνση που έχετε ορίσει είναι πιθανώς λανθασμένη. Για την προστασία της ιδιωτικής ζωής, δεν θα επιβεβαιώσουμε αν πράγματι υπάρχει χρήστης με τη συγκεκριμένη διεύθυνση.
+request_password_reset.title: Ζητήστε να επαναφέρουμε τον κωδικό σας
+
+request_password_reset_form.submit: Υποβάλλε
+
+reset_password.title: Επαναφορά κωδικού πρόσβασης
+
+site_footer.app: Λειτουργώντας %app% %version%
+site_footer.version: '%version% (%branch%)'
+
+submission_form.create: Προσθήκη υποβολής
+submission_form.edit: Επεξεργασία υποβολής
+
+submission.comments: '{0} Μηδενικά σχόλια|{1} %count% σχόλιο|[1,Inf[ %count% σχόλια'
+submission.edit_info: (Επεξεργασία %edited_at%)
+submission.info_with_forum_name: Στάλθηκε από %submitter% %timestamp% στην %forum%
+submission.info_without_forum_name: Στάλθηκε από %submitter% %timestamp%
+submission.moderator_info: (Επεξεργασία από έναν συντονιστή %edited_at%)
+submission.sort_by_controversial: Αμφιλεγόμενα
+submission.sort_by_hot: Τρέχοντα
+submission.sort_by_new: Νέα
+submission.sort_by_top: Κορυφαία
+submission.total_votes: '{1} %count% βαθμος|[0,Inf[ %count% βαθμοί'
+submission.vote_stats: (+%up%, −%down%)
+
+time.earlier_format: '%relative_time% νωρίτερα'
+time.later_format: '%relative_time% αργότερα'
+time.on_timestamp: στις %timestamp%
+
+title.active_global_user_bans: Τρέχουσες, πλήρεις απαγορεύσεις χρηστών
+title.ban_user: Απαγορεύοντας τον %user%
+title.banning_user_from_forum: Απαγόρευση %user% από %forum%
+title.bans_in_forum: Λίστα απαγορεύσεων στο %forum%
+title.block_list: Λίστα των μπλοκαρισμένων
+title.blocking_user: Αποκλείοντας τον %user%
+title.create_submission: Δημιουργία υποβολής
+title.delete_forum: Διαγραφή φόρουμ %forum%
+title.editing_biography_for_user: Επεξεργασία βιογραφίας για τον %user%
+title.editing_forum: Επεξεργασία φόρουμ %forum%
+title.editing_submission: Επεξεργασία υποβολής %title%
+title.forum_appearance: Εμφάνιση για %forum%
+title.global_moderation_log: Πλήρης λίστα των ενεργειών του συντονιστή
+title.ip_bans: Απαγορευμένες διευθύνσεις IP
+title.messages: Μηνύματα
+title.recent_comments: Πρόσφατα σχόλια
+title.showing_ban_history_for_user_in_forum: Εμφάνιση του ιστορικού απαγόρευσης για %user% στο %forum%
+title.showing_moderation_log_for_forum: Εμφανίζεται λίστα των ενεργειών του συντονιστή για τον %forum%
+title.showing_revision: 'Εμφάνιση αλλαγής #%revision% της σελίδας %path%'
+title.unban_user: Αντιστροφή της απαγόρευσης του %user%
+title.unbanning_user_from_forum: Αντιστροφή της απαγόρευσης του %user% από %forum%
+
+user.comments: Σχόλια
+user.email_optional: Η παροχή μιας διεύθυνσης email είναι προαιρετική. Θα χρησιμοποιηθεί μόνο για επαναφορά του κωδικού πρόσβασής σας.
+user.message: Στείλετε μήνυμα
+user.moderates: '%username% είναι συντονιστής:'
+user.password_rules: Ελάχιστο 8 χαρακτήρες.
+user.registered: Εγγεγραμμένοι στις %timestamp%
+user.submissions: Υποβολές
+user.username_rules: Επιτρέπονται χαρακτήρες είναι A-Z, a-z, 0-9 και _.
+
+user_flag.admin: διαχειριστής
+user_flag.admin_label: Διαχειριστής
+user_flag.moderator: συντονιστής
+user_flag.moderator_label: Συντονιστής
+user_flag.none_label: (κανένα)
+user_flag.post_as_label: Γράψτε ως
+
+user_settings.title: Αλλαγή προτιμήσεις χρήστη για %username%
+
+wiki.all_pages: Ολες οι σελίδες
+wiki.create_this_page: Δημιουργήστε αυτήν τη σελίδα
+wiki.create_title: Δημιουργία "%path%"
+wiki.edit_page: Επεξεργασία σελίδας
+wiki.editing_title: Επεξεργασία "%path%"
+wiki.history_title: Εμφάνιση ιστορικού για "%path%"
+wiki.id_label: Ταυτότητα
+wiki.last_edited: Τελευταία επεξεργασία από %username% %timestamp%
+wiki.locked_notice: Η σελίδα είναι κλειδωμένη. Μόνο οι διαχειριστές μπορούν να την επεξεργαστούν.
+wiki.navigation: Πλοήγηση
+wiki.not_found_message: Η ζητούμενη σελίδα δεν βρέθηκε.
+wiki.not_found_title: Η σελίδα δεν βρέθηκε
+wiki.page_history: Ιστορικό σελίδας
+wiki.page_title: Τίτλος σελίδας
+wiki.path: Διαδρομή
+wiki.revision_time: Αναθεωρημένο
+wiki.user: Χρήστης

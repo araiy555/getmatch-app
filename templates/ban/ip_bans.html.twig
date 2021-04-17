@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'title.ip_bans'|trans %}
+{% block site_nav_active 'admin' %}
+{% block site_nav_main_menu_active 'bans' %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: bans}, with_context = false) }}
+{% endblock head %}
+
+{% block body %}
+  {{ include('ban/_tabs.html.twig', {page: 'ip_bans'}, with_context=false) }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  <nav>
+    <p><a href="{{ path('ban_ip') }}" class="button">{{ 'nav.add_ban'|trans }}</a></p>
+  </nav>
+
+  <form action="{{ path('unban_ips') }}" method="POST" class="form">
+    <input type="hidden" name="token" value="{{ csrf_token('unban_ips') }}">
+
+    {% embed '_layouts/table.html.twig' with { items: bans } %}
+      {% block header %}
+        <th class="table__shrink"></th>
+        <th class="table__shrink">{{ 'label.ip_address'|trans }}</th>
+        <th class="table__shrink">{{ 'ban_list.timestamp'|trans }}</th>
+        <th class="table__shrink">{{ 'ban_list.expires'|trans }}</th>
+        <th class="table__shrink">{{ 'ban_list.user'|trans }}</th>
+        <th>{{ 'ban_list.reason'|trans }}</th>
+      {% endblock header %}
+
+      {% block row %}
+        {% from '_macros/form.html.twig' import checkbox %}
+        {% from '_macros/time.html.twig' import relative_time %}
+        <td class="table__shrink">
+          {{ checkbox({ name: 'ban[]', value: item.id, id: 'ban_'~(item.id) }) }}
+        </td>
+        <td class="table__shrink"><label for="ban_{{ item.id }}">{{ item.ip }}</label></td>
+        <td class="table__shrink">{{ relative_time(item.timestamp, { date_format: 'short', time_format: 'none' }) }}</td>
+        <td class="table__shrink">
+          {% if item.expires %}
+            {{ relative_time(item.expires, { date_format: 'short', time_format: 'short' }) }}
+          {% else %}
+            <small class="fg-muted text-sm">{{ 'ban_list.expires_never'|trans }}</small>
+          {% endif %}
+        </td>
+        <td class="table__shrink">
+          {% if item.user %}
+            <a href="{{ path('user', {username: item.user.username}) }}">{{ item.user.username }}</a>
+          {% else %}
+            <small>{{ 'ban_list.user_none'|trans }}</small>
+          {% endif %}
+        </td>
+        <td>{{ item.reason }}</td>
+      {% endblock row %}
+
+      {% block footer %}
+        <p><button type="submit" class="button">{{ 'ban_list.remove'|trans }}</button></p>
+
+        {{ parent() }}
+      {% endblock footer %}
+    {% endembed %}
+  </form>
+{% endblock body %}

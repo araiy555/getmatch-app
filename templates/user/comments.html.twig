@@ -1,0 +1,25 @@
+{% extends 'user/base.html.twig' %}
+{% from 'comment/_macros.html.twig' import comment %}
+
+{% block head %}
+  <link rel="canonical" href="{{ url('user_comments', {username: user.username}) }}">
+  {{ include('_includes/meta_pagination.html.twig', {pager: comments}) }}
+{% endblock %}
+
+{% block site_nav_user_menu_active 'profile' %}
+
+{% block title 'user.comments'|trans %}
+
+{% block body %}
+  {{ include('user/_nav.html.twig', {current: 'user_comments', user: user}, with_context=false) }}
+
+  {% for comment in comments %}
+    {{ comment(comment, {show_context: true}) }}
+  {% else %}
+    <p class="no-entries">
+      <small class="fg-muted text-md">{{ 'flash.no_entries_to_display'|trans }}</small>
+    </p>
+  {% endfor %}
+
+  {{ include('_includes/pagination.html.twig', {pager: comments}, with_context=false) }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+    "_default": "postmill",
+    "postmill": {
+        "name": "Postmill",
+        "entrypoint": "themes/postmill"
+    },
+    "postmill-classic": {
+        "name": "Postmill Classic",
+        "entrypoint": "themes/postmill-classic"
+    }
+}

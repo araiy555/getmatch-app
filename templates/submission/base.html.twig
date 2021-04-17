@@ -1,0 +1,39 @@
+{% extends 'forum/base.html.twig' %}
+{% from 'forum/_macros.html.twig' import forum_return_nav %}
+
+{% block title %}
+  {{ submission.title }}
+{% endblock %}
+
+{% block sidebar %}
+  <section class="sidebar__section flow submission-meta">
+    <p class="submission-meta__score">
+      <strong class="submission-meta__vote-total">
+        {{- 'submission.total_votes'|trans({'%count%': submission.upvotes + submission.downvotes}) -}}
+      </strong>
+
+      <span class="submission-meta__vote-stats">
+        {{- 'submission.vote_stats'|trans({
+          '%up%': submission.upvotes,
+          '%down%': submission.downvotes,
+        }) -}}
+      </span>
+    </p>
+
+    <div>
+      <h4 class="fg-muted unheaderize text-xs">{{ 'item.short_url'|trans }}</h4>
+
+      <p class="sidebar__no-padding">
+        <kbd class="submission-meta__short-url">
+          {{- url('submission_shortcut', {id: submission.id}) -}}
+        </kbd>
+      </p>
+    </div>
+  </section>
+
+  {{ parent() }}
+{% endblock %}
+
+{% block body %}
+  {{ forum_return_nav(forum) }}
+{% endblock body %}

@@ -1,0 +1,58 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "rules": {
+        "brace-style": ["warn", "1tbs"],
+        "camelcase": ["warn", { "properties": "never" }],
+        "curly": "warn",
+        "comma-dangle": ["warn", "always-multiline"],
+        "dot-location": ["warn", "property"],
+        "dot-notation": "warn",
+        "eqeqeq": ["warn", "smart"],
+        "guard-for-in": "warn",
+        "indent": ["warn", 4],
+        "max-len": ["warn", {
+            "code": 120,
+            "ignoreStrings": true,
+            "ignoreUrls": true,
+            "ignoreRegExpLiterals": true,
+            "ignoreTemplateLiterals": true
+        }],
+        "new-cap": "warn",
+        "no-caller": "error",
+        "no-extend-native": "error",
+        "no-implied-eval": "error",
+        "no-return-assign": "warn",
+        "no-trailing-spaces": "warn",
+        "no-unneeded-ternary": "warn",
+        "no-var": "error",
+        "no-whitespace-before-property": "warn",
+        "quotes": ["warn", "single", { "avoidEscape": true }],
+        "padded-blocks": ["warn", "never"],
+        "prefer-const": "warn",
+        "semi": ["error", "always"],
+        "semi-style": ["warn", "last"],
+        "space-in-parens": "warn",
+        "strict": ["error", "safe"],
+        "unicode-bom": "error",
+        "yoda": ["warn", "never"]
+    },
+    "overrides": [
+        {
+            "files": ["*.js"],
+            "env": {
+                "node": true
+            }
+        },
+        {
+            "files": ["assets/js/**/*.js"],
+            "parser": "babel-eslint",
+            "parserOptions": {
+                "sourceType": "module"
+            }
+        }
+    ]
+}

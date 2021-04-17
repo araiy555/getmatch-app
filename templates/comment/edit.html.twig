@@ -1,0 +1,14 @@
+{% extends 'submission/base.html.twig' %}
+{% from 'comment/_macros.html.twig' import comment %}
+
+{% block title 'comment_form.edit_title'|trans %}
+
+{% block body %}
+  {{ parent() }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ comment(comment) }}
+
+  {{ include('comment/_form.html.twig', { editing: true, form: form }, with_context=false) }}
+{% endblock body %}

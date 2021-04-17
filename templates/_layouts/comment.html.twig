@@ -1,0 +1,418 @@
+{%- block comment -%}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- from '_macros/time.html.twig' import relative_time, relative_time_diff -%}
+  {%- from '_macros/vote.html.twig' import vote -%}
+  {%- set hidden = self and self.blocking(comment.user) -%}
+  <article class="comment
+                  comment--{{ level > 1 ? 'nested' : 'top-level' }}
+                  comment--visibility-{{ comment.visibility|replace({'_': '-'}) }}
+                  hideable"
+           id="comment_{{ comment.id }}"
+           data-level="{{ level }}">
+    <input type="checkbox" class="hideable__checkbox" id="comment_toggle_{{ comment.id }}" {{ not hidden ? 'checked' }}>
+
+    <div class="comment__row">
+      <div class="comment__main">
+        <header class="comment__header">
+          <h1 class="comment__info break-text unheaderize">
+            <span class="fg-muted text-sm">
+              {{ 'comments.info'|trans({
+                '%user%': block('comment_info_user'),
+                '%timestamp%': relative_time(comment.timestamp, { natural: true }),
+              })|raw }}
+
+              {% if comment.editedAt %}
+                <span class="comment__edited-at {{ comment.moderated ? 'comment__moderated' }} fg-muted text-sm">
+                  {{ (comment.moderated ? 'comments.moderator_info' : 'comments.edit_info')|trans({
+                    '%edited_at%': relative_time_diff(comment.editedAt, comment.timestamp, { natural: true }),
+                  })|raw }}
+                </span>
+              {% endif %}
+            </span>
+          </h1>
+
+          <ul class="flex unlistify">
+            {% if post_numbers %}
+              <li>
+                <a href="{{ path('comment', { forum_name: comment.submission.forum.name, submission_id: comment.submission.id, comment_id: comment.id }) }}"
+                   class="comment__info-link fg-grey">
+                  <span class="text-sm">{{- 'number.id'|trans({ '%number%': comment.id|format_number }) -}}</span>
+                </a>
+              </li>
+            {% endif %}
+
+            <li>
+              <label class="comment__info-link comment__hide-toggle hideable__toggle fg-grey no-wrap"
+                     for="comment_toggle_{{ comment.id }}">
+                <span class="hideable__indicator text-sm"
+                      role="presentation"
+                      data-hide-text="{{ 'action.hide'|trans }}"
+                      data-unhide-text="{{ 'action.unhide'|trans }}"></span>
+              </label>
+            </li>
+          </ul>
+        </header>
+
+        <div class="comment__content flow-slim hideable__hide">
+          {% if show_context %}
+            {{ block('comment_context') }}
+          {% endif %}
+
+          {% if post_numbers and comment.parent %}
+            {{ block('comment_replying_to') }}
+          {% endif %}
+
+          <div class="comment__body break-text text-flow">
+            {%- if raw_body is not null -%}
+              {{ raw_body|raw }}
+            {%- elseif (comment.visible or show_trashed) and comment.body is not null -%}
+              {{ comment.body|markdown|raw }}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <nav class="comment__nav hideable__hide">
+          <ul class="fg-muted flex flex--guttered unlistify">
+            {{- block('comment_nav') -}}
+          </ul>
+        </nav>
+
+        {% if show_form and is_granted('ROLE_USER') %}
+          {% from 'comment/_macros.html.twig' import comment_form %}
+          {{ comment_form(comment.submission, comment) }}
+        {% endif %}
+      </div>
+
+      <div class="comment__vote hideable__hide">
+        {{ vote(comment, 'comment_vote') }}
+      </div>
+    </div>
+
+    {% if recurse %}
+      {% set children = comment.children|filter(c => c.threadVisible) %}
+      {% if children|length > 0 %}
+        <div class="comment__replies hideable__hide flow">
+          {%- for reply in children -%}
+            {%- with { comment: reply, level: level + 1, show_context: false, show_form: false } -%}
+              {{- block('comment') -}}
+            {%- endwith -%}
+          {%- endfor -%}
+        </div>
+      {% endif %}
+    {% endif %}
+  </article>
+{%- endblock comment -%}
+
+{% block comment_context %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% with {
+    submission_author: block('comment_context_link_format')|format(
+      path('user', { username: comment.submission.user.username })|e,
+      comment.submission.user.username|e
+    ),
+    submission_title: block('comment_context_link_format')|format(
+      path('submission', { forum_name: comment.submission.forum.name, submission_id: comment.submission.id })|e,
+      comment.submission.title|e
+    ),
+  } %}
+    <div class="fg-muted flex flex--slim-gutters flex--no-wrap comment__context">
+      {{ icon('forward') }}
+      <p>
+        {% if comment.parent %}
+          {{ 'comments.context.comment_reply'|trans({
+            '%comment_:or%': block('comment_context_link_format')|format(
+              path('user', { username: comment.parent.user.username })|e,
+              comment.parent.user.username|e
+            ),
+            '%submission_title%': submission_title,
+            '%submission_author%': submission_author,
+          })|raw }}
+        {% else %}
+          {{ 'comments.context.top_level_reply'|trans({
+            '%submission_title%': submission_title,
+            '%submission_author%': submission_author,
+          })|raw }}
+        {% endif %}
+      </p>
+    </div>
+  {% endwith %}
+{% endblock comment_context %}
+
+{% block comment_replying_to %}
+  {% from '_macros/icon.html.twig' import icon %}
+  <div class="fg-muted flex flex--slim-gutters flex--no-wrap comment__replying-to">
+    {{ icon('forward') }}
+    <p>
+      <a href="{{ path('submission', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        slug: comment.submission.title|slugify,
+        commentView: 'linear'
+      }) }}#comment_{{ comment.parent.id }}" class="fg-grey no-underline">
+        {{ 'comments.replying_to_comment'|trans({
+          '%user%': '<span class="fg-muted">%s</span>'|format(comment.parent.user.username|e),
+          '%id%': '<span class="fg-link no-underline__exempt">%s</span>'|format(
+            'number.id'|trans({ '%number%': comment.parent.id|format_number|e })
+          )
+        })|raw -}}
+      </a>
+    </p>
+  </div>
+{% endblock comment_replying_to %}
+
+{%- block comment_context_link_format -%}
+  <a href="%s" class="fg-inherit"><strong>%s</strong></a>
+{%- endblock -%}
+
+{%- block comment_info_user -%}
+  {%- from 'user/_macros.html.twig' import user_flag -%}
+
+  {% apply spaceless %}
+    {%- if comment.visible or show_trashed -%}
+      <a href="{{ path('user', { username: comment.user.username }) }}" class="fg-inherit">
+        <strong>{{ comment.user.username }}</strong>
+      </a>
+    {%- else -%}
+      {{- 'placeholder.deleted'|trans -}}
+    {%- endif -%}
+  {% endapply %}
+
+  {% if not comment.softDeleted and comment.user is same as(comment.submission.user) %}
+    <small class="comment__op-text text-sm user-flag"
+           title="{{ 'item.op'|trans }}"
+           aria-label="{{ 'item.op'|trans }}">
+      {{- 'item.op_abbr'|trans -}}
+    </small>
+  {% endif %}
+
+  {{ user_flag(comment.userFlag) }}
+{%- endblock comment_info_user -%}
+
+{% block comment_nav %}
+  {{ block('comment_nav_reply') }}
+  {{ block('comment_nav_permalink') }}
+  {{ block('comment_nav_parent') }}
+  {{ block('comment_nav_delete_own') }}
+  {{ block('comment_nav_edit') }}
+  {{ block('comment_nav_actions') }}
+{% endblock comment_nav %}
+
+{% block comment_nav_reply %}
+  {% if is_granted('ROLE_USER') %}
+    <li>
+      <a href="{{ path('comment', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id
+      }) }}" data-form-url="{{ path('comment_form', {
+        forumName: comment.submission.forum.name,
+        submissionId: comment.submission.id,
+        commentId: comment.id
+      }) }}" class="comment__reply-link text-sm">
+        <strong>{{ 'comments.reply'|trans }}</strong>
+      </a>
+    </li>
+  {% endif %}
+{% endblock comment_nav_reply %}
+
+{% block comment_nav_permalink -%}
+  {% if not post_numbers %}
+    <li>
+      <a href="{{ path('comment', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id
+      }) }}" class="comment__permalink fg-inherit text-sm">{{ 'nav.permalink'|trans }}</a>
+    </li>
+  {% endif %}
+{%- endblock comment_nav_permalink -%}
+
+{% block comment_nav_parent -%}
+  {% if comment.parent and not post_numbers %}
+    <li>
+      <a href="{{ path('comment', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.parent.id
+      }) }}" class="comment__parent-link fg-inherit text-sm">
+        {{- 'comments.parent'|trans -}}
+      </a>
+    </li>
+  {% endif %}
+{% endblock comment_nav_parent %}
+
+{% block comment_nav_delete_own %}
+  {% if is_granted('delete_own', comment) %}
+    <li>
+      <form action="{{ path('comment_delete_own', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('delete_own_comment') }}">
+        <button class="fg-inherit text-sm unbuttonize"
+                data-controller="dialog"
+                data-action="dialog#confirm"
+                data-dialog-text-value="{{ 'prompt.confirm_comment_delete'|trans }}">
+          {{- 'action.delete'|trans -}}
+        </button>
+      </form>
+    </li>
+  {% endif %}
+{% endblock comment_nav_delete_own %}
+
+{% block comment_nav_edit %}
+  {% from '_macros/icon.html.twig' import icon %}
+  {% if comment.user is same as(self) and is_granted('edit', comment) %}
+    <li>
+      <a href="{{ path('edit_comment', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" class="comment__edit-link fg-inherit text-sm">
+        {{- 'action.edit'|trans -}}
+      </a>
+    </li>
+  {% endif %}
+{% endblock comment_nav_edit %}
+
+{% block comment_nav_actions %}
+  {% set actions = block('comment_actions') %}
+  {% if actions|length > 0 %}
+    <li class="dropdown">
+      <button class="dropdown__toggle fg-inherit no-underline text-sm unbuttonize">
+        <span class="no-underline__exempt">{{ 'nav.actions'|trans }}</span>
+        <span class="dropdown__arrow" aria-hidden="true"></span>
+      </button>
+
+      <ul class="dropdown__menu dropdown-card unlistify">
+        {{ actions|raw }}
+      </ul>
+    </li>
+  {% endif %}
+{% endblock comment_nav_actions %}
+
+{% block comment_actions %}
+  {{- block('comment_actions_restore') -}}
+  {{- block('comment_actions_purge') -}}
+  {{- block('comment_actions_delete') -}}
+  {{- block('comment_actions_delete_thread') -}}
+  {{- block('comment_actions_edit') -}}
+  {{- block('comment_actions_ban') -}}
+  {{- block('comment_actions_ip_ban') -}}
+{% endblock %}
+
+{% block comment_actions_restore %}
+  {%- from '_macros/icon.html.twig' import icon %}
+  {%- if is_granted('restore', comment) -%}
+    <li>
+      <form action="{{ path('comment_restore', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('restore_comment') }}">
+        <button class="menu-item no-wrap unbuttonize">
+          {{- icon('ccw') }}
+          {{ 'action.restore'|trans -}}
+        </button>
+      </form>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_restore %}
+
+{% block comment_actions_delete %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if comment.user is not same as(self) and is_granted('mod_delete', comment) -%}
+    <li>
+      <a href="{{ path('comment_delete', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" class="menu-item no-wrap">
+        {{- icon('trash') }}
+        {{ 'action.delete'|trans -}}
+      </a>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_delete %}
+
+{% block comment_actions_delete_thread %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if comment.replyCount > 0 and is_granted('mod_delete', comment) -%}
+    <li>
+      <a href="{{ path('comment_delete_thread', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" class="menu-item no-wrap">
+        {{- icon('cancel') }}
+        {{ 'action.delete_thread'|trans -}}
+      </a>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_delete_thread %}
+
+{% block comment_actions_purge %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if is_granted('purge', comment) -%}
+    <li>
+      <form action="{{ path('comment_purge', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" method="POST">
+        <input type="hidden" name="token" value="{{ csrf_token('purge_comment') }}">
+        <button class="menu-item no-wrap unbuttonize"
+                data-controller="dialog"
+                data-action="dialog#confirm"
+                data-dialog-text-value="{{ 'prompt.confirm_comment_delete'|trans }}">
+          {{- icon('cancel') }}
+          {{ 'action.purge'|trans -}}
+        </button>
+      </form>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_purge %}
+
+{% block comment_actions_edit %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if comment.user is not same as(self) and is_granted('edit', comment) -%}
+    <li>
+      <a href="{{ path('edit_comment', {
+        forum_name: comment.submission.forum.name,
+        submission_id: comment.submission.id,
+        comment_id: comment.id,
+      }) }}" class="comment__edit-link menu-item no-wrap">
+        {{- icon('pencil') }}
+        {{ 'action.edit'|trans -}}
+      </a>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_edit %}
+
+{% block comment_actions_ban %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if comment.user is not same as(app.user) and is_moderator -%}
+    <li>
+      <a href="{{ path('forum_ban', {forum_name: comment.submission.forum.name, username: comment.user.username}) }}"
+         class="comment__ban-link menu-item no-wrap">
+        {{- icon('user-times') }}
+        {{ 'action.ban'|trans -}}
+      </a>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_ban %}
+
+{% block comment_actions_ip_ban %}
+  {%- from '_macros/icon.html.twig' import icon -%}
+  {%- if comment.user is not same as(app.user) and is_granted('ROLE_ADMIN') -%}
+    <li>
+      <a href="{{ path('ban_user', {'username': comment.user.username}) }}"
+         class="comment__ip-ban-link menu-item no-wrap">
+        {{- icon('hammer') }}
+        {{ 'action.global_ban'|trans -}}
+      </a>
+    </li>
+  {%- endif -%}
+{% endblock comment_actions_ip_ban %}

@@ -1,0 +1,13 @@
+services:
+    Symfony\Contracts\HttpClient\HttpClientInterface $imageDownloadingClient: "@postmill.http_client.image_downloading"
+
+    postmill.http_client.image_downloading:
+        class: Symfony\Component\HttpClient\NoPrivateNetworkHttpClient
+        arguments:
+            - '@Symfony\Contracts\HttpClient\HttpClientInterface'
+
+framework:
+    http_client:
+        default_options:
+            headers:
+                User-Agent: "Postmill/%env(APP_VERSION)% (https://postmill.xyz)"

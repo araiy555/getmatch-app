@@ -1,0 +1,24 @@
+{##
+ # - flag (string): one of App\Entity\UserFlags constants
+ # - class (string): Additional classes
+ #}
+{%- macro user_link(user, options) -%}
+  <a href="{{ path('user', { username: user.username }) }}" class="{{ options.class ?? '' }}">
+    {{- (options.prefix ?? false) ? '/u/' -}}
+    {{- user.username -}}
+  </a>
+  {%- with { flag: _self.user_flag(options.flag ?? constant('App\\Entity\\UserFlags::FLAG_NONE')) } -%}
+    {{ (flag ? ' '~flag)|raw }}
+  {%- endwith -%}
+{%- endmacro user_link -%}
+
+{% macro user_flag(flag) %}
+  {%- if flag is constant('App\\Entity\\UserFlags::FLAG_NONE') -%}
+  {%- elseif flag is constant('App\\Entity\\UserFlags::FLAG_ADMIN') -%}
+    <small class="fg-red text-sm user-flag ">{{ 'user_flag.admin'|trans }}</small>
+  {%- elseif flag is constant('App\\Entity\\UserFlags::FLAG_MODERATOR') -%}
+    <small class="fg-green text-sm user-flag">{{ 'user_flag.moderator'|trans }}</small>
+  {%- else -%}
+    <small class="fg-grey text-sm user-flag">{{ flag|trans }}</small>
+  {%- endif -%}
+{% endmacro user_flag %}

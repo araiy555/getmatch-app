@@ -1,0 +1,47 @@
+{% extends 'forum/base.html.twig' %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', {pager: logs}, with_context=false) }}
+{% endblock head %}
+
+{% block html_title 'title.showing_moderation_log_for_forum'|trans({
+  '%forum%': '<a href="%s">/f/%s</a>'|format(path('forum', {forum_name: forum.name})|e , forum.name|e)
+})|raw %}
+{% block title block('html_title')|striptags %}
+
+{% block body %}
+  {% from '_macros/time.html.twig' import relative_time %}
+  {% from 'forum/_macros.html.twig' import log_line %}
+  <h1 class="page-heading">{{ block('html_title') }}</h1>
+
+  <nav>
+    <p>
+      <a href="{{ path('global_moderation_log') }}"
+         class="button button--small button--secondary">
+        {{- 'nav.global_moderation_log'|trans -}}
+      </a>
+    </p>
+  </nav>
+
+  {% if logs|length > 0 %}
+    <div class="text-flow">
+      <ul class="moderation-log">
+        {% for entry in logs %}
+          <li class="moderation-log__entry moderation-log__entry--{{ entry.action|replace({'_': '-'}) }}">
+            <p>
+              {{ log_line(entry) }}
+              &mdash;
+              {{ relative_time(entry.timestamp) }}
+            </p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {{ include('_includes/pagination.html.twig', {pager: logs}, with_context=false) }}
+  {% else %}
+    <p class="no-entries">
+      <small class="fg-muted text-md">{{ 'flash.no_entries_to_display'|trans }}</small>
+    </p>
+  {% endif %}
+{% endblock body %}

@@ -1,0 +1,29 @@
+{
+    "default": {
+        "alias": ["Roboto", "sans-serif"],
+        "entrypoint": "fonts/Roboto"
+    },
+    "system": {
+        "alias": [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "Segoe UI",
+            "Roboto",
+            "Helvetica",
+            "Arial",
+            "sans-serif",
+            "Apple Color Emoji",
+            "Segoe UI Emoji",
+            "Segoe UI Symbol"
+        ]
+    },
+    "opendyslexic": {
+        "entrypoint": "fonts/OpenDyslexic"
+    },
+    "roboto": {
+        "entrypoint": "fonts/Roboto"
+    },
+    "ubuntu": {
+        "entrypoint": "fonts/Ubuntu"
+    }
+}

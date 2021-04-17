@@ -1,0 +1,7 @@
+{% from '_macros/form.html.twig' import button_row %}
+
+{{ form_start(form) }}
+  {{ form_row(form.query, { show_required_indicator: false }) }}
+
+  {{ button_row('action.search'|trans) }}
+{{ form_end(form) }}

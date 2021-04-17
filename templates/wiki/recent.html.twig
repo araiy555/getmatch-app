@@ -1,0 +1,33 @@
+{% extends 'wiki/base.html.twig' %}
+
+{% block site_nav_active 'places' %}
+{% block site_nav_main_menu_active 'wiki' %}
+{% block title 'label.recent_changes'|trans %}
+
+{% block head %}
+  {{ include('_includes/meta_pagination.html.twig', { pager: revisions }, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ 'label.recent_changes'|trans }}</h1>
+
+  {% embed '_layouts/table.html.twig' with { items: revisions } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'label.id'|trans }}</th>
+      <th>{{ 'label.title'|trans }}</th>
+      <th class="table__shrink">{{ 'label.author'|trans }}</th>
+      <th class="table__shrink">{{ 'label.date'|trans }}</th>
+    {% endblock header %}
+
+    {% block row %}
+      {% from '_macros/time.html.twig' import relative_time %}
+
+      <td class="table__shrink"><a href="{{ path('wiki_revision', {id: item.id}) }}">{{ item.id.hex|slice(0, 8) }}</td>
+      <td><a href="{{ path('wiki', {path: item.page.path}) }}">{{ item.page.path }}</a></td>
+      <td class="table__shrink"><a href="{{ path('user', {username: item.user.username}) }}">{{ item.user.username }}</a></td>
+      <td class="table__shrink">
+        {{ relative_time(item.timestamp, { date_format: 'short' }) }}
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

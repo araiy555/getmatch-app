@@ -1,0 +1,54 @@
+{% extends 'forum/base.html.twig' %}
+
+{% block title block('html_title')|striptags %}
+
+{% block head %}
+  {{ parent() }}
+  {{ include('_includes/meta_pagination.html.twig', {pager: moderators}, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">
+    {% block html_title %}
+      {{- 'forum_moderators.title'|trans({
+        '%forum_name%': '<a href="%s">/f/%s</a>'|format(
+          path('forum', { forum_name: forum.name })|e,
+          forum.name|e
+        ),
+      })|raw -}}
+    {% endblock html_title %}
+  </h1>
+
+  {% embed '_layouts/table.html.twig' with { items: moderators } %}
+    {% block header %}
+      <th>{{ 'label.username'|trans }}</th>
+      <th class="table__shrink">{{ 'forum_moderators.since'|trans }}</th>
+      <th class="table__shrink">{{ 'forum_moderators.last_seen'|trans }}</th>
+      <th class="table__shrink"></th>
+    {% endblock header %}
+
+    {% block row %}
+      {% from '_macros/time.html.twig' import relative_time %}
+
+      <td><a href="{{ path('user', {username: item.user.username}) }}">{{ item.user.username }}</a></td>
+      <td class="table__shrink">
+        {{ relative_time(item.timestamp, { date_format: 'short', time_format: 'none' }) }}
+      </td>
+      <td class="table__shrink">
+        {% if item.user.lastSeen %}
+          {{ relative_time(item.user.lastSeen, { date_format: 'short' }) }}
+        {% else %}
+          <small class="fg-muted text-sm">{{ 'label.never'|trans }}</small>
+        {% endif %}
+      </td>
+      <td class="table__shrink">
+        {% if is_granted('remove', item) %}
+          <form action="{{ path('remove_moderator', {forum_name: forum.name, moderator_id: item.id}) }}" method="post">
+            <input type="hidden" name="token" value="{{ csrf_token('remove_moderator') }}">
+            <button class="button button--small inline">{{ 'action.remove'|trans }}</button>
+          </form>
+        {% endif %}
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

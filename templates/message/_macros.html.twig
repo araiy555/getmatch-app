@@ -1,0 +1,46 @@
+{% macro message(message) %}
+  {{ block('message') }}
+{% endmacro message %}
+
+{% block message %}
+  {%- from _self import message_receivers -%}
+  {%- from '_macros/time.html.twig' import relative_time -%}
+  {%- from 'user/_macros.html.twig' import user_link -%}
+  <article class="message" id="message_{{ message.id }}">
+    <h1 class="message__head unheaderize">
+      <span class="fg-muted text-sm">
+        {{ 'heading.message_thread'|trans({
+          '%receiver%': message_receivers(message),
+          '%sender%': '<strong>%s</strong>'|format(user_link(message.sender, {
+            class: 'fg-inherit',
+          })),
+          '%timestamp%': relative_time(message.timestamp, { natural: true })
+        })|raw }}
+      </span>
+    </h1>
+
+    <div class="message__body text-flow">
+      {{- message.body|markdown|raw -}}
+    </div>
+
+    {% if is_granted('delete', message) %}
+      <form action="{{ path('delete_message', { id: message.id }) }}" method="POST" class="message__buttons">
+        <input type="hidden" name="token" value="{{ csrf_token('delete_message') }}">
+        <button class="fg-muted text-sm unbuttonize"
+                data-controller="dialog"
+                data-action="dialog#confirm"
+                data-dialog-text-value="{{ 'prompt.confirm_message_delete'|trans }}">
+          {{- 'action.delete'|trans -}}
+        </button>
+      </form>
+    {% endif %}
+  </article>
+{% endblock message %}
+
+{% macro message_receivers(message) %}
+  {%- from 'user/_macros.html.twig' import user_link -%}
+  {%- for receiver in message.thread.participants|filter(receiver => receiver is not same as(message.sender)) -%}
+    {{ loop.index != 1 ? ', ' }}
+    <strong>{{ user_link(receiver, { class: 'fg-inherit' }) }}</strong>
+  {%- endfor -%}
+{% endmacro message_receivers %}

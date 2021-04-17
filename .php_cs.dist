@@ -1,0 +1,49 @@
+<?php
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'braces' => [
+            'position_after_functions_and_oop_constructs' => 'same',
+        ],
+        'class_definition' => [
+            'multi_line_extends_each_single_line' => true,
+        ],
+        'fopen_flags' => false,
+        'fopen_flag_order' => true,
+        'increment_style' => null,
+        'list_syntax' => ['syntax' => 'short'],
+        'native_function_invocation' => [
+            'include' => ['@compiler_optimized'],
+            'exclude' => ['date', 'gmdate', 'microtime', 'sleep', 'time', 'usleep'],
+            'scope' => 'namespaced',
+            'strict' => true,
+        ],
+        'no_null_property_initialization' => true,
+        'no_superfluous_phpdoc_tags' => ['allow_mixed' => true],
+        'ordered_imports' => true,
+        'psr4' => true,
+        'self_accessor' => true,
+        'set_type_to_cast' => true,
+        'single_line_throw' => false,
+        'standardize_increment' => false,
+        'strict_param' => true,
+        'visibility_required' => [
+            'elements' => ['property', 'method', 'const'],
+        ],
+        'void_return' => true,
+        'yoda_style' => [
+            'equal' => false,
+            'identical' => false,
+            'less_and_greater' => false,
+        ],
+    ])
+    ->setRiskyAllowed(true)
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__.'/config')
+            ->in(__DIR__.'/src')
+            ->in(__DIR__.'/tests')
+    );

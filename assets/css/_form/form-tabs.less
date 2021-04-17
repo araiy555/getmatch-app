@@ -1,0 +1,23 @@
+@import (reference) '../_widgets/discreet-tab';
+@import (reference) '../_widgets/tab';
+
+.form-tabs {
+  &__checkbox:checked + .tab {
+    .tab-active();
+  }
+
+  &__checkbox:checked + .discreet-tab {
+    .discreet-tab-active();
+  }
+
+  &__content {
+    display: none;
+  }
+
+  // can't think of a better way to do this in plain CSS
+  each(range(0, 9), {
+    &__checkbox[data-for="@{value}"]:checked ~ &__content[data-id="@{value}"] {
+      display: initial;
+    }
+  });
+}

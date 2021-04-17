@@ -1,0 +1,49 @@
+{% extends 'user/base.html.twig' %}
+{% from '_macros/alert.html.twig' import alert_classes, alert_icon %}
+
+{% block title 'title.hidden_forums'|trans %}
+
+{% block head %}
+  {{ parent() }}
+
+  {{ include('_includes/meta_pagination.html.twig', {pager: forums}, with_context=false) }}
+{% endblock head %}
+
+{% block body %}
+  <h1 class="page-heading">{{ 'title.hidden_forums'|trans }}</h1>
+
+  <div class="{{ alert_classes('info') }}">
+    {{ alert_icon('info') }}
+    <div class="alert__text text-flow">
+      <p>{{ 'help.hidden_forums'|trans }}</p>
+      <p>{{ 'help.hidden_forums_no_comment_hiding'|trans }}</p>
+    </div>
+  </div>
+
+  {% embed '_layouts/table.html.twig' with { items: forums } %}
+    {% block header %}
+      <th class="table__shrink">{{ 'label.name'|trans }}</th>
+      <th>{{ 'label.title'|trans }}</th>
+      <th class="table__shrink"></th>
+    {% endblock header %}
+
+    {% block row %}
+      <td class="table__shrink">
+        <a href="{{ path('forum', {forum_name: item.name}) }}"><strong>{{ item.name }}</strong></a>
+
+        {% if item.featured %}
+          <span title="{{ 'help.forum_is_featured'|trans }}">&#x2b50;</span>
+        {% endif %}
+      </td>
+
+      <td>{{ item.title }}</td>
+
+      <td class="table__shrink">
+        <form action="{{ path('unhide_forum', {username: user.username, forum: item.id}) }}" method="POST">
+          <input type="hidden" name="token" value="{{ csrf_token('hide_forum') }}">
+          <button class="button button--small inline">{{ 'action.delete'|trans }}</button>
+        </form>
+      </td>
+    {% endblock row %}
+  {% endembed %}
+{% endblock body %}

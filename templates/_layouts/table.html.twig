@@ -1,0 +1,27 @@
+{% block table_pagination %}
+  {% if items|length > 0 %}
+    <table class="table">
+      <thead>
+        <tr>{% block header '' %}</tr>
+      </thead>
+
+      <tbody>
+        {% for item in items %}
+          <tr>{% block row '' %}</tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% block footer %}
+      {% if items.hasNextPage is defined %}
+        {{ include('_includes/pagination.html.twig', { pager: items }, with_context=false) }}
+      {% endif %}
+    {% endblock footer %}
+  {% else %}
+    <p>
+      <small class="fg-muted text-md">
+        {%- block flash_message 'flash.no_entries_to_display'|trans -%}
+      </small>
+    </p>
+  {% endif %}
+{% endblock table_pagination %}

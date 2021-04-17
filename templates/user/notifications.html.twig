@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+{% from 'user/_macros.html.twig' import user_link %}
+
+{% block head %}
+  {{ parent() }}
+  {{ include('_includes/meta_pagination.html.twig', { pager: notifications }, with_context=false) }}
+{% endblock head %}
+
+{% block site_nav_active 'notifications' %}
+{% block title 'title.notifications'|trans %}
+
+{% block body %}
+  {{ include('user/_inbox_nav.html.twig', {active: 'notifications'}, with_context=false) }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {% if notifications|length > 0 %}
+    <form action="{{ path('clear_notifications') }}" method="POST" class="form">
+      <input type="hidden" name="token" value="{{ csrf_token('clear_notifications') }}">
+      {% for notification in notifications %}
+        <input type="hidden" name="id[]" value="{{ notification.id }}">
+      {% endfor %}
+      <div class="form__row">
+        <button type="submit" class="button">{{ 'action.clear_all'|trans }}</button>
+      </div>
+    </form>
+  {% else %}
+    <p class="no-entries">
+      <small class="fg-muted text-md">{{ 'flash.no_entries_to_display'|trans }}</small>
+    </p>
+  {% endif %}
+
+  {% for notification in notifications %}
+    {{ block('clear_notification_button') }}
+    {{ block('notification_'~notification.type) }}
+  {% endfor %}
+
+  {% include '_includes/pagination.html.twig' with {pager: notifications} %}
+{% endblock body %}
+
+{% block notification_comment %}
+  {% from 'comment/_macros.html.twig' import comment %}
+
+  {{ comment(notification.comment, {show_context: true}) }}
+{% endblock notification_comment %}
+
+{% block notification_comment_mention %}
+  {% from 'comment/_macros.html.twig' import comment %}
+  {% set comment = notification.comment %}
+  <div>
+    <h1 class="text-md">
+      {{ 'heading.you_were_mentioned'|trans({
+        '%user%': '<a href="%s">/u/%s</a>'|format(path('user', { username: comment.user.username })|e, comment.user.username|e)
+      })|raw }}
+    </h1>
+
+    {{ comment(comment) }}
+  </div>
+{% endblock notification_comment_mention %}
+
+{% block notification_message %}
+  {% from 'message/_macros.html.twig' import message %}
+
+  <div>
+    <h1 class="text-md">
+      <a href="{{ path('message_thread', { id: notification.message.thread.id }) }}#message_{{ notification.message.id }}">
+        {%- if notification.message is same as(notification.message.thread.messages|first) -%}
+          {{ notification.message.thread.title }}
+        {%- else -%}
+          {{ 'inbox.message_reply_head'|trans({'%title%': notification.message.thread.title}) }}
+        {%- endif -%}
+      </a>
+    </h1>
+
+    {{ message(notification.message) }}
+  </div>
+{% endblock notification_message %}
+
+{% block notification_submission_mention %}
+  {% from 'submission/_macros.html.twig' import submission %}
+  {% set submission = notification.submission %}
+  <div>
+    <h1 class="text-md">
+      {{ 'heading.you_were_mentioned'|trans({
+        '%user%': '<a href="%s">/u/%s</a>'|format(path('user', { username: submission.user.username })|e, submission.user.username|e )
+      })|raw }}
+    </h1>
+
+    {{ submission(submission, { show_content: true }) }}
+  </div>
+{% endblock notification_submission_mention %}
+
+{% block clear_notification_button %}
+  <form action="{{ path('clear_notifications') }}" method="POST">
+    <input type="hidden" name="token" value="{{ csrf_token('clear_notifications') }}">
+    <input type="hidden" name="id[]" value="{{ notification.id }}">
+    <button type="submit" class="button button--small clear-notification-button">{{ 'action.clear'|trans }}</button>
+  </form>
+{% endblock clear_notification_button %}

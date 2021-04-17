@@ -1,0 +1,181 @@
+https://gitlab.com/postmill/Postmill/-/wikis/getting-started
+
+
+yarnをインストールする
+１．https://qiita.com/suisui654/items/1b89446e03991c7c2c3d
+２．psqlインストール：https://www.suzu6.net/posts/197-delete-mysql/
+３．　PosgreSQL、初めてのPostgreSQLインストールhttps://server-recipe.com/2281/
+
+
+https://db.just4fun.biz/?PostgreSQL/PostgreSQL%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95
+https://www.dbonline.jp/postgresql/database/index4.html
+https://qiita.com/shimatter/items/18b32b238139d7b5b1ff
+https://qiita.com/pugiemonn/items/7ec47bc82bd56b0458b9
+http://db-study.com/archives/121
+https://qiita.com/shimatter/items/18b32b238139d7b5b1ff
+
+テーブル一覧　\dt
+database 一覧\
+デル \ql
+psql -l
+r
+
+
+Node　アップグレード：
+sudo n 10.13.0
+https://zenn.dev/ymasaoka/articles/using-n-for-downgrade-nodejs
+https://qiita.com/k3ntar0/items/322e668468716641aa5c
+
+
+
+composer追加:https://qiita.com/masa_stone22/items/bb56170f540391ba554d
+
+
+yum -y install php-xml
+
+php 7.2 から7.4に変更
+
+https://chusotsu-program.com/php71to73/
+https://blog.websandbag.com/entry/2018/03/11/004329
+https://www.hiroski.com/2020/04/202004-php74-install.html
+yum --enablerepo=epel install -y libmcrypt
+
+sudo yum -y install --enablerepo=remi,remi-php74 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-pdo_pgsql php-intl php-fpm
+
+PHP> = 7.3、curl、gd、iconv、intl、json、mbstring、PDO_PGSQL、tokenizer、およびxml拡張機能。
+
+（オプション）RabbitMQを使用するには、amqp拡張機能が必要です。
+
+
+
+
+composer install
+
+k016c1200@it-neec.jp
+aoierjfoiajeoifjoaiejr
+
+curl -u 'arai555' -d '{"scopes":["repo"],"note":"Help example"}' https://api.github.com/authorizations
+
+curl -i -u arai555 https://api.github.com/authorizations
+
+
+
+
+CREATE USER postgres WITH PASSWORD q1w2e3r4 ;
+systemctl status postgresql-10
+
+
+https://github.com/settings/tokens
+token:1413e74efa4617faf4de5cfa9e6bc43ef5899aef
+git:https://akamist.com/blog/archives/2391
+
+
+
+
+
+
+pendencies
+Your requirements could not be resolved to an installable set of packages.
+
+  Problem 1
+    - Root composer.json requires PHP extension ext-dom * but it is missing from your system. Install or enable PHP's dom extension.
+  Problem 2
+    - Root composer.json requires PHP extension ext-intl * but it is missing from your system. Install or enable PHP's intl extension.
+  Problem 3
+    - Root composer.json requires PHP extension ext-pdo_pgsql * but it is missing from your system. Install or enable PHP's pdo_pgsql extension.
+  Problem 4
+    - symfony/framework-bundle[v5.1.0, ..., v5.2.3] require ext-xml * -> it is missing from your system. Install or enable PHP's xml extension.
+    - Root composer.json requires symfony/framework-bundle ^5.1 -> satisfiable by symfony/framework-bundle[v5.1.0, ..., v5.2.3].
+
+To enable extensions, verify that they are enabled in your .ini files:
+    - /etc/php.ini
+    - /etc/php.d/20-bz2.ini
+    - /etc/php.d/20-calendar.ini
+    - /etc/php.d/20-ctype.ini
+    - /etc/php.d/20-curl.ini
+    - /etc/php.d/20-exif.ini
+    - /etc/php.d/20-fileinfo.ini
+    - /etc/php.d/20-ftp.ini
+    - /etc/php.d/20-gd.ini
+    - /etc/php.d/20-gettext.ini
+    - /etc/php.d/20-iconv.ini
+    - /etc/php.d/20-json.ini
+    - /etc/php.d/20-mbstring.ini
+    - /etc/php.d/20-mysqlnd.ini
+    - /etc/php.d/20-pdo.ini
+    - /etc/php.d/20-phar.ini
+    - /etc/php.d/20-sockets.ini
+    - /etc/php.d/20-sqlite3.ini
+    - /etc/php.d/20-tokenizer.ini
+    - /etc/php.d/30-mysqli.ini
+    - /etc/php.d/30-pdo_mysql.ini
+    - /etc/php.d/30-pdo_sqlite.ini
+You can also run `php --ini` inside terminal to see which files are used by PHP in CLI mode.
+
+
+
+
+postgres createuser -P arai
+
+create database arai owner arai;
+
+
+
+
+create database getmatch;
+
+CREATE ROLE getmatch WITH LOGIN PASSWORD 'q1w2e3r4';
+
+psql -h localhost -p 5432 -U postgres -d getmatch
+
+pg_hba.conf:/var/lib/pgsql/10/data
+
+
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            ident
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     peer
+host    replication     all             127.0.0.1/32            ident
+host    replication     all             ::1/128                 ident
+https://qiita.com/akabei/items/f0a54ef18b2ab6926bd6
+
+
+
+なぜかphp-fpmが消えた
+
+
+言語：https://qiita.com/moritone/items/a3fa0644e76574b7eb9b
+
+
+
+php bin/console cache:clear
+
+
+npm install flickity
+psql -h localhost -p 5432 -U postgres -d getmatch
+
+
+$ export DATABASE_URL='pgsql://user:pass@host:port/some_test_db?serverVersion=9.x'
+$ bin/console doctrine:migrations:migrate -n --env=test
+$ bin/console doctrine:fixtures:load -n --env=test
+
+
+bin/phpunit
+
+DATABASE_URL=pgsql://postgres:q1w2e3r4@localhost:5432/getmatch?serverVersion=9.6
+C:\Users\k016c1200\Desktop\Postmill-main\tests\Fixtures\Database\LoadExampleSubmissions.php
+
+drop schema public cascade;
+create schema public;
+
+
+yarn add markdown-it-iframe
+

@@ -1,0 +1,27 @@
+{
+    "_default": "postmill",
+    "postmill": {
+        "name": "Postmill",
+        "entrypoint": "themes/postmill"
+    },
+    "postmill-classic": {
+        "name": "Postmill Classic",
+        "entrypoint": "themes/postmill-classic"
+    },
+    "c4c": {
+        "name": "c4c",
+        "entrypoint": "themes/c4c"
+    },
+    "jst": {
+        "name": "jstpst",
+        "entrypoint": "themes/jst"
+    },
+    "forest": {
+        "name": "Forest",
+        "entrypoint": "themes/forest"
+    },
+    "raddle": {
+        "name": "Raddle",
+        "entrypoint": "themes/raddle"
+    }
+}

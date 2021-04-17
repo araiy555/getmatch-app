@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% from '_macros/return_nav.html.twig' import return_nav %}
+
+{% block title 'bad_phrase.search_title'|trans %}
+
+{% block body %}
+  {{ return_nav('bad_phrase.title'|trans, path('bad_phrase_list')) }}
+
+  <h1 class="page-heading">{{ block('title') }}</h1>
+
+  {{ include('bad_phrase/_search_form.html.twig', { form: form }, with_context=false) }}
+
+  {% if bad_phrases is defined %}
+    <hr>
+    {{ include('bad_phrase/_list.html.twig', { bad_phrases: bad_phrases }, with_context=false) }}
+  {% endif %}
+{% endblock body %}

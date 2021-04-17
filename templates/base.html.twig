@@ -1,0 +1,209 @@
+{% use '_layouts/site_nav.html.twig' %}
+{% from '_macros/alert.html.twig' import alert_classes, alert_icon %}
+{% from '_macros/lang.html.twig' import lang_attributes %}
+{% from '_macros/theme.html.twig' import theme_css %}
+<!DOCTYPE html>
+{#<!--suppress HtmlRequiredLangAttribute -->-#}
+<html class="no-js {{ (app.user.fullWidthDisplayEnabled ?? false) ? 'full-width' }}"
+      {{ lang_attributes(app.request.locale) }}
+      prefix="og: http://ogp.me/ns#"
+      data-night-mode="{{ app.user.nightMode ?? 'auto' }}">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{{ 'top.title'|trans }}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('getmatch.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="getmatch {{ app_version() }}">
+    <meta name="description" content="{% block description %}{{ 'top.description'|trans }}{% endblock %}">
+
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('apple-touch-icon-precomposed.png') }}">
+    <link rel="search" type="application/opensearchdescription+xml" href="{{ path('opensearch_description') }}" title="{{ site_name() }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script data-ad-client="ca-pub-3518678681279293" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110463883-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-110463883-1');
+    </script>
+    {% cspscript %}
+      <script>
+        document.documentElement.classList.replace('no-js', 'js');
+        window.addEventListener('DOMContentLoaded', function () {
+            if (!window.Translator || !window.Routing) {
+                document.documentElement.classList.replace('js', 'no-js');
+            }
+        });
+      </script>
+    {% endcspscript %}
+
+    {% block stylesheets %}
+      {{ include('_includes/stylesheets.html.twig', with_context=false) }}
+
+      {% block theme_css %}
+        {{ theme_css() }}
+      {% endblock theme_css %}
+    {% endblock stylesheets %}
+
+    {% block feed %}
+      <link rel="alternate" type="application/atom+xml" href="{{ path('all', { sortBy: 'new', _format: 'atom' }) }}" title="{{ 'front.all_forums'|trans }}">
+      <link rel="alternate" type="application/atom+xml" href="{{ path('featured', { sortBy: 'new', _format: 'atom' }) }}" title="{{ 'front.featured_forums'|trans }}">
+    {% endblock feed %}
+
+    {% block head '' %}
+    <style>
+      .box{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+      }
+
+      .boxContainer{
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+      }
+      /* LINKS */
+      .link {
+        padding: 10px;
+        font-size: 15px;
+        position: relative;
+      }
+
+      .sub-links ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(4, 1fr);
+
+      }
+
+      .sub-links a {
+        text-decoration: none;
+      }
+
+      .sub-links a:hover {
+        text-decoration: underline;
+      }
+
+      .logos a {
+        padding: 10px;
+      }
+
+    </style>
+  </head>
+
+  <body class="{{ app.user ? 'user-logged-in' : 'user-anonymous' }}
+               {{~ (app.user.poppersEnabled ?? true) ? 'js-poppers-enabled' }}">
+    {% block site_alerts %}
+      <div class="site-alerts">
+        {%- if app.request.previousSession -%}
+          {%- for type, notices in app.flashes -%}
+            {%- for notice in notices -%}
+              <div class="{{ alert_classes(type) }} site-alerts__alert" role="alert" data-controller="alert">
+                {{ alert_icon(type) }}
+                <div class="alert__text">
+                  <p>{{ notice|trans }}</p>
+                </div>
+                <button class="site-alerts__dismiss unbuttonize" data-action="alert#close" data-alert-target="close">
+                  <span class="hidden">{{ 'action.dismiss'|trans }}</span>
+                </button>
+              </div>
+            {%- endfor -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    {% endblock site_alerts %}
+
+    <nav class="site-accessibility-nav">
+      <a href="#main" class="site-accessibility-nav__link">{{ 'nav.jump_to_main_content'|trans }}</a>
+      <a href="#sidebar" class="site-accessibility-nav__link">{{ 'nav.jump_to_sidebar'|trans }}</a>
+    </nav>
+
+    {{ block('site_nav') }}
+
+    {% block site_main %}
+      <div class="site-content content-container">
+        <main class="site-content__body body flow" id="main">{% block body %}{% endblock %}</main>
+
+        <aside class="site-content__sidebar sidebar flow" id="sidebar">
+          <div class="box">
+            <script type="text/javascript" src="https://js.gsspcln.jp/t/494/184/a1494184.js"></script>
+
+          </div>
+          <section class="sidebar__section flow">
+            <h2 class="sidebar__title">
+              <div class="boxContainer">
+                <div class="box"><a href="https://getmatch.base.shop/"><i class="fa fa-shopping-cart fa-2x logo"></i></a></div>
+                <div class="box"><a href="https://twitter.com/StuckCardBox"><i class="fa fa-twitter fa-2x logo"></i></a></div>
+                <div class="box"><a href="https://www.youtube.com/channel/UCzxN5Huafi0ui-HFG9fi2Zg/feed?activity_view=7"><i class="fa fa-youtube fa-2x logo"></i></a></div>
+              </div>
+            </h2>
+          </section>
+
+          {% block sidebar %}{% endblock %}
+        </aside>
+      </div>
+    {% endblock site_main %}
+
+    {% block site_footer %}
+{#      {% set version = app_version() and app_branch() ? 'site_footer.version'|trans({#}
+{#        '%branch%': app_branch(),#}
+{#        '%version%': app_version(),#}
+{#      }) %}#}
+      <footer class="site-footer">
+        <p>
+          <span class="fg-muted text-xs page-shadow">
+            <section class="link">
+
+    <br>
+
+    <center class="sub-links">
+        <ul>
+            <li><a href="/f/service">{{ 'footer.terms_of_service'|trans }}</a></li>
+            <li><a href="/f/privacy">{{ 'footer.privacy'|trans }}</a></li>
+            <li><a href="/f/faq">{{ 'footer.faq'|trans }}</a></li>
+            <li><a href="/f/contact">{{ 'footer.contact'|trans }}</a></li>
+        </ul>
+    </center>
+
+        <center class="logos"> <p>{{ 'footer.copy'|trans }}</p></center>
+        </section>
+        <!-- END OF LINKS -->
+
+{#            {{- 'site_footer.app'|trans({#}
+{#              '%app%': '<a href="https://postmill.xyz/">Postmill</a>',#}
+{#              '%version%': version,#}
+{#            })|raw -}}#}
+
+{#            <script type="text/javascript" src="https://js.gsspcln.jp/t/494/189/a1494189.js"></script>#}
+          </span>
+        </p>
+      </footer>
+    {% endblock site_footer %}
+
+    {% block javascripts %}
+      <script src="{{ preload(asset('bundles/bazingajstranslation/js/translator.min.js', 'static_asset')) }}"></script>
+      <script src="{{ preload(asset('bundles/fosjsrouting/js/router.js', 'static_asset')) }}"></script>
+
+      {% if app.environment != 'dev' or app.request.query.has('static_assets') %}
+        <script src="{{ preload(asset('js/translations/config.js', 'static_asset')) }}"></script>
+        <script src="{{ preload(asset('js/translations/%s.js'|format(app.request.locale), 'static_asset')) }}"></script>
+        <script src="{{ preload(asset('js/routing.js', 'static_asset')) }}"></script>
+      {% else %}
+        <script src="{{ path('bazinga_jstranslation_js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+      {% endif %}
+
+      {% if app.request.locale != 'en' %}
+        {# load fallback locale #}
+{#        <script src="{{ preload(asset('js/translations/en.js', 'static_asset')) }}"></script>#}
+      {% endif %}
+
+      {{ encore_entry_script_tags('main') }}
+    {% endblock javascripts %}
+  </body>
+</html>

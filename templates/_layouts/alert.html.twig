@@ -1,0 +1,37 @@
+{% block alert %}
+  <div class="{{ block('alert_classes') }}"{{ loud ? ' role="alert"' }}>
+    {{- block('alert_icon') -}}
+    <div class="alert__text">
+      <p>{{ text }}</p>
+    </div>
+  </div>
+{% endblock alert %}
+
+{% block alert_classes -%}
+  alert bg-{{ {
+    error: 'red',
+    warn: 'orange',
+    info: 'yellow',
+    success: 'green',
+    notice: 'blue',
+  }[type] }}
+{%- endblock alert_classes %}
+
+{% block alert_icon -%}
+  {% from '_macros/icon.html.twig' import icon -%}
+  <div class="alert__icon fg-{{ {
+    error: 'red',
+    warn: 'orange',
+    info: 'yellow',
+    success: 'green',
+    notice: 'blue',
+  }[type] }}" aria-hidden="true">
+    {{- icon({
+      error: 'cancel-circled',
+      warn: 'attention',
+      info: 'help-circled',
+      notice: 'info-circled',
+      success: 'ok-circled',
+    }[type]) -}}
+  </div>
+{%- endblock alert_icon %}

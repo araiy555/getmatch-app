@@ -1,0 +1,44 @@
+{% macro relative_time(datetime, options={}) -%}
+  {%- set options = {
+    date_format: 'long',
+    time_format: 'short',
+    natural: false,
+    extra_classes: '',
+  }|merge(options) -%}
+  {%- set timezone = app.user.timezone ?? null -%}
+  {%- set timestamp = datetime|format_datetime(options.date_format, options.time_format, timezone=timezone) -%}
+  {%- set tip = datetime|format_datetime('long', 'long', timezone=timezone) -%}
+  <time class="{{ options.extra_classes }}"
+        data-controller="relative-time"
+        datetime="{{ datetime|date('c') }}"
+        title="{{ tip }}">
+    {%- if options.natural -%}
+      {{- 'time.on_timestamp'|trans({'%timestamp%': timestamp}) -}}
+    {%- else -%}
+      {{- timestamp -}}
+    {%- endif -%}
+  </time>
+{%- endmacro relative_time %}
+
+{% macro relative_time_diff(datetime, compare_to, options={}) -%}
+  {%- set options = {
+    date_format: 'long',
+    time_format: 'short',
+    natural: false,
+    extra_classes: '',
+  }|merge(options) -%}
+  {%- set timezone = app.user.timezone ?? null -%}
+  {%- set timestamp = datetime|format_datetime(options.date_format, options.time_format, timezone=timezone) -%}
+  {%- set tip = datetime|format_datetime('long', 'long', timezone=timezone) -%}
+  <time datetime="{{ datetime|date('c') }}"
+        data-controller="diff-time"
+        data-diff-time-compare-to-value="{{ compare_to|date('c') }}"
+        class="{{ options.extra_classes }}"
+        title="{{ tip }}">
+    {%- if options.natural -%}
+      {{- 'time.on_timestamp'|trans({'%timestamp%': timestamp}) -}}
+    {%- else -%}
+      {{- timestamp -}}
+    {%- endif -%}
+  </time>
+{%- endmacro relative_time_diff %}

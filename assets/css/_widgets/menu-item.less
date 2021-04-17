@@ -1,0 +1,35 @@
+.menu-item {
+  color: var(--text);
+  display: block;
+  padding: 0.5rem 1rem;
+  width: 100%; // for buttons
+
+  &--active {
+    position: relative;
+
+    &::before {
+      content: '\2022'; // bullet
+      left: 0;
+      position: absolute;
+      text-align: center;
+      width: 1rem;
+    }
+  }
+
+  &:any-link,
+  input&[type="submit"],
+  input&[type="reset"],
+  input&[type="button"],
+  button& {
+    &:not(:disabled):hover {
+      background-color: var(--accent);
+      color: var(--accent-fg);
+      text-decoration: none;
+    }
+  }
+
+  &:focus {
+    background-color: var(--accent-alt);
+    outline: none;
+  }
+}

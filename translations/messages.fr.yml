@@ -1,0 +1,380 @@
+# New keys should use the generic categories 'title', 'label', 'help', 'nav',
+# etc. Older keys are subject to renaming.
+top.title : GetMatch | Page d'accueil Internet
+top.description : Bienvenue sur GetMatch. Nous sommes un réseau de communautés basées sur les intérêts des gens. Trouvez une communauté qui vous intéresse et devenez membre de notre communauté en ligne !
+wiki.page_description : Bienvenue à GetMatch. Consultez notre "wiki" et voyez ce que nous avons rassemblé pour vous.
+action.log_in_description : Bienvenue à GetMatch. En vous connectant, vous aurez accès au contenu de GetMatch.
+action.sign_up_description : Bienvenue à GetMatch. En vous inscrivant pour obtenir un compte, vous pourrez accéder au contenu de GetMatch.
+forum_list.page_description : Bienvenue sur GetMatch. Consultez les informations de la "Liste des forums" et rejoignez la communauté.
+nav.shop: shopping
+markdown.image: image
+markdown.movie: video
+markdown.movie_thumbnail: Video thumbnail
+footer.terms_of_service: Terms of Service
+footer.privacy: Privacy
+footer.faq: FAQ
+footer.contact: Contact Us
+action.add: Ajouter
+action.ban: Bannir
+action.block: Bloquer
+action.compare: Comparer
+action.create: Créer
+action.delete: Supprimer
+action.delete_thread: Supprimer avec les réponses
+action.downvote: Downvoter
+action.edit: Modifier
+action.filter: Filtrer
+action.global_ban: Ban global
+action.go_to_home_page: Aller à la page d'accueil
+action.lock: Verrouiller
+action.log_in: Connexion
+action.log_out: Déconnexion
+action.post: Poster
+action.remove: Retirer
+action.retract_downvote: Retirer downvote
+action.retract_upvote: Retirer upvote
+action.save: Sauvegarder
+action.save_changes: Sauvegarder les changements
+action.search: Rechercher
+action.send: Envoyer
+action.sign_up: S'inscrire
+action.subscribe: S'abonner
+action.unban: Ne plus bannir
+action.unblock: Débloquer
+action.unlock: Déverrouiller
+action.unsubscribe: Se désabonner
+action.upvote: Upvoter
+
+add_moderator.title: Ajouter à la modération de %forum%
+
+ban_add.title: Bannir une adresse IP
+
+ban_list.banned_by: Banni par
+ban_list.expires: Expire
+ban_list.expires_never: jamais
+ban_list.reason: Raison
+ban_list.remove: Retirer le ban
+ban_list.timestamp: Heure
+ban_list.user: Compte
+ban_list.user_none: aucun
+
+banned.title: Banni
+
+comments.comments: Commentaires
+comments.context.comment_reply: Réponse au commentaire de %comment_author% dans %submission_title% par %submission_author%
+comments.context.top_level_reply: Réponse à %submission_title% par %submission_author%
+comments.edit_info: (modifié %edited_at%)
+comments.form_load_error: Erreur du chargement du formulaire. Veuillez réessayer.
+comments.info: '%user% a écrit %timestamp%'
+comments.moderator_info: (modéré %edited_at%)
+comments.not_logged_in: Vous devez vous %login_link% ou vous %register_link% pour commenter.
+comments.not_logged_in_login_link_label: connecter
+comments.not_logged_in_register_link_label: inscrire
+comments.parent: Parent
+comments.reply: Répondre
+comments.return_to_forum: Retourner sur %forum%
+comments.thread_return: Voir tous les commentaires
+comments.viewing_thread: Affichage d'un seul fil de commentaire.
+
+comment_form.create_title: Publier un commentaire
+comment_form.edit_title: Modifier le commentaire
+
+compose_message.title: Écrire un message à %username%
+
+content.empty: Il n'y a rien ici...
+
+create_forum.create_new_forum: Créer un nouveau forum
+
+edit_forum.title: Modifier %forum%
+
+edit_user.title: Modifier le compte %username%
+
+flash.ban_added: L'adresse IP a été bannie.
+flash.forum_deleted: Le forum et son contenu a été supprimé.
+flash.forum_moderator_added: L'utilisateur a été promu modérateur.
+flash.forum_updated: Les changements ont été sauvegardés.
+flash.no_cookies_verification: Est-ce que l'image ne se charge pas correctement? Veuillez vous assurer que vous ne bloquez pas les cookies et essayez à nouveau.
+flash.no_entries_to_display: Il n'y a pas d'entrées à afficher.
+flash.no_messages: Il n'y a pas de message à afficher.
+flash.no_moderated_forums: Vous n'êtes le modérateur d'aucun forum.
+flash.no_password_resets: La réinitialisation des mots de passe a été désactivée par l'administrateur.
+flash.notification_cleared: La notification a été effacée avec succès.
+flash.page_locked: La page a été verrouillée.
+flash.page_unlocked: La page a été déverrouillée.
+flash.reset_password_email_sent: Un courrier électronique pour réinitialiser votre compte à été envoyé à l'adresse spécifiée.
+flash.submission_deleted: Le post a été supprimé.
+flash.submission_edited: Le post a été modifié.
+flash.submission_is_locked: Le post est verrouillé. Vous ne pouvez pas ajouter de commentaires.
+flash.submission_locked: Le post a été verrouillé.
+flash.submission_unlocked: Le post a été déverrouillé.
+flash.user_account_registered: Votre compte a été créé.
+flash.user_biography_updated: La biographie a été mise à jour.
+flash.user_blocked: L'utilisateur a été bloqué.
+flash.user_password_updated: Votre mot de passe a été mis à jour.
+flash.user_settings_updated: Les paramètres du compte ont été mis à jour.
+flash.user_unblocked: L'utilisateur a été débloqué.
+flash.user_unmodded: L'utilisateur a été retiré des modérateurs.
+flash.user_was_banned: L'utilisateur est banni.
+flash.user_was_unbanned: L'utilisateur n'est plus banni.
+
+forum.add_as_moderator: Ajouter au groupe de modération
+forum.add_moderator: Ajouter un modérateur
+forum.create: Créer un forum
+forum.delete: Supprimer le forum
+forum.edit: Modifier le forum
+forum.moderators: Modérateurs
+forum.subscriber_count: '{0} Aucun abonnement|{1} %formatted_count% personne abonnée|[1,Inf[ %formatted_count% personnes abonnées'
+
+forum_form.featured: Mettre le forum en avant sur la page d'accueil
+
+forum_list.page_title: Liste des forums
+forum_list.submission_count: Posts
+forum_list.subscribers: Nombre d'abonnés
+
+forum_moderators.last_seen: Dernière connexion
+forum_moderators.since: Nommé
+forum_moderators.title: Modérateurs de %forum_name%
+
+front.all: Tout
+front.featured: Mis en avant
+front.featured_forums: Forums mis en avant
+front.no_forums: Il n'y a pas de forum mis en avant à montrer.
+front.no_subscriptions: Aucun abonnement. Voici les forums mis en avant à la place.
+front.subscribed: Abonnements
+front.subscribed_forums: Abonnements
+
+heading.forums_you_moderate: Forums que vous modérez
+heading.message_reply: "%sender% a répondu %timestamp%"
+heading.message_thread: "%sender% a écrit à %receiver% %timestamp%"
+heading.multi_forum_view: Vue multi-forum
+
+help.delete_forum_warning: Tout le contenu de ce forum sera supprimé pour toujours!
+help.forum_description: Une courte description du forum. Les moteurs de recherche afficheront cette description dans leurs résultats.
+help.will_appear_in_the_url: Apparaîtra dans l'URL.
+
+inbox.message_reply_head: 'Re: %title%'
+
+item.short_url: 'URL courte'
+
+label.action: Action
+label.admin: Admin
+label.all: Tout
+label.any: N'importe lequel
+label.appearance: Apparence
+label.author: Auteur
+label.auto_fetch_submission_titles: Récupérer le titre des posts automatiquement
+label.ban: Bannir
+label.ban_ip_addresses: Bannir ces adresses IP ?
+label.banned: Banni
+label.banned_by: Banni par
+label.bans: Bans
+label.biography: Biographie
+label.blocked: Bloqué
+label.body: Corps
+label.comment: Commenter
+label.comment_votes: Votes sur des commentaires
+label.comment_votes_short: VC
+label.comments: Commentaires
+label.comments_short: C
+label.compare: Comparer
+label.date: Date
+label.default: Défaut
+label.description: Description
+label.email_address: Adresse mail
+label.expires: Expire le
+label.featured: Mis en avant
+label.forum: Forum
+label.forums_count: '{0} Aucun forum|{1} Un seul forum|]1,Inf[ %count% forums'
+label.from: De
+label.front_page: Page d'accueil
+label.general: Général
+label.id: ID
+label.ip_address: Adresse IP
+label.ip_addresses: Adresses IP
+label.language: Langue
+label.last_revised: Dernière modification
+label.let_forums_override_preferred_theme: Laisser les forums outrepasser votre thème préféré
+label.message: Message
+label.moderated: Modéré
+label.moderates: Modère
+label.name: Nom
+label.never: Jamais
+label.new_password: Nouveau mot de passe
+label.none: Aucun
+label.open_external_links_in_new_tab: Ouvrir les liens externes dans un nouvel onglet
+label.order_by: Trier par
+label.overview: Vue d'ensemble
+label.password: Mot de passe
+label.posting: Posting
+label.preferred_theme: Thème préféré
+label.reason: Raison
+label.reason_for_banning: Raison de bannir
+label.recent_changes: Changements récents
+label.registration_date: Date d'inscription
+label.repeat_new_password: Nouveau mot de passe (de nouveau)
+label.repeat_password: Mot de passe (de nouveau)
+label.replies: Réponses
+label.role: Rôle
+label.sent: Envoyé
+label.show_post_previews: Montrer les aperçus de post
+label.sidebar: Barre latérale
+label.source_code: Code source
+label.submission_votes: Votes sur des posts
+label.submission_votes_short: VP
+label.submissions: Posts
+label.submissions_short: P
+label.subscribed: Abonné
+label.title: Titre
+label.to: À
+label.toolbox: Boîte à outils
+label.unban: Ne plus bannir
+label.unban_associated_ips: Supprimer les bans d'addresses IP associées
+label.url: URL
+label.user_associated_with_ip: Utilisateur associé à l'IP
+label.username: Nom d'utilisateur
+label.verification: Vérification
+
+log.ban: '%user% a banni %banned% (expire: %expires%). Raison: "%reason%"'
+log.comment_deletion: '%user% a supprimé un commentaire par %author% dans "%submission%"'
+log.submission_deletion: '%user% a supprimé le post "%title%" par %author%'
+log.submission_deletion_with_reason: '%user% a supprimé "%title%" par %author%. Raison: "%reason%"'
+log.submission_lock: '%user% a verrouillé le post "%title%" par %author%'
+log.submission_unlock: '%user% a déverrouillé le post "%title%" par %author%'
+log.unban: '%user% a retiré le ban de %banned%. Raison: "%reason%"'
+
+login.reset_password: Réinitialiser le mot de passe?
+
+markdown.help: Référence de la syntaxe
+
+nav.add_ban: Ajouter un ban
+nav.appearance: Apparence
+nav.ban_history: Historique des bans
+nav.bans: Bans
+nav.block_list: Liste de blocage
+nav.block_user: Bloquer l'utilisateur
+nav.comments: Commentaires récents
+nav.delete_forum: Supprimer le forum
+nav.edit_biography: Modifier la biographie
+nav.filter_results: Filtrer les résultats
+nav.forum_bans: Bans du forum
+nav.forums: Forums
+nav.ip_bans: Bans d'IP
+nav.messages: Messages
+nav.moderated: Modéré
+nav.moderation_log: Journal de modération
+nav.my_account: Mon compte
+nav.next: Suivant
+nav.permalink: Permalien
+nav.previous: Précédent
+nav.profile: Profil
+nav.submit: Poster
+nav.themes: Thèmes
+nav.user_bans: Bans d'utilisateurs
+nav.user_settings: Réglages
+nav.users: Utilisateurs
+nav.wiki: Wiki
+
+placeholder.choose_one: Choisir…
+placeholder.default: (défaut)
+placeholder.deleted: '[supprimé]'
+
+prompt.confirm_comment_delete: Êtes-vous sûr de vouloir supprimer ce commentaire?
+prompt.confirm_submission_delete: Êtes-vous sûr de vouloir supprimer ce post?
+
+request_password_reset.multiple_accounts_notice: Si vous avez plusieurs comptes enregistrés sur cette adresse mail, vous recevrez un message par compte.
+request_password_reset.no_confirmation_notice: Si vous ne recevez pas de mail, l'adresse que vous avez spécifié est probablement incorrecte. Pour des raisons de confidentialité, nous ne confirmons pas si l'adresse spécifiée est enregistrée.
+request_password_reset.title: Demander un lien de réinitialisation de mot de passe
+
+request_password_reset_form.submit: Envoyer
+
+reset_password.title: Réinitialisation de mot de passe
+
+site_footer.app: Propulsé par %app% %version%
+site_footer.version: '%version% (%branch%)'
+
+submission_form.create: Créer un post
+submission_form.edit: Modifier le post
+
+submission.comments: '{0} Aucun commentaire|{1} %count% commentaire|[1,Inf[ %count% commentaires'
+submission.edit_info: (modifié %edited_at%)
+submission.info_with_forum_name: Posté par %submitter% %timestamp% dans %forum%
+submission.info_without_forum_name: Posté par %submitter% %timestamp%
+submission.moderator_info: (modifié par la modération %edited_at%)
+submission.sort_by_controversial: Controversé
+submission.sort_by_hot: En vogue
+submission.sort_by_most_commented: Plus commentés
+submission.sort_by_new: Nouveau
+submission.sort_by_top: Top
+submission.time_all: Depuis toujours
+submission.time_day: Dernières 24 heures
+submission.time_month: Dernier mois
+submission.time_week: Dernière semaine
+submission.time_year: Dernière année
+submission.total_votes: '{1} %count% point|[0,Inf[ %count% points'
+submission.vote_stats: (+%up%, −%down%)
+
+time.earlier_format: '%relative_time% plus tôt'
+time.later_format: '%relative_time% plus tard'
+time.on_timestamp: le %timestamp%
+
+title.active_global_user_bans: Bans globaux en exercice
+title.ban_user: Bannir %user%
+title.banning_user_from_forum: Bannir %user% de %forum%
+title.bans_in_forum: Bans dans %forum%
+title.block_list: Liste de bloquage
+title.blocking_user: Bloquer %user%
+title.create_submission: Créer un post
+title.delete_forum: Supprimer forum %forum%
+title.delete_submission: Supprimer le post
+title.editing_biography_for_user: Modification de la biographie de %user%
+title.editing_forum: Modification du forum %forum%
+title.editing_submission: Modification du post %title%
+title.forum_appearance: Apparence pour %forum%
+title.global_moderation_log: Registre de modération global
+title.ip_bans: Adresses IP bannies
+title.list_of_users: 'List d''utilisateurs, page #%page%'
+title.messages: Messages
+title.recent_comments: Commentaires récents
+title.showing_ban_history_for_user_in_forum: Affichage de l'historique des bans de %user% dans %forum%
+title.showing_moderation_log_for_forum: Affichage du registre de modération de %forum%
+title.showing_revision: 'Affichage de la révision #%revision% de la page %path%'
+title.unban_user: Retirer le ban de %user%
+title.unbanning_user_from_forum: Retirer le ban de %user% de %forum%
+title.user_forum_bans: "Bans de forum de %user%"
+title.wiki_diff: Affichage des modifications entre %from% et %to%
+
+user.comments: Commentaires
+user.email_optional: Fournir une adresse mail est optionnel. Nous ne l'utiliserons que pour réinitialiser votre mot de passe.
+user.message: Envoyer le message
+user.moderates: '%username% modère:'
+user.password_rules: Minimum de 8 caractères.
+user.registered: Inscrit %timestamp%
+user.submissions: Posts
+user.username_rules: Les caractères autorisés sont A-Z, a-z, 0-9 et le trait de soulignement.
+
+user_flag.admin: admin
+user_flag.admin_label: Admin
+user_flag.moderator: moderator
+user_flag.moderator_label: Modérateur
+user_flag.none_label: (aucun)
+user_flag.post_as_label: Publier en tant que
+
+user_settings.title: Modification des réglages utilisateur de %username%
+
+wiki.all_pages: Toutes les pages
+wiki.create_this_page: Créer cette page.
+wiki.create_title: Création de "%path%"
+wiki.edit_page: Modifier la page
+wiki.editing_title: Modification de "%path%"
+wiki.history_title: Afficher l'historique de "%path%"
+wiki.id_label: ID
+wiki.last_edited: Dernière modification par %username% %timestamp%
+wiki.locked_notice: Cette page est verrouillée. Seuls les admins peuvent la modifier.
+wiki.navigation: Navigation
+wiki.not_found_message: La page demandée n'a pas été trouvée.
+wiki.not_found_title: Page non trouvée
+wiki.page_history: Historique de la page
+wiki.page_title: Titre de la page
+wiki.path: Chemin
+wiki.revision_time: Modifié
+wiki.user: Nom d'utilisateur

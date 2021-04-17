@@ -1,0 +1,34 @@
+.text-flow-mixin(@margin) {
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr {
+    // margin only for non-first elements
+    &:not(:first-child) {
+      margin-top: @margin;
+    }
+
+    // margin only if preceded by other block element
+    // prevents excess margin in nested lists
+    & + dl,
+    & + ol,
+    & + ul {
+      margin-top: @margin;
+    }
+  }
+
+  // nested elements
+  li, blockquote {
+    &:not(:first-child) {
+      h1, h2, h3, h4, h5, h6, p, pre {
+        margin-top: @margin;
+      }
+    }
+  }
+
+  img {
+    &.inserted-image {
+      max-width: 100%;
+    }
+  }
+}
+
+.text-flow { .text-flow-mixin(1em) }
+.text-flow-slim { .text-flow-mixin(0.5em) }
